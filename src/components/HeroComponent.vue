@@ -1,4 +1,31 @@
 <script setup>
+import { ref } from 'vue';
+import axios from 'axios';
+
+
+const formData = ref({
+  email: '',
+  password: ''
+});
+
+const submitForm = async () => {
+  try {
+    const response = await axios.post('/signin', formData.value);
+    // Maneja la respuesta del servidor, por ejemplo, redirige a otra página o muestra un mensaje de éxito.
+    console.log('Respuesta del servidor:', response.data);
+  } catch (error) {
+    console.error('Error al enviar el formulario:', error);
+  }
+
+
+  return {
+    formData,
+    submitForm
+  };
+
+
+};
+
 
 
 </script>
@@ -27,13 +54,15 @@
       </div> -->
 
         <div class="col-md-10 mx-auto col-lg-5">
-          <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+          <form @submit.prevent="submitForm" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
             <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="correo@correo.com">
+              <input type="email" v-model="formData.email" class="form-control" id="floatingInput"
+                placeholder="correo@correo.com">
               <label for="floatingInput">Correo Electronico</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="password" class="form-control" id="floatingPassword" placeholder="Contrasena">
+              <input type="password" v-model="formData.password" class="form-control" id="floatingPassword"
+                placeholder="Contrasena">
               <label for="floatingPassword">Contrase&ntilde;a</label>
             </div>
             <div class="checkbox mb-3">
