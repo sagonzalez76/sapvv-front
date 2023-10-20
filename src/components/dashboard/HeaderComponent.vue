@@ -1,5 +1,6 @@
 <script setup>
 
+
 </script>
 
 <template>
@@ -80,4 +81,5 @@
 
 .navbar .form-control {
   padding: .75rem 1rem;
-}</style>
+}
+</style>

@@ -6,8 +6,8 @@ import jwt_decode from 'jwt-decode';
 
 export const useAuthStore = defineStore('auth', () => {
 
-  const token = ref('')
-  const tokenUser = ref('')
+  const token = ref(localStorage.getItem('token')) || null
+  const tokenRole = ref()
 
   const submitForm = async (json) => {
 
@@ -33,10 +33,12 @@ export const useAuthStore = defineStore('auth', () => {
   const decodedToken = async () => {
     if (token.value) {
       try {
+
         const decodedToken = jwt_decode(token.value);
-        tokenUser.value = decodedToken.role
+        tokenRole.value = decodedToken.role
+
       } catch (error) {
-        console.error('Error al decodificar el token:', error);
+        console.error('Error al decodificar el token: ', error);
       }
     } else {
       console.log('No se encontró un token en el localStorage.');
@@ -44,5 +46,5 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
 
-  return { token, tokenUser, submitForm, logout, decodedToken }
+  return { token, tokenRole, submitForm, logout, decodedToken }
 })

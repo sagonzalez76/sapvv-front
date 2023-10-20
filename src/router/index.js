@@ -20,13 +20,13 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
-      meta: { requiresAuth: true, role: 'student' }
+      meta: { requiresAuth: true, roles: ['student', 'director'] }
     },
     {
       path: '/error',
       name: 'error',
       component: Error,
-      meta: { requiresAuth: true, role: 'director' }
+      meta: { requiresAuth: false }
     },
 
   ]
@@ -35,33 +35,30 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 
   const token = localStorage.getItem('token')
+
   const auth = useAuthStore()
+  auth.decodedToken()
 
-  setTimeout(() => {
-    console.log(token);
+  const role = auth.tokenRole
 
-    const role = auth.tokenUser
-    
-    console.log(role);
-
-    if (to.meta.requiresAuth) {
-      if (!token) {
-        // No hay token, redirige a la página de inicio
-        next('/');
-      } else {
-        if (to.meta.role && to.meta.role !== role) {
-          // Rol no coincide, redirige a la página de error
-          next('/error');
-        } else {
-          // Cumple con los requisitos de autenticación y rol, continúa la navegación
-          next();
-        }
-      }
+  if (to.meta.requiresAuth) {
+    if (!token) {
+      // No hay token, redirige a la página de inicio
+      next('/');
     } else {
-      // No requiere autenticación, continúa la navegación
-      next();
+      if (to.meta.roles && !to.meta.roles.includes(role)) {
+        // Rol no coincide, redirige a la página de error
+        next('/error');
+      } else {
+        // Cumple con los requisitos de autenticación y rol, continúa la navegación
+        next();
+      }
     }
-  }, 500);
+  } else {
+    // No requiere autenticación, continúa la navegación
+    next();
+  }
+
 
 
 });
