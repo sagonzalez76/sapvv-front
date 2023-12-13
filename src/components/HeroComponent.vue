@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 // import axios from 'axios';
 // imp ort router from '../router';                           . 
 import { useAuthStore } from '../stores/auth.js';
@@ -8,11 +8,16 @@ const json = ref({
   email: '',
   password: ''
 });
-
+const authStore = useAuthStore();
+const signIn = ref(authStore.signIn);
 const auth = useAuthStore()
 
+onMounted(() => {
+  signIn.value = authStore.signIn;
+});
+
 const onSubmit = () => {
-  auth.submitForm(json.value);
+  auth.submitForm(json.value)
 
 };
 
@@ -61,7 +66,14 @@ const onSubmit = () => {
 
             <div class="g-recaptcha align-center mw-100" data-sitekey="6Lfws4MoAAAAAIi5jk_hYaqwDz74UWMPeankCfUE"></div>
 
-            <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Iniciar Sesion</button>
+            <button v-if=!authStore.signIn class="w-100 btn btn-lg btn-primary mt-2" type="submit">Iniciar Sesion
+            </button>
+
+
+            <button v-else class="btn btn-primary w-100 btn btn-lg mt-2" type="button" disabled>
+              <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+              <span role="status"> Cargando...</span>
+            </button>
 
             <!-- <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small> -->
           </form>

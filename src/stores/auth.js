@@ -8,14 +8,16 @@ export const useAuthStore = defineStore('auth', () => {
 
   const token = ref(localStorage.getItem('token')) || null
   const tokenRole = ref()
+  let signIn = ref(false)
+
 
   const submitForm = async (json) => {
+    signIn.value = true
 
     await axios.post('http://localhost:8000/signIn', json)
 
       .then((response) => {
-
-        router.push('/dashboard')
+        router.push('/dashboard/programas')
         localStorage.setItem('token', response.data.tokenSession)
         token.value = localStorage.getItem('token')
         decodedToken()
@@ -23,6 +25,9 @@ export const useAuthStore = defineStore('auth', () => {
 
       .catch((error) => {
         alert(error.response.data.message)
+      })
+      .finally(() => {
+        signIn.value = false
       })
   }
 
@@ -46,5 +51,5 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
 
-  return { token, tokenRole, submitForm, logout, decodedToken }
+  return { token, tokenRole, submitForm, logout, decodedToken, signIn }
 })

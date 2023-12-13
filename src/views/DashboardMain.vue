@@ -1,10 +1,8 @@
 <script setup>
-
 // globals Chart:false
 import HeaderComponent from '../components/dashboard/HeaderComponent.vue';
 import SidebarComponent from '../components/dashboard/SidebarComponent.vue';
 import ToolsComponent from '../components/dashboard/ToolsComponent.vue';
-import MedidasComponent from '../components/dashboard/MedidasComponent.vue';
 import IconsComponent from '../components/dashboard/IconsComponent.vue';
 import { useAuthStore } from '../stores/auth';
 
@@ -60,7 +58,7 @@ const role = useAuthStore().tokenRole
 
 </script>
 
-<template>
+<template >
   <!-- <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check2" viewBox="0 0 16 16">
@@ -118,14 +116,15 @@ const role = useAuthStore().tokenRole
     </ul>
   </div>  -->
 <IconsComponent></IconsComponent>
-  <HeaderComponent></HeaderComponent>
-  <div class="container-fluid">
+  <HeaderComponent class=""></HeaderComponent>
+  <div class="container-fluid fade-in-down ">
     <div class="row">
       <SidebarComponent></SidebarComponent>
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <ToolsComponent :role="role"></ToolsComponent>
         <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
-        <MedidasComponent></MedidasComponent>
+    
+       <router-view></router-view>
       </main>
     </div>
   </div>
@@ -133,5 +132,19 @@ const role = useAuthStore().tokenRole
 
 <style scoped>
 
+   @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+      to {
+        opacity: 5;
+        transform: translateY(0);
+      }
+    }
+
+     .fade-in-down {
+      animation: fadeInDown 0.5s ease-out;
+    }   
 
 </style>

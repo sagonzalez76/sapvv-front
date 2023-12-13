@@ -1,10 +1,16 @@
 <script setup>
 
+import { onMounted } from 'vue'
+
+onMounted(() => {
+    console.log(`the component is now mounted.`)
+})
 
 </script>
 
 <template>
     <h2>Medidas</h2>
+    <button type="button">Crear Medida</button>
     <div class="table-responsive small">
         <table class="table table-striped table-sm">
             <thead>

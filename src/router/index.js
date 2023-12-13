@@ -3,6 +3,12 @@ import HomeView from '../views/HomeView.vue'
 import Dashboard from '../views/DashboardMain.vue'
 import Error from '../views/Error404Page.vue'
 import { useAuthStore } from '../stores/auth.js'
+import Programas from '../components/dashboard/ProgramasComponent.vue'
+import Medidas from '../components/dashboard/MedidasComponent.vue'
+import Usuarios from '../components/dashboard/UsuariosComponent.vue'
+import Roles from '../components/dashboard/RolesComponent.vue'
+import Departamentos from '../components/dashboard/DepartamentosComponent.vue'
+import Municipios from '../components/dashboard/MunicipiosComponent.vue'
 
 
 
@@ -20,7 +26,20 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
-      meta: { requiresAuth: true, roles: ['student', 'director'] }
+      meta: { requiresAuth: true, roles: ['student', 'director', 'juridico', 'enlace', 'dinamizador'] },
+      children: [
+        { path: '/dashboard/usuarios', component: Usuarios },
+        { path: '/dashboard/roles', component: Roles },
+        { path: '/dashboard/programas', component: Programas },
+        { path: '/dashboard/medidas', component: Medidas },
+        { path: '/dashboard/programas', component: Programas },
+        { path: '/dashboard/programas', component: Programas },
+        { path: '/dashboard/programas', component: Programas },
+        { path: '/dashboard/departamentos', component: Departamentos },
+        { path: '/dashboard/municipios', component: Municipios },
+
+
+      ],
     },
     {
       path: '/error',
