@@ -5,36 +5,17 @@ import { onMounted } from 'vue'
 import { useAuthStore } from '../../stores/auth';
 
 const token = useAuthStore().token
-const municipalitys = ref({})
-const departments = ref({})
+const programs = ref({})
 const formData = ref({})
 
 onMounted(() => {
-    refrescar(),
+    refrescar()
 
-        new DataTable('#example');
+        // new DataTable('#example');
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/municipalitys', {
-
-        //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
-        headers: {
-            'Authorization': `Bearer ${token}`,
-        },
-    })
-        .then((response) => {
-            municipalitys.value = response.data
-            // console.log(municipalitys.value);
-            // console.log(response.data);
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-
-
-
-    await axios.get('http://localhost:8000/departments', {
+    await axios.get('http://localhost:8000/type_comunitys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -44,7 +25,7 @@ const refrescar = async () => {
         },
     })
         .then((response) => {
-            departments.value = response.data
+            programs.value = response.data
             // console.log(departments.value);
             // console.log(response.data);
         })
@@ -54,9 +35,9 @@ const refrescar = async () => {
 }
 
 
-const getMunicipality = async (id) => {
+const getProgram = async (id) => {
 
-    await axios.get('http://localhost:8000/municipalitys/' + id, {
+    await axios.get('http://localhost:8000/type_comunitys/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -69,11 +50,11 @@ const getMunicipality = async (id) => {
         })
 }
 
-const createMunicipality = async () => {
+const createProgram = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/municipalitys', formData.value)
+    await axios.post('http://localhost:8000/type_comunitys', formData.value)
         .then(() => {
-            alert('Municipio Creado')
+            alert('Tipos de Comunidad Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
             botonCerrarModal.click()
             refrescar()
@@ -84,11 +65,11 @@ const createMunicipality = async () => {
 }
 
 
-const editMunicipality = async (id) => {
+const editProgram = async (id) => {
 
-    await axios.put(`http://localhost:8000/municipalitys/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/type_comunitys/${id}`, formData.value)
         .then(() => {
-            alert('Municipio Actualizado')
+            alert('Tipos de Comunidad Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
             botonCerrarModal.click()
             refrescar()
@@ -99,14 +80,14 @@ const editMunicipality = async (id) => {
         })
 }
 
-const deleteMunicipality = async (id) => {
-    await getMunicipality(id)
-    await axios.delete('http://localhost:8000/municipalitys/' + id)
+const deleteProgram = async (id) => {
+    await getProgram(id)
+    await axios.delete('http://localhost:8000/type_comunitys/' + id)
         .then(() => {
-            alert('Municipio Eliminado')
+            alert('Tipos de Comunidad Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
             botonCerrarModal.click()
-            // console.log(municipalitys.value);
+            // console.log(departments.value);
             // console.log(response.data);
             refrescar()
 
@@ -116,49 +97,49 @@ const deleteMunicipality = async (id) => {
         })
 }
 
+const getColorClass = (priority) => {
+    if (priority <= 3) {
+        return 'bg-danger'; // Cambia a tu clase de color deseada para valores bajos
+    } else if (priority <= 7) {
+        return 'bg-warning'; // Cambia a tu clase de color deseada para valores intermedios
+    } else {
+        return 'bg-success'; // Cambia a tu clase de color deseada para valores altos
+    }
+}
 
 </script>
 
 <template>
     <div class="d-flex ">
-        <h2>Municipios</h2>
+        <h2>Tipos de Comunidades</h2>
         <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
-            data-bs-target="#crearMunicipioModal">Crear
-            Municipio</button>
+            data-bs-target="#crearTiposdeComunidadModal">Crear
+            Tipos de Comunidad</button>
     </div>
-    <!-- {{ municipalitys }} -->
 
 
     <div class="table-responsive small my-4 rounded">
-        <table id="" class=" table table-dark table-hover table-striped  stable-sm ">
+        <table id="example" class=" table table-dark table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-1">ID</th>
-
-                    <th scope="col" class="col-auto">Departamento al que pertenece</th>
-                    <th scope="col" class="col-1">ID Departamento</th>
                     <th scope="col" class="col-auto">Nombre</th>
                     <th scope="col" class="col-2">Acciones</th>
                 </tr>
             </thead>
 
             <tbody>
-
-                <tr class="text-center align-middle text-break" v-for="municipality in municipalitys" :key=municipality.id
+                <tr class="text-center align-middle text-break" v-for="program in programs" :key=program.id
                     style="height: 100;">
-                    <td class="py-1 ">{{ municipality.id }}</td>
-                    <td>{{ municipality.department.name }}</td>
-                    <td>{{ municipality.departmentId }}</td>
-                    <td>{{ municipality.name }}</td>
-
-
+                    <td class="py-1 ">{{ program.id }}</td>
+                    <td>{{ program.name }}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button @click="getMunicipality(municipality.id)" type="button" class="btn btn-outline-info"
+                            <button @click="getProgram(program.id)" type="button" class="btn btn-outline-info"
                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-pencil-fill"></i>
                             </button>
 
-                            <button @click="getMunicipality(municipality.id)" type="button" class="btn btn-outline-danger"
+                            <button @click="getProgram(program.id)" type="button" class="btn btn-outline-danger"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                             </button>
                         </div>
@@ -171,37 +152,28 @@ const deleteMunicipality = async (id) => {
         <!-- MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL -->
 
 
-        <div class="modal fade" id="crearMunicipioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="crearTiposdeComunidadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Municipio </h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Tipos de Comunidad </h1>
                         <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Municipio 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Tipos de Comunidad 1"
                                 v-model="formData.name" required>
-                            <label for="floatingInputGrid">Nombre del Municipio </label>
+                            <label for="floatingInputGrid">Nombre del Tipo de Comunidad </label>
 
                         </div>
-                        <div class="form-floating my-2">
-                             <select class="form-select" id="floatingSelectGrid" v-model="formData.departmentId" required>
-                                    <option disabled selected>Selecciona el departamento</option>
-                                            <option v-for="department in departments" :key="department.id" 
-                                            :value="department.id" class="text-capitalize">{{ department.name }}</option>
-
-                                </select>
-                            <label for="floatingSelectGrid">Ubicacion</label>
-                        </div>
-
+                       
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="createMunicipality" type="button" class="btn btn-success">Crear Municipio</button>
+                        <button @click="createProgram" type="button" class="btn btn-success">Crear Tipos de Comunidad</button>
                     </div>
                 </div>
             </div>
@@ -215,33 +187,23 @@ const deleteMunicipality = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Municipio {{ formData }}
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Tipos de Comunidad
                         </h1>
                         <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Municipio 1"
-                                v-model="formData.name">
-                            <label for="floatingInputGrid">Nombre del Municipio</label>
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Tipos de Comunidad 1"
+                                v-model="formData.name" >
+                            <label for="floatingInputGrid">Nombre del Tipos de Comunidad</label>
 
-                        </div>
-                        <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid" v-model="formData.departmentId" required>
-                                <option disabled selected>Selecciona el departamento</option>
-                                        <option v-for="department in departments" :key="department.id" 
-                                        :value="department.id" class="text-capitalize">{{ department.name }}</option>
-
-                            </select>
-                            <label for="floatingSelectGrid">Ubicacion</label>
                         </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="editMunicipality(formData.id)" type="button"
-                            class="btn btn-success">Guardar</button>
+                        <button @click="editProgram(formData.id)" type="button" class="btn btn-success">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -253,7 +215,7 @@ const deleteMunicipality = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este municipio?
+                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este tipos de comunidad?
                         </h1>
                         <button type="button" id="cerrarBotonEliminar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -276,8 +238,7 @@ const deleteMunicipality = async (id) => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="deleteMunicipality(formData.id)" type="button"
-                            class="btn btn-danger">Eliminar</button>
+                        <button @click="deleteProgram(formData.id)" type="button" class="btn btn-danger">Eliminar</button>
                     </div>
                 </div>
             </div>

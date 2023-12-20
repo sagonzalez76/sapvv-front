@@ -5,36 +5,17 @@ import { onMounted } from 'vue'
 import { useAuthStore } from '../../stores/auth';
 
 const token = useAuthStore().token
-const municipalitys = ref({})
-const departments = ref({})
+const concertations = ref({})
 const formData = ref({})
 
 onMounted(() => {
-    refrescar(),
+    refrescar()
 
-        new DataTable('#example');
+    // new DataTable('#example');
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/municipalitys', {
-
-        //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
-        headers: {
-            'Authorization': `Bearer ${token}`,
-        },
-    })
-        .then((response) => {
-            municipalitys.value = response.data
-            // console.log(municipalitys.value);
-            // console.log(response.data);
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-
-
-
-    await axios.get('http://localhost:8000/departments', {
+    await axios.get('http://localhost:8000/concertations', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -44,8 +25,8 @@ const refrescar = async () => {
         },
     })
         .then((response) => {
-            departments.value = response.data
-            // console.log(departments.value);
+            concertations.value = response.data
+            // console.log(concertations.value);
             // console.log(response.data);
         })
         .catch((error) => {
@@ -54,9 +35,9 @@ const refrescar = async () => {
 }
 
 
-const getMunicipality = async (id) => {
+const getConcertation = async (id) => {
 
-    await axios.get('http://localhost:8000/municipalitys/' + id, {
+    await axios.get('http://localhost:8000/concertations/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -69,11 +50,11 @@ const getMunicipality = async (id) => {
         })
 }
 
-const createMunicipality = async () => {
+const createConcertation = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/municipalitys', formData.value)
+    await axios.post('http://localhost:8000/concertations', formData.value)
         .then(() => {
-            alert('Municipio Creado')
+            alert('Concertacion Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
             botonCerrarModal.click()
             refrescar()
@@ -84,11 +65,11 @@ const createMunicipality = async () => {
 }
 
 
-const editMunicipality = async (id) => {
+const editConcertation = async (id) => {
 
-    await axios.put(`http://localhost:8000/municipalitys/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/concertations/${id}`, formData.value)
         .then(() => {
-            alert('Municipio Actualizado')
+            alert('Concertacion Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
             botonCerrarModal.click()
             refrescar()
@@ -99,14 +80,14 @@ const editMunicipality = async (id) => {
         })
 }
 
-const deleteMunicipality = async (id) => {
-    await getMunicipality(id)
-    await axios.delete('http://localhost:8000/municipalitys/' + id)
+const deleteConcertation = async (id) => {
+    await getConcertation(id)
+    await axios.delete('http://localhost:8000/concertations/' + id)
         .then(() => {
-            alert('Municipio Eliminado')
+            alert('Concertacion Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
             botonCerrarModal.click()
-            // console.log(municipalitys.value);
+            // console.log(concertations.value);
             // console.log(response.data);
             refrescar()
 
@@ -117,48 +98,42 @@ const deleteMunicipality = async (id) => {
 }
 
 
+
 </script>
 
 <template>
     <div class="d-flex ">
-        <h2>Municipios</h2>
+        <h2>Concertaciones</h2>
         <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
-            data-bs-target="#crearMunicipioModal">Crear
-            Municipio</button>
+            data-bs-target="#crearConcertacionModal">Crear
+            Concertacion</button>
     </div>
-    <!-- {{ municipalitys }} -->
 
 
     <div class="table-responsive small my-4 rounded">
-        <table id="" class=" table table-dark table-hover table-striped  stable-sm ">
+        <table id="example" class=" table table-dark table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-1">ID</th>
-
-                    <th scope="col" class="col-auto">Departamento al que pertenece</th>
-                    <th scope="col" class="col-1">ID Departamento</th>
                     <th scope="col" class="col-auto">Nombre</th>
+                    <th scope="col" class="col-auto">Description</th>
                     <th scope="col" class="col-2">Acciones</th>
                 </tr>
             </thead>
 
             <tbody>
-
-                <tr class="text-center align-middle text-break" v-for="municipality in municipalitys" :key=municipality.id
+                <tr class="text-center align-middle text-break" v-for="concertation in concertations" :key=concertation.id
                     style="height: 100;">
-                    <td class="py-1 ">{{ municipality.id }}</td>
-                    <td>{{ municipality.department.name }}</td>
-                    <td>{{ municipality.departmentId }}</td>
-                    <td>{{ municipality.name }}</td>
-
-
+                    <td class="py-1 ">{{ concertation.id }}</td>
+                    <td>{{ concertation.name }}</td>
+                    <td>{{ concertation.description }}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button @click="getMunicipality(municipality.id)" type="button" class="btn btn-outline-info"
+                            <button @click="getConcertation(concertation.id)" type="button" class="btn btn-outline-info"
                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-pencil-fill"></i>
                             </button>
 
-                            <button @click="getMunicipality(municipality.id)" type="button" class="btn btn-outline-danger"
+                            <button @click="getConcertation(concertation.id)" type="button" class="btn btn-outline-danger"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                             </button>
                         </div>
@@ -171,38 +146,39 @@ const deleteMunicipality = async (id) => {
         <!-- MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL -->
 
 
-        <div class="modal fade" id="crearMunicipioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="crearConcertacionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Municipio </h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Concertacion </h1>
                         <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <form @submit.prevent="createConcertation()">
 
-                        <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Municipio 1"
-                                v-model="formData.name" required>
-                            <label for="floatingInputGrid">Nombre del Municipio </label>
+                        <div class="modal-body">
 
+                            <div class="form-floating my-2">
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Concertacion 1"
+                                    v-model="formData.name" required>
+                                <label for="floatingInputGrid">Nombre del Concertacion </label>
+
+                            </div>
+                            <div class="form-floating my-2">
+                                <input type="tel" class="form-control" id="floatingInputGrid" placeholder="Concertacion 1"
+                                    v-model="formData.description" required>
+                                <label for="floatingInputGrid">Descripcion del Concertacion </label>
+
+                            </div>
+                           
                         </div>
-                        <div class="form-floating my-2">
-                             <select class="form-select" id="floatingSelectGrid" v-model="formData.departmentId" required>
-                                    <option disabled selected>Selecciona el departamento</option>
-                                            <option v-for="department in departments" :key="department.id" 
-                                            :value="department.id" class="text-capitalize">{{ department.name }}</option>
-
-                                </select>
-                            <label for="floatingSelectGrid">Ubicacion</label>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <!-- <button @click="createConcertation" type="button" class="btn btn-success">Crear Concertacion</button> -->
+                            <button type="submit" class="btn btn-success">Crear Concertacion</button>
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="createMunicipality" type="button" class="btn btn-success">Crear Municipio</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -215,34 +191,33 @@ const deleteMunicipality = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Municipio {{ formData }}
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Concertacion
                         </h1>
                         <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Municipio 1"
-                                v-model="formData.name">
-                            <label for="floatingInputGrid">Nombre del Municipio</label>
+                    <form @submit.prevent="editConcertation(formData.id)">
+                        <div class="modal-body">
+                            <div class="form-floating my-2">
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Concertacion 1"
+                                    v-model="formData.name" required>
+                                <label for="floatingInputGrid">Nombre del Concertacion </label>
+
+                            </div>
+                            <div class="form-floating my-2">
+                                <input type="tel" class="form-control" id="floatingInputGrid" placeholder="Concertacion 1"
+                                    v-model="formData.description" required>
+                                <label for="floatingInputGrid">Descripcion del Concertacion </label>
+
+                            </div>
+                           
 
                         </div>
-                        <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid" v-model="formData.departmentId" required>
-                                <option disabled selected>Selecciona el departamento</option>
-                                        <option v-for="department in departments" :key="department.id" 
-                                        :value="department.id" class="text-capitalize">{{ department.name }}</option>
-
-                            </select>
-                            <label for="floatingSelectGrid">Ubicacion</label>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <button @click="editConcertation(formData.id)" type="button" class="btn btn-success">Guardar</button>
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="editMunicipality(formData.id)" type="button"
-                            class="btn btn-success">Guardar</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -253,7 +228,7 @@ const deleteMunicipality = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este municipio?
+                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este concertacion?
                         </h1>
                         <button type="button" id="cerrarBotonEliminar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -276,8 +251,7 @@ const deleteMunicipality = async (id) => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="deleteMunicipality(formData.id)" type="button"
-                            class="btn btn-danger">Eliminar</button>
+                        <button @click="deleteConcertation(formData.id)" type="button" class="btn btn-danger">Eliminar</button>
                     </div>
                 </div>
             </div>

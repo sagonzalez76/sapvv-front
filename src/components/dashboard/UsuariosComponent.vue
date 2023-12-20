@@ -6,11 +6,21 @@ import { useAuthStore } from '../../stores/auth';
 
 const token = useAuthStore().token
 const users = ref({})
-const formData = ref({})
+const roles = ref({})
+const formData = ref({
+    id: 0,
+    name: "",
+    lastname: "",
+    email: "",
+    roleId: 0,
+    role: {
+        description: null // Inicializamos description como null
+    }
+});
 
 onMounted(() => {
-    refrescar(),
-        new DataTable('#example');
+    refrescar()
+        // new DataTable('#example');
 
 })
 
@@ -27,6 +37,24 @@ const refrescar = async () => {
         .then((response) => {
             users.value = response.data
             // console.log(users.value);
+            console.log(response.data);
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+
+    await axios.get('http://localhost:8000/roles', {
+
+        //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
+
+        headers: {
+            'Authorization': `Bearer ${token}`,
+
+        },
+    })
+        .then((response) => {
+            roles.value = response.data
+            // console.log(roles.value);
             // console.log(response.data);
         })
         .catch((error) => {
@@ -46,8 +74,11 @@ const getUser = async (id) => {
             formData.value = response.data
         })
         .catch((error) => {
-            console.log(error.response.data.error)
+            console.log(error)
         })
+
+
+
 }
 
 const createUser = async () => {
@@ -98,7 +129,6 @@ const deleteUser = async (id) => {
 }
 
 
-
 </script>
 
 <template>
@@ -119,6 +149,8 @@ const deleteUser = async (id) => {
                     <th scope="col" class="col-auto">Apellido(s)</th>
                     <th scope="col" class="col-auto">Correo Electr&oacute;nico</th>
                     <th scope="col" class="col-2">Rol / Cargo</th>
+                    <!-- <th scope="col" class="col-2">Contra</th> -->
+
 
                     <th scope="col" class="col-2">Acciones</th>
                 </tr>
@@ -130,7 +162,8 @@ const deleteUser = async (id) => {
                     <td>{{ user.name }}</td>
                     <td>{{ user.lastname }}</td>
                     <td>{{ user.email }}</td>
-                    <td class="text-capitalize">{{ user.role }}</td>
+                    <td class="text-capitalize">{{ user.role.description }}</td>
+                    <!-- <td class="text-capitalize">{{ user.password }}</td> -->
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                             <button @click="getUser(user.id)" type="button" class="btn btn-outline-info"
@@ -156,6 +189,7 @@ const deleteUser = async (id) => {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Usuario </h1>
+                        <!-- {{ formData.role.description }} -->
                         <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -188,13 +222,10 @@ const deleteUser = async (id) => {
                             <label for="floatingInputGrid">Correo Electr&oacute;nico</label>
                         </div>
                         <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid" v-model="formData.role" required>
+                            <select class="form-select" id="floatingSelectGrid" required v-model="formData.roleId">
                                 <option disabled selected>Selecciona el cargo del Usuario</option>
-                                <option value="estudiante">Estudiante</option>
-                                <option value="director">Director</option>
-                                <option value="juridico">Asesor Juridico</option>
-                                <option value="enlace">Enlace Regional</option>
-                                <option value="dinamizador">Dinamizador</option>
+                                <option v-for="role in roles" :key="role.id" :value="role.id" class="text-capitalize">{{
+                                    role.description }}</option>
 
                             </select>
                             <label for="floatingSelectGrid">Rol</label>
@@ -216,7 +247,8 @@ const deleteUser = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Usuario {{ formData }}
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Usuario
+                            <!-- {{ formData }} -->
                         </h1>
                         <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -224,24 +256,22 @@ const deleteUser = async (id) => {
                     <div class="modal-body">
                         <div class="form-floating my-2">
                             <input type="text" class="form-control" id="floatingInputGrid" placeholder="Usuario 1"
-                                v-model="formData.name" disabled>
+                                v-model="formData.name">
                             <label for="floatingInputGrid">Nombre</label>
 
                         </div>
                         <div class="form-floating my-2">
                             <input type="text" class="form-control" id="floatingInputGrid" placeholder="Usuario 1"
-                                v-model="formData.lastname" disabled>
+                                v-model="formData.lastname">
                             <label for="floatingInputGrid">Apellido</label>
 
                         </div>
                         <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid" v-model="formData.role">
-                                <option disabled selected>Selecciona el puesto del usuario</option>
-                                <option value="estudiante">Estudiante</option>
-                                <option value="director">Director</option>
-                                <option value="juridico">Asesor Juridico</option>
-                                <option value="enlace">Enlace Regional</option>
-                                <option value="dinamizador">Dinamizador</option>
+                            <select class="form-select" id="floatingSelectGrid" required v-model="formData.roleId">
+                                <option disabled selected>Selecciona el cargo del Usuario</option>
+                                <option v-for="role in roles" :key="role.id" :value="role.id" class="text-capitalize">{{
+                                    role.description }}</option>
+
                             </select>
                             <label for="floatingSelectGrid">Rol</label>
                         </div>

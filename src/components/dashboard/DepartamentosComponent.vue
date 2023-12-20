@@ -9,9 +9,9 @@ const programs = ref({})
 const formData = ref({})
 
 onMounted(() => {
-    refrescar(),
+    refrescar()
 
-        new DataTable('#example');
+        // new DataTable('#example');
 })
 
 const refrescar = async () => {
@@ -97,15 +97,7 @@ const deleteProgram = async (id) => {
         })
 }
 
-const getColorClass = (priority) => {
-    if (priority <= 3) {
-        return 'bg-danger'; // Cambia a tu clase de color deseada para valores bajos
-    } else if (priority <= 7) {
-        return 'bg-warning'; // Cambia a tu clase de color deseada para valores intermedios
-    } else {
-        return 'bg-success'; // Cambia a tu clase de color deseada para valores altos
-    }
-}
+
 
 </script>
 

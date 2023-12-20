@@ -25,29 +25,47 @@ const rutasSeguridad = [{
 ]
 
 const rutasAtencion = [{
+  id: 10,
+  nombre: 'Departamentos',
+  ruta: '/dashboard/departamentos',
+  xlink: '#departamentos'
+},
+{
+  id: 11,
+  nombre: 'Municipios',
+  ruta: '/dashboard/municipios',
+  xlink: '#municipios'
+},
+{
+  id: 12,
+  nombre: 'TiposComunidades',
+  ruta: '/dashboard/tipo_comunidades',
+  xlink: '#tipocomunidad'
+},
+{
+  id: 13,
+  nombre: 'Comunidades',
+  ruta: '/dashboard/comunidades',
+  xlink: '#tipocomunidad'
+},  {
+  id: 4,
+  nombre: 'Representantes',
+  ruta: '/dashboard/representantes',
+  xlink: '#representante'
+}, {
+  id: 3,
+  nombre: 'Emisores',
+  ruta: '/dashboard/emisores',
+  xlink: '#representante'
+}, {
   id: 1,
   nombre: 'Medidas',
   ruta: '/dashboard/medidas',
   xlink: '#graph-up'
 }, {
-  id: 2,
-  nombre: 'Comunidades',
-  ruta: '/dashboard/comunidades',
-  xlink: '#people'
-}, {
-  id: 3,
-  nombre: 'Emisores',
-  ruta: '/dashboard/emisores',
-  xlink: '#plus-circle'
-}, {
-  id: 4,
-  nombre: 'Representantes',
-  ruta: '/',
-  xlink: '#list'
-}, {
   id: 5,
   nombre: 'Concertaciones',
-  ruta: '/',
+  ruta: '/dashboard/concertaciones',
   xlink: '#chevron-right'
 }, {
   id: 6,
@@ -57,7 +75,7 @@ const rutasAtencion = [{
 }, {
   id: 7,
   nombre: 'Programas',
-  ruta: '/',
+  ruta: '/dashboard/programas',
   xlink: '#file-earmark'
 }, {
   id: 8,
@@ -65,18 +83,7 @@ const rutasAtencion = [{
   ruta: '/',
   xlink: '#cart'
 },
-{
-  id: 9,
-  nombre: 'Departamentos',
-  ruta: '/dashboard/departamentos',
-  xlink: '#cart'
-},
-{
-  id: 9,
-  nombre: 'Municipios',
-  ruta: '/dashboard/municipios',
-  xlink: '#cart'
-},
+
 
 
 ]

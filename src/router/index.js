@@ -8,9 +8,12 @@ import Medidas from '../components/dashboard/MedidasComponent.vue'
 import Usuarios from '../components/dashboard/UsuariosComponent.vue'
 import Roles from '../components/dashboard/RolesComponent.vue'
 import Departamentos from '../components/dashboard/DepartamentosComponent.vue'
+import Emisores from '../components/dashboard/EmisoresComponent.vue'
 import Municipios from '../components/dashboard/MunicipiosComponent.vue'
-
-
+import TipoComunidades from '../components/dashboard/TipoComunidadesComponent.vue'
+import Comunidades from '../components/dashboard/ComunidadesComponent.vue'
+import Representantes from '../components/dashboard/RepresentantesComponent.vue'
+import Concertaciones from '../components/dashboard/ConcertacionesComponent.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,8 +38,16 @@ const router = createRouter({
         { path: '/dashboard/programas', component: Programas },
         { path: '/dashboard/programas', component: Programas },
         { path: '/dashboard/programas', component: Programas },
+        { path: '/dashboard/emisores', component: Emisores },
         { path: '/dashboard/departamentos', component: Departamentos },
         { path: '/dashboard/municipios', component: Municipios },
+        { path: '/dashboard/tipo_comunidades', component: TipoComunidades },
+        { path: '/dashboard/comunidades', component: Comunidades },
+        { path: '/dashboard/representantes', component: Representantes },
+        { path: '/dashboard/concertaciones', component: Concertaciones },
+
+
+
 
 
       ],

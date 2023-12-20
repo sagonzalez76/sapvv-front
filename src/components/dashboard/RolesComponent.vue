@@ -9,9 +9,9 @@ const roles = ref({})
 const formData = ref({})
 
 onMounted(() => {
-    refrescar(),
+    refrescar()
 
-        new DataTable('#example');
+        // new DataTable('#example');
 })
 
 const refrescar = async () => {
@@ -116,7 +116,7 @@ const deleteRole = async (id) => {
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-1">ID</th>
                     <th scope="col" class="col-auto">Descripci&oacute;n</th>
-                    
+
 
                     <th scope="col" class="col-2">Acciones</th>
                 </tr>
@@ -125,9 +125,9 @@ const deleteRole = async (id) => {
             <tbody>
                 <tr class="text-center align-middle text-break" v-for="role in roles" :key=role.id style="height: 100;">
                     <td class="">{{ role.id }}</td>
-                   
-                    <td>{{ role.description }}</td>
-                   
+
+                    <td class="text-capitalize">{{ role.description }}</td>
+
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                             <button @click="getRole(role.id)" type="button" class="btn btn-outline-info"
@@ -182,21 +182,19 @@ const deleteRole = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Rol
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Rol {{ formData }}
                         </h1>
                         <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      
-                
+
+
                         <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid" v-model="formData.description">
-                                <option disabled selected>Selecciona el puesto </option>
-                                <option value="Estudiante">Estudiante</option>
-                                <option value="Director">Director</option>
-                            </select>
-                            <label for="floatingSelectGrid">Rol</label>
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Rol 1"
+                                v-model="formData.description" required>
+                            <label for="floatingInputGrid">Descripcion</label>
+
                         </div>
                     </div>
                     <div class="modal-footer">
