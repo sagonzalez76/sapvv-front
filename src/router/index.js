@@ -10,10 +10,19 @@ import Roles from '../components/dashboard/RolesComponent.vue'
 import Departamentos from '../components/dashboard/DepartamentosComponent.vue'
 import Emisores from '../components/dashboard/EmisoresComponent.vue'
 import Municipios from '../components/dashboard/MunicipiosComponent.vue'
+import Origenes from '../components/dashboard/OrigenesComponent.vue'
+
 import TipoComunidades from '../components/dashboard/TipoComunidadesComponent.vue'
 import Comunidades from '../components/dashboard/ComunidadesComponent.vue'
+import Titulares from '../components/dashboard/TitularesComponent.vue'
 import Representantes from '../components/dashboard/RepresentantesComponent.vue'
+import Beneficiarios from '../components/dashboard/BeneficiariosComponent.vue'
+
 import Concertaciones from '../components/dashboard/ConcertacionesComponent.vue'
+import Acciones from '../components//dashboard/AccionesComponent.vue'
+
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,8 +52,14 @@ const router = createRouter({
         { path: '/dashboard/municipios', component: Municipios },
         { path: '/dashboard/tipo_comunidades', component: TipoComunidades },
         { path: '/dashboard/comunidades', component: Comunidades },
+        { path: '/dashboard/titulares', component: Titulares },
         { path: '/dashboard/representantes', component: Representantes },
+        { path: '/dashboard/beneficiarios', component: Beneficiarios },
+        { path: '/dashboard/origenes', component: Origenes },
+
+
         { path: '/dashboard/concertaciones', component: Concertaciones },
+        { path: '/dashboard/acciones', component: Acciones },
 
 
 

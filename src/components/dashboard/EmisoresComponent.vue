@@ -114,8 +114,7 @@ const deleteEmitter = async (id) => {
         <table id="example" class=" table table-dark table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
-                    <th scope="col" class="col-1">ID</th>
-                    <th scope="col" class="col-auto">Nombre</th>
+                    <th scope="col" class="col-auto">Nombre Emisor</th>
                     <th scope="col" class="col-auto">Telefono/Celular</th>
                     <th scope="col" class="col-auto">Direccion</th>
                     <th scope="col" class="col-2">Acciones</th>
@@ -125,7 +124,6 @@ const deleteEmitter = async (id) => {
             <tbody>
                 <tr class="text-center align-middle text-break" v-for="emitter in emitters" :key=emitter.id
                     style="height: 100;">
-                    <td class="py-1 ">{{ emitter.id }}</td>
                     <td>{{ emitter.name }}</td>
                     <td>{{ emitter.phone }}</td>
                     <td>{{ emitter.address }}</td>
@@ -170,13 +168,13 @@ const deleteEmitter = async (id) => {
                             <div class="form-floating my-2">
                                 <input type="tel" class="form-control" id="floatingInputGrid" placeholder="Emisor 1"
                                     v-model="formData.phone" required>
-                                <label for="floatingInputGrid">Nombre del Emisor </label>
+                                <label for="floatingInputGrid">Telefono del Emisor </label>
 
                             </div>
                             <div class="form-floating my-2">
                                 <input type="text" class="form-control" id="floatingInputGrid" placeholder="Emisor 1"
                                     v-model="formData.address" required>
-                                <label for="floatingInputGrid">Nombre del Emisor </label>
+                                <label for="floatingInputGrid">Direccion del Emisor </label>
 
                             </div>
                         </div>

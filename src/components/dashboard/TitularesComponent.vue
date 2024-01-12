@@ -7,11 +7,10 @@ import { useAuthStore } from '../../stores/auth';
 const token = useAuthStore().token
 const comunitys = ref({})
 const municipalitys = ref({})
-const type_comunitys = ref({})
 const formData = ref({})
 
 
-formData.value.holder_type = "Comunidad"
+formData.value.holder_type = "Persona"
 
 
 onMounted(() => {
@@ -21,7 +20,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/comunitys', {
+    await axios.get('http://localhost:8000/comunitys/holders', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -38,25 +37,6 @@ const refrescar = async () => {
             console.log(error)
         })
 
-
-
-    await axios.get('http://localhost:8000/type_comunitys', {
-
-        //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
-
-        headers: {
-            'Authorization': `Bearer ${token}`,
-
-        },
-    })
-        .then((response) => {
-            type_comunitys.value = response.data
-            // console.log(type_comunitys.value);
-            // console.log(response.data);
-        })
-        .catch((error) => {
-            console.log(error)
-        })
 
 
     await axios.get('http://localhost:8000/municipalitys', {
@@ -80,7 +60,7 @@ const refrescar = async () => {
 
 const getComunity = async (id) => {
 
-    await axios.get('http://localhost:8000/comunitys/' + id, {
+    await axios.get('http://localhost:8000/comunitys/holders/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -97,13 +77,13 @@ const createComunity = async () => {
     console.log(formData.value);
     await axios.post('http://localhost:8000/comunitys', formData.value)
         .then(() => {
-            alert('Comunidad Creado')
+            alert('Titular Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
             botonCerrarModal.click()
             refrescar()
         })
         .catch((error) => {
-            alert('Comunidad ya existe')
+            alert('Titular ya existe')
             console.log(error)
         })
 }
@@ -113,7 +93,7 @@ const editComunity = async (id) => {
 
     await axios.put(`http://localhost:8000/comunitys/${id}`, formData.value)
         .then(() => {
-            alert('Comunidad Actualizado')
+            alert('Titular Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
             botonCerrarModal.click()
             refrescar()
@@ -129,7 +109,7 @@ const deleteComunity = async (id) => {
     await getComunity(id)
     await axios.delete('http://localhost:8000/comunitys/' + id)
         .then(() => {
-            alert('Comunidad Eliminado')
+            alert('Titular Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
             botonCerrarModal.click()
             // console.log(comunitys.value);
@@ -147,10 +127,11 @@ const deleteComunity = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Comunidades</h2> {{ formData }}
+        <h2>Titulares</h2>
+        <!-- {{ formData }} -->
         <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
-            data-bs-target="#crearComunidadModal">Crear
-            Comunidad</button>
+            data-bs-target="#crearTitularModal">Crear
+            Titular</button>
         <!-- {{ comunitys }}  -->
     </div>
     <!-- {{ comunitys }} -->
@@ -160,25 +141,30 @@ const deleteComunity = async (id) => {
         <table id="" class=" table table-dark table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
-                    <th scope="col" class="col-1">ID</th>
-                    <th scope="col" class="col-auto">Tipo de Comunidad al que pertenece</th>
-                    <th scope="col" class="col-1">Municipios a los que pertenece</th>
-                    <th scope="col" class="col-auto">Nombre de la Comunidad</th>
+                    <th scope="col" class="col-auto">Nombre </th>
+                    <th scope="col" class="col-auto">Apellido</th>
+                    <th scope="col" class="col-auto">Tipo Documento</th>
+                    <th scope="col" class="col-auto">No. Documento</th>
+                    <th scope="col" class="col-auto">Genero</th>
+                    <th scope="col" class="col-auto">Municipio(s) Residencia</th>
+                    <th scope="col" class="col-auto">Beneficiario(s)</th>
+
                     <th scope="col" class="col-2">Acciones</th>
                 </tr>
             </thead>
 
             <tbody>
-
                 <tr class="text-center align-middle text-break" v-for="comunity in comunitys" :key=comunity.id
                     style="height: 100;">
-                    <td class="py-1 ">{{ comunity.id }}</td>
-                    <td>{{ comunity.typeComunity.name }}</td>
-                    <!-- <td>{{ comunity.typeComunityId }}</td> -->
-
+                    <td>{{ comunity.name }}</td>
+                    <td>{{ comunity.lastname }}</td>
+                    <td>{{ comunity.id_type }}</td>
+                    <td>{{ comunity.id_number }}</td>
+                    <td>{{ comunity.genre }}</td>
                     <td> <span v-for="municipality in comunity.municipalitys" :key="municipality.id">{{ municipality.name
                     }}<br> </span></td>
-                    <td>{{ comunity.name }}</td>
+                    <td> <span v-for="beneficiary in comunity.beneficiarys" :key="beneficiary.id"> {{ beneficiary.name}} {{ beneficiary.lastname}}<br><br> </span></td>
+
 
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
@@ -199,61 +185,90 @@ const deleteComunity = async (id) => {
         <!-- MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL -->
 
 
-        <div class="modal fade" id="crearComunidadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="crearTitularModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content modal-dialog-scrollable">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Comunidad </h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Titular </h1>
                         <!-- {{
                             formData }} -->
                         <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <form class="modal-body" @submit.prevent="createComunity()">
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Comunidad 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
                                 v-model="formData.name" required>
-                            <label for="floatingInputGrid">Nombre del Comunidad </label>
+                            <label for="floatingInputGrid">Nombre del Titular </label>
+
+                        </div>
+                        <div class="form-floating my-2">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                                v-model="formData.lastname" required>
+                            <label for="floatingInputGrid">Apellido del Titular </label>
 
                         </div>
 
                         <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid" v-model="formData.typeComunityId" required>
-                                <option disabled selected>Selecciona el el tipo de Comunidad</option>
-                                <option v-for="type_comunity in type_comunitys" :key="type_comunity.id"
-                                    :value="type_comunity.id" class="text-capitalize">{{ type_comunity.name }}</option>
-                            </select>
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.id_type" required>
+                                <option disabled selected>Selecciona el tipo de documento</option>
+                                <option value="Cedula de Ciudadania" class="text-capitalize"> Cedula de Ciudadania
+                                </option>
+                                <option value="Tarjeta de Identidad" class="text-capitalize"> Tarjeta de Identidad
+                                </option>
+                                <option value="Cedula de Extranjeria" class="text-capitalize"> Cedula de Extranjeria
+                                </option>
+                                <option value="Pasaporte" class="text-capitalize"> Pasaporte</option>
 
-                            <label for="floatingSelectGrid">Tipo de Comunidad</label>
+                            </select>
+                            <label for="floatingSelectGrid">Tipo Documento</label>
                         </div>
-                         
+
+                        <div class="form-floating my-2">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                                v-model="formData.id_number" required>
+                            <label for="floatingInputGrid">Numero de Identificacion del Titular </label>
+
+                        </div>
+
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.genre" required>
+                                <option disabled selected>Selecciona el genero</option>
+                                <option value="Masculino" class="text-capitalize"> Masculino
+                                </option>
+                                <option value="Femenino" class="text-capitalize"> Femenino
+                                </option>
+
+
+                            </select>
+                            <label for="floatingSelectGrid">Genero/Identidad Genero</label>
+                        </div>
 
                         <div class="form-floating my-2">
 
 
                             <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.municipalityIds"
                                 multiple required>
-                                <option disabled selected>Selecciona los municipios</option>
+                                <option disabled selected>Selecciona al menos un municipio</option>
                                 <option v-for="municipality in municipalitys" :key="municipality.id"
                                     :value="municipality.id" class="text-capitalize">{{ municipality.name }}</option>
 
                             </select>
 
 
-                            <label for="floatingSelectGrid">Asocia la comunidad a uno o mas municipios</label>
+                            <label for="floatingSelectGrid">Asocia el Titular a un municipio</label>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <button type="submit" class="btn btn-success">Crear Titular</button>
                         </div>
 
 
+                    </form>
 
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="createComunity" type="button" class="btn btn-success">Crear Comunidad</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -266,81 +281,84 @@ const deleteComunity = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Comunidad <br>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Titular <br>
                             {{ formData }}
                         </h1>
                         <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <form @submit.prevent="editComunity(formData.id)">
-                        <div class="modal-body">
+                     <form class="modal-body" @submit.prevent="editComunity(formData.id)">
 
                             <div class="form-floating my-2">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Comunidad 1"
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
                                     v-model="formData.name" required>
-                                <label for="floatingInputGrid">Nombre del Comunidad</label>
+                                <label for="floatingInputGrid">Nombre del Titular </label>
 
                             </div>
                             <div class="form-floating my-2">
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                                    v-model="formData.lastname" required>
+                                <label for="floatingInputGrid">Apellido del Titular </label>
 
+                            </div>
 
-                                <select class="form-select" id="floatingSelectGrid" v-model="formData.typeComunityId"
-                                    required>
-                                    <option selected disabled>Selecciona el el tipo de Comunidad</option>
-                                    <option v-for="type_comunity in type_comunitys" :key="type_comunity.id"
-                                        :value="type_comunity.id" class="text-capitalize">{{ type_comunity.name }}</option>
+                            <div class="form-floating my-2">
+                                <select class="form-select" id="floatingSelectGrid" v-model="formData.id_type" required>
+                                    <option disabled selected>Selecciona el tipo de documento</option>
+                                    <option value="Cedula de Ciudadania" class="text-capitalize"> Cedula de Ciudadania
+                                    </option>
+                                    <option value="Tarjeta de Identidad" class="text-capitalize"> Tarjeta de Identidad
+                                    </option>
+                                    <option value="Cedula de Extranjeria" class="text-capitalize"> Cedula de Extranjeria
+                                    </option>
+                                    <option value="Pasaporte" class="text-capitalize"> Pasaporte</option>
 
                                 </select>
-
-                                <label for="floatingSelectGrid">Ubicacion</label>
+                                <label for="floatingSelectGrid">Tipo Documento</label>
                             </div>
 
                             <div class="form-floating my-2">
-                                <tr class="text-center align-middle text-break" v-for="comunity in comunitys"
-                                    :key=comunity.id style="height: 100;">
-
-                                    <!-- <td> <span v-for="municipality in comunity.municipalitys" :key="municipality.id">{{
-                                    municipality.name }}<br> </span></td> -->
-                                </tr>
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                                    v-model="formData.id_number" required>
+                                <label for="floatingInputGrid">Numero de Identificacion del Titular </label>
 
                             </div>
 
-
                             <div class="form-floating my-2">
-                                <!-- {{ municipalitys }} -->
-                                <!-- {{ formData.municipalitys[0] }} -->
-                            </div>
-
-
-                            <div class="form-floating my-2">
-                                <select class="form-select h-auto" id="floatingSelectGrid"
-                                    v-model="formData.municipalityIds" required multiple>
-                                    <option disabled>Selecciona los municipios:</option>
-                                    <option v-for="municipality in municipalitys" :key="municipality.id"
-                                        :value="municipality.id" class="text-capitalize"
-                                        :selected="formData.municipalitys && formData.municipalitys.some(item => item.id === municipality.id)">
-                                        {{ municipality.name }}
+                                <select class="form-select" id="floatingSelectGrid" v-model="formData.genre" required>
+                                    <option disabled selected>Selecciona el genero</option>
+                                    <option value="Masculino" class="text-capitalize"> Masculino
+                                    </option>
+                                    <option value="Femenino" class="text-capitalize"> Femenino
                                     </option>
 
+
+                                </select>
+                                <label for="floatingSelectGrid">Genero/Identidad Genero</label>
+                            </div>
+
+                            <div class="form-floating my-2">
+
+
+                                <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.municipalityIds"
+                                    multiple required>
+                                    <option disabled selected>Selecciona al menos un municipio</option>
+                                    <option v-for="municipality in municipalitys" :key="municipality.id"
+                                        :value="municipality.id" class="text-capitalize">{{ municipality.name }}</option>
+
                                 </select>
 
 
-                                <label for="floatingSelectGrid">Asocia la comunidad a uno o mas municipios</label>
+                                <label for="floatingSelectGrid">Asocia el Titular a un municipio</label>
                             </div>
 
-                            <div v-for="municipality in municipalitys" :key="municipality.id">
-
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+                                <button type="submit" class="btn btn-success">Crear Titular</button>
                             </div>
 
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <!-- <button @click="editComunity(formData.id)" type="button"
-                                class="btn btn-success">Guardar</button> -->
-                            <button type="submit" class="btn btn-success">Guardar</button>
-                        </div>
-                    </form>
+                        </form>
                 </div>
             </div>
         </div>
@@ -351,7 +369,7 @@ const deleteComunity = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este comunidad?
+                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este titular?
                         </h1>
                         <button type="button" id="cerrarBotonEliminar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
