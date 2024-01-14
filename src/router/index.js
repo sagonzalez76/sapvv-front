@@ -11,17 +11,15 @@ import Departamentos from '../components/dashboard/DepartamentosComponent.vue'
 import Emisores from '../components/dashboard/EmisoresComponent.vue'
 import Municipios from '../components/dashboard/MunicipiosComponent.vue'
 import Origenes from '../components/dashboard/OrigenesComponent.vue'
-
+import Acciones from "../components/dashboard/AccionesComponent.vue"
 import TipoComunidades from '../components/dashboard/TipoComunidadesComponent.vue'
 import Comunidades from '../components/dashboard/ComunidadesComponent.vue'
 import Titulares from '../components/dashboard/TitularesComponent.vue'
 import Representantes from '../components/dashboard/RepresentantesComponent.vue'
 import Beneficiarios from '../components/dashboard/BeneficiariosComponent.vue'
-
 import Concertaciones from '../components/dashboard/ConcertacionesComponent.vue'
-import Acciones from '../components//dashboard/AccionesComponent.vue'
-
-
+import Compromisos from "../components/dashboard/CompromisosComponent.vue"
+import Evidencias from "../components/dashboard/Acciones/EvidenciasComponent.vue"
 
 
 const router = createRouter({
@@ -43,10 +41,10 @@ const router = createRouter({
         { path: '/dashboard/usuarios', component: Usuarios },
         { path: '/dashboard/roles', component: Roles },
         { path: '/dashboard/programas', component: Programas },
+        { path: '/dashboard/acciones', component: Acciones },
+        { path: '/dashboard/evidencias', component: Evidencias },
+
         { path: '/dashboard/medidas', component: Medidas },
-        { path: '/dashboard/programas', component: Programas },
-        { path: '/dashboard/programas', component: Programas },
-        { path: '/dashboard/programas', component: Programas },
         { path: '/dashboard/emisores', component: Emisores },
         { path: '/dashboard/departamentos', component: Departamentos },
         { path: '/dashboard/municipios', component: Municipios },
@@ -56,10 +54,12 @@ const router = createRouter({
         { path: '/dashboard/representantes', component: Representantes },
         { path: '/dashboard/beneficiarios', component: Beneficiarios },
         { path: '/dashboard/origenes', component: Origenes },
+        { path: '/dashboard/compromisos', component: Compromisos },
+
 
 
         { path: '/dashboard/concertaciones', component: Concertaciones },
-        { path: '/dashboard/acciones', component: Acciones },
+       
 
 
 

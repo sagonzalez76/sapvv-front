@@ -3,8 +3,10 @@
 // import HelloWorld from './components/HelloWorld.vue'
 </script>
 
-<template><div class="smooth-scroll-container">
-  <RouterView/></div>
+<template>
+  <!-- <div class="smooth-scroll-container"> -->
+    <RouterView />
+  <!-- </div> -->
 </template>
 
 <style scoped>
@@ -19,5 +21,4 @@
   scroll-snap-align: start;
   /* Ajusta otros estilos según tus necesidades */
 }
-
 </style>

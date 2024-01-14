@@ -20,7 +20,7 @@ const onSubmit = () => {
   auth.submitForm(json.value)
 
 };
-
+ 
 </script>
 
 <template>

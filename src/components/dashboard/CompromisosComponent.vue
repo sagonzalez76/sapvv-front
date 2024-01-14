@@ -5,9 +5,11 @@ import { onMounted } from 'vue'
 import { useAuthStore } from '../../stores/auth';
 
 const token = useAuthStore().token
-const programs = ref({})
-const departments = ref({})
+const commitments = ref({})
+const origins = ref({})
 const formData = ref({})
+
+
 
 onMounted(() => {
     refrescar(),
@@ -16,7 +18,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/programs', {
+    await axios.get('http://localhost:8000/commitments', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -24,8 +26,8 @@ const refrescar = async () => {
         },
     })
         .then((response) => {
-            programs.value = response.data
-            // console.log(programs.value);
+            commitments.value = response.data
+            // console.log(commitments.value);
             // console.log(response.data);
         })
         .catch((error) => {
@@ -34,7 +36,8 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/departments', {
+    await axios.get('http://localhost:8000/origins', {
+        
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -44,9 +47,9 @@ const refrescar = async () => {
         },
     })
         .then((response) => {
-            departments.value = response.data
-            // console.log(departments.value);
-            // console.log(response.data);
+            origins.value = response.data
+            // console.log(origins.value);
+            // console.log("Esta es la respuesta" + response.data);
         })
         .catch((error) => {
             console.log(error)
@@ -54,9 +57,9 @@ const refrescar = async () => {
 }
 
 
-const getProgram = async (id) => {
+const getCommitment = async (id) => {
 
-    await axios.get('http://localhost:8000/programs/' + id, {
+    await axios.get('http://localhost:8000/commitments/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -69,11 +72,11 @@ const getProgram = async (id) => {
         })
 }
 
-const createProgram = async () => {
+const createCommitment = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/programs', formData.value)
+    await axios.post('http://localhost:8000/commitments', formData.value)
         .then(() => {
-            alert('Programa Creado')
+            alert('Compromiso Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
             botonCerrarModal.click()
             refrescar()
@@ -84,11 +87,11 @@ const createProgram = async () => {
 }
 
 
-const editProgram = async (id) => {
+const editCommitment = async (id) => {
 
-    await axios.put(`http://localhost:8000/programs/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/commitments/${id}`, formData.value)
         .then(() => {
-            alert('Programa Actualizado')
+            alert('Compromiso Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
             botonCerrarModal.click()
             refrescar()
@@ -99,14 +102,14 @@ const editProgram = async (id) => {
         })
 }
 
-const deleteProgram = async (id) => {
-    await getProgram(id)
-    await axios.delete('http://localhost:8000/programs/' + id)
+const deleteCommitment = async (id) => {
+    await getCommitment(id)
+    await axios.delete('http://localhost:8000/commitments/' + id)
         .then(() => {
-            alert('Programa Eliminado')
+            alert('Compromiso Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
             botonCerrarModal.click()
-            // console.log(programs.value);
+            // console.log(commitments.value);
             // console.log(response.data);
             refrescar()
 
@@ -121,41 +124,40 @@ const deleteProgram = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Programas</h2>
+        <h2>Compromisos</h2>
         <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
-            data-bs-target="#crearProgramaModal">Crear
-            Programa</button>
+            data-bs-target="#crearCompromisoModal">Crear
+            Compromiso</button>
     </div>
-    <!-- {{ programs }} -->
+    <!-- {{ commitments }} -->
 
 
     <div class="table-responsive small my-4 rounded">
         <table id="" class=" table table-dark table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
-                    <th scope="col" class="col-1">ID</th>
-
-
+                    <!-- <th scope="col" class="col-1">ID</th> -->
                     <th scope="col" class="col-auto">Nombre</th>
+                  
+                    <th scope="col" class="col-auto">Entidad que Emite</th>
                     <th scope="col" class="col-2">Acciones</th>
                 </tr>
             </thead>
 
             <tbody>
 
-                <tr class="text-center align-middle text-break" v-for="program in programs" :key=program.id
+                <tr class="text-center align-middle text-break" v-for="commitment in commitments" :key=commitment.id
                     style="height: 100;">
-                    <td class="py-1 ">{{ program.id }}</td>
-                    <td>{{ program.name }}</td>
-
-
+                    <!-- <td class="py-1 ">{{ commitment.id }}</td> -->
+                    <td>{{ commitment.name }}</td>
+                    <td>{{ commitment.origin.name }}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button @click="getProgram(program.id)" type="button" class="btn btn-outline-info"
+                            <button @click="getCommitment(commitment.id)" type="button" class="btn btn-outline-info"
                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-pencil-fill"></i>
                             </button>
 
-                            <button @click="getProgram(program.id)" type="button" class="btn btn-outline-danger"
+                            <button @click="getCommitment(commitment.id)" type="button" class="btn btn-outline-danger"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                             </button>
                         </div>
@@ -168,30 +170,45 @@ const deleteProgram = async (id) => {
         <!-- MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL -->
 
 
-        <div class="modal fade" id="crearProgramaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="crearCompromisoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Programa </h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Compromiso {{ formData }} {{ formData }}
+                        </h1>
                         <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <form class="modal-body" @submit.prevent="createProgram()">
+
+
+                    <form class="modal-body" @submit.prevent="createCommitment()" >
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Programa 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
                                 v-model="formData.name" required>
-                            <label for="floatingInputGrid">Nombre del Programa </label>
+                            <label for="floatingInputGrid">Nombre / Descripcion del Compromiso </label>
 
                         </div>
+                       
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <button type="submit" class="btn btn-success">Crear Programa</button>
-                        </div>
+                       
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.originId" required>
+                                <option disabled selected>Selecciona un Origen</option>
+                                <option v-for="origin in origins" :key="origin.id" :value="origin.id"
+                                    class="text-capitalize">{{ origin.name }}</option>
+
+                            </select>
+                            <label for="floatingSelectGrid">Entidad que Emite</label>
+                        </div>   <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button  type="submit" class="btn btn-success">Crear Compromiso</button>
+                    </div>
                     </form>
 
+
+                 
                 </div>
             </div>
         </div>
@@ -204,25 +221,54 @@ const deleteProgram = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Programa {{ formData }}
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Compromiso {{ formData }}
                         </h1>
                         <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <form class="modal-body" @submit.prevent="editProgram(formData.id)">
-                        <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Programa 1"
-                                v-model="formData.name">
-                            <label for="floatingInputGrid">Nombre del Programa</label>
+                   <form class="modal-body" @submit.prevent="editCommitment(formData.id)" >
 
-                        </div>
+                            <div class="form-floating my-2">
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
+                                    v-model="formData.name" required>
+                                <label for="floatingInputGrid">Nombre del Compromiso </label>
 
-                        <div class="modal-footer">
+                            </div>
+                    
+                            <div v-if="formData.type === 'Sentencia' || formData.type === 'Auto'">
+                                <div class="form-floating my-2">
+                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
+                                        v-model="formData.filing" required>
+                                    <label for="floatingInputGrid">Radicado </label>
+
+                                </div>
+                                <div class="form-floating my-2">
+                                    <input type="date" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
+                                        :max=fechamax v-model="formData.commitment_date" required>
+                                    <label for="floatingInputGrid">Fecha Expedicion </label>
+
+                                </div>
+                                <div class="form-floating my-2">
+                                    <input type="date" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
+                                        :max=fechamax :min=formData.commitment_date v-model="formData.notification_date" required>
+                                    <label for="floatingInputGrid">Fecha Notificacion </label>
+
+                                </div>
+                            </div>
+                            <div class="form-floating my-2">
+                                <select class="form-select" id="floatingSelectGrid" v-model="formData.originId" required>
+                                    <option disabled selected>Selecciona una Entidad</option>
+                                    <option v-for="origin in origins" :key="origin.id" :value="origin.id"
+                                        class="text-capitalize">{{ origin.name }}</option>
+
+                                </select>
+                                <label for="floatingSelectGrid">Entidad que Emite</label>
+                            </div>      <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
                             <button type="submit" class="btn btn-success">Guardar</button>
                         </div>
-                    </form>
-
+                        </form>
+                 
                 </div>
             </div>
         </div>
@@ -233,7 +279,7 @@ const deleteProgram = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este programa?
+                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este compromiso?
                         </h1>
                         <button type="button" id="cerrarBotonEliminar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -256,7 +302,7 @@ const deleteProgram = async (id) => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="deleteProgram(formData.id)" type="button" class="btn btn-danger">Eliminar</button>
+                        <button @click="deleteCommitment(formData.id)" type="button" class="btn btn-danger">Eliminar</button>
                     </div>
                 </div>
             </div>

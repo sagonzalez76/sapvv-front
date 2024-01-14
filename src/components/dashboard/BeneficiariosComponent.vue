@@ -32,8 +32,6 @@ const refrescar = async () => {
             console.log(error)
         })
 
-
-
     await axios.get('http://localhost:8000/comunitys/holders', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
@@ -139,22 +137,23 @@ const deleteBeneficiary = async (id) => {
                     <th scope="col" class="col-auto">Tipo de Documento</th>
                     <th scope="col" class="col-auto">No. Documento</th>
                     <th scope="col" class="col-auto">Titular del que es Beneficiario</th>
-            
+
                     <th scope="col" class="col-2">Acciones</th>
                 </tr>
             </thead>
 
             <tbody>
 
-                <tr class="text-center align-middle text-break" v-for="beneficiary in beneficiarys" :key=beneficiary.id style="height: 100;">
-                 
+                <tr class="text-center align-middle text-break" v-for="beneficiary in beneficiarys" :key=beneficiary.id
+                    style="height: 100;">
+
                     <td>{{ beneficiary.name }}</td>
                     <td>{{ beneficiary.lastname }}</td>
                     <td>{{ beneficiary.phone }}</td>
                     <td>{{ beneficiary.id_type }}</td>
                     <td>{{ beneficiary.id_number }}</td>
                     <td>{{ beneficiary.comunity.name }} {{ beneficiary.comunity.lastname }} </td>
-          
+
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                             <button @click="getBeneficiary(beneficiary.id)" type="button" class="btn btn-outline-info"
@@ -174,8 +173,8 @@ const deleteBeneficiary = async (id) => {
         <!-- MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL -->
 
 
-        <div class="modal fade" id="crearBeneficiarioModal" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="crearBeneficiarioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -349,7 +348,8 @@ const deleteBeneficiary = async (id) => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="deleteBeneficiary(formData.id)" type="button" class="btn btn-danger">Eliminar</button>
+                        <button @click="deleteBeneficiary(formData.id)" type="button"
+                            class="btn btn-danger">Eliminar</button>
                     </div>
                 </div>
             </div>

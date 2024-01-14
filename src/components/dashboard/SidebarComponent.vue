@@ -47,7 +47,7 @@ const rutasAtencion = [{
   nombre: 'Comunidades',
   ruta: '/dashboard/comunidades',
   xlink: '#tipocomunidad'
-}, 
+},
 {
   id: 4,
   nombre: 'Representantes',
@@ -73,7 +73,34 @@ const rutasAtencion = [{
   nombre: 'Origenes',
   ruta: '/dashboard/origenes',
   xlink: '#calendario'
-},  {
+}, {
+  id: 14,
+  nombre: 'Compromisos',
+  ruta: '/dashboard/compromisos',
+  xlink: '#puzzle'
+}, {
+  id: 7,
+  nombre: 'Programas',
+  ruta: '/dashboard/programas',
+  xlink: '#file-earmark'
+}, {
+  id: 7,
+  nombre: 'Acciones',
+  ruta: '/dashboard/acciones',
+  xlink: '#file-earmark'
+},
+
+// {
+//   id: 7,
+//   nombre: 'Evidencias',
+//   ruta: '/dashboard/evidencias',
+//   xlink: '#file-earmark'
+// },
+
+
+
+
+{
   id: 1,
   nombre: 'Medidas',
   ruta: '/dashboard/medidas',
@@ -83,16 +110,6 @@ const rutasAtencion = [{
   nombre: 'Concertaciones',
   ruta: '/dashboard/concertaciones',
   xlink: '#chevron-right'
-}, {
-  id: 6,
-  nombre: 'Compromisos',
-  ruta: '/',
-  xlink: '#puzzle'
-}, {
-  id: 7,
-  nombre: 'Programas',
-  ruta: '/dashboard/programas',
-  xlink: '#file-earmark'
 }, {
   id: 8,
   nombre: 'Acciones',
