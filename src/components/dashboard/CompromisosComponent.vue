@@ -139,7 +139,7 @@ const deleteCommitment = async (id) => {
                     <!-- <th scope="col" class="col-1">ID</th> -->
                     <th scope="col" class="col-auto">Nombre</th>
                   
-                    <th scope="col" class="col-auto">Entidad que Emite</th>
+                    <th scope="col" class="col-auto">Origen del Compromiso</th>
                     <th scope="col" class="col-2">Acciones</th>
                 </tr>
             </thead>

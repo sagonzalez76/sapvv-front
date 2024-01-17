@@ -80,16 +80,16 @@ const rutasAtencion = [{
   xlink: '#puzzle'
 }, {
   id: 7,
-  nombre: 'Programas',
-  ruta: '/dashboard/programas',
-  xlink: '#file-earmark'
-}, {
-  id: 7,
   nombre: 'Acciones',
   ruta: '/dashboard/acciones',
   xlink: '#file-earmark'
 },
-
+{
+  id: 7,
+  nombre: 'Programas',
+  ruta: '/dashboard/programas',
+  xlink: '#file-earmark'
+},
 // {
 //   id: 7,
 //   nombre: 'Evidencias',
