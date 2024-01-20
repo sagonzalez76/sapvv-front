@@ -103,8 +103,8 @@ const deleteConcertation = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Concertaciones</h2>
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
+        <h3>Concertaciones</h3>
+        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearConcertacionModal">Crear
             Concertacion</button>
     </div>
@@ -171,7 +171,7 @@ const deleteConcertation = async (id) => {
                                 <label for="floatingInputGrid">Descripcion del Concertacion </label>
 
                             </div>
-                           
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
@@ -210,12 +210,13 @@ const deleteConcertation = async (id) => {
                                 <label for="floatingInputGrid">Descripcion del Concertacion </label>
 
                             </div>
-                           
+
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <button @click="editConcertation(formData.id)" type="button" class="btn btn-success">Guardar</button>
+                            <button @click="editConcertation(formData.id)" type="button"
+                                class="btn btn-success">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -251,7 +252,8 @@ const deleteConcertation = async (id) => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="deleteConcertation(formData.id)" type="button" class="btn btn-danger">Eliminar</button>
+                        <button @click="deleteConcertation(formData.id)" type="button"
+                            class="btn btn-danger">Eliminar</button>
                     </div>
                 </div>
             </div>

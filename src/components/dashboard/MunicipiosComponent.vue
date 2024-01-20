@@ -121,8 +121,8 @@ const deleteMunicipality = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Municipios</h2>
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
+        <h3>Municipios</h3>
+        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearMunicipioModal">Crear
             Municipio</button>
     </div>
@@ -189,12 +189,12 @@ const deleteMunicipality = async (id) => {
 
                         </div>
                         <div class="form-floating my-2">
-                             <select class="form-select" id="floatingSelectGrid" v-model="formData.departmentId" required>
-                                    <option disabled selected>Selecciona el departamento</option>
-                                            <option v-for="department in departments" :key="department.id" 
-                                            :value="department.id" class="text-capitalize">{{ department.name }}</option>
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.departmentId" required>
+                                <option disabled selected>Selecciona el departamento</option>
+                                <option v-for="department in departments" :key="department.id" :value="department.id"
+                                    class="text-capitalize">{{ department.name }}</option>
 
-                                </select>
+                            </select>
                             <label for="floatingSelectGrid">Ubicacion</label>
                         </div>
 
@@ -230,8 +230,8 @@ const deleteMunicipality = async (id) => {
                         <div class="form-floating my-2">
                             <select class="form-select" id="floatingSelectGrid" v-model="formData.departmentId" required>
                                 <option disabled selected>Selecciona el departamento</option>
-                                        <option v-for="department in departments" :key="department.id" 
-                                        :value="department.id" class="text-capitalize">{{ department.name }}</option>
+                                <option v-for="department in departments" :key="department.id" :value="department.id"
+                                    class="text-capitalize">{{ department.name }}</option>
 
                             </select>
                             <label for="floatingSelectGrid">Ubicacion</label>

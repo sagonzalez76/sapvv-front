@@ -121,8 +121,8 @@ const deleteAgent = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Representantes de las Comunidades</h2>
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
+        <h3>Representantes de las Comunidades</h3>
+        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearRepresentanteModal">Crear
             Representante</button>
     </div>
@@ -200,8 +200,8 @@ const deleteAgent = async (id) => {
 
                             </div>
                             <div class="form-floating my-2">
-                                <input type="tel" class="form-control" id="floatingInputGrid"
-                                    placeholder="Representante 1" v-model="formData.phone" required>
+                                <input type="tel" class="form-control" id="floatingInputGrid" placeholder="Representante 1"
+                                    v-model="formData.phone" required>
                                 <label for="floatingInputGrid">Celular del Representante </label>
 
                             </div>
@@ -275,8 +275,8 @@ const deleteAgent = async (id) => {
 
                             </div>
                             <div class="form-floating my-2">
-                                <input type="tel" class="form-control" id="floatingInputGrid"
-                                    placeholder="Representante 1" v-model="formData.phone" required>
+                                <input type="tel" class="form-control" id="floatingInputGrid" placeholder="Representante 1"
+                                    v-model="formData.phone" required>
                                 <label for="floatingInputGrid">Celular del Representante </label>
 
                             </div>

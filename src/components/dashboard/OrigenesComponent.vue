@@ -130,8 +130,8 @@ const deleteOrigin = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Origenes</h2>
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
+        <h3>Origenes</h3>
+        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearOrigenModal">Crear
             Origen</button>
     </div>
@@ -195,7 +195,7 @@ const deleteOrigin = async (id) => {
                     </div>
 
 
-                    <form class="modal-body" @submit.prevent="createOrigin()" >
+                    <form class="modal-body" @submit.prevent="createOrigin()">
 
                         <div class="form-floating my-2">
                             <input type="text" class="form-control" id="floatingInputGrid" placeholder="Origen 1"
@@ -247,14 +247,15 @@ const deleteOrigin = async (id) => {
 
                             </select>
                             <label for="floatingSelectGrid">Entidad que Emite</label>
-                        </div>   <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button  type="submit" class="btn btn-success">Crear Origen</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <button type="submit" class="btn btn-success">Crear Origen</button>
+                        </div>
                     </form>
 
 
-                 
+
                 </div>
             </div>
         </div>
@@ -272,64 +273,65 @@ const deleteOrigin = async (id) => {
                         <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                   <form class="modal-body" @submit.prevent="editOrigin(formData.id)" >
+                    <form class="modal-body" @submit.prevent="editOrigin(formData.id)">
 
+                        <div class="form-floating my-2">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Origen 1"
+                                v-model="formData.name" required>
+                            <label for="floatingInputGrid">Nombre del Origen </label>
+
+                        </div>
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.type" required>
+                                <option disabled selected>Selecciona el tipo de origen</option>
+                                <option value="Concertacion" class="text-capitalize"> Concertacion
+                                </option>
+                                <option value="Alerta Temprana" class="text-capitalize"> Alerta Temprana
+                                </option>
+                                <option value="Muto Propio" class="text-capitalize"> Muto Propio
+                                </option>
+                                <option value="Sentencia" class="text-capitalize"> Sentencia</option>
+                                <option value="Auto" class="text-capitalize"> Auto</option>
+
+                            </select>
+                            <label for="floatingSelectGrid">Tipo Origen</label>
+                        </div>
+
+                        <div v-if="formData.type === 'Sentencia' || formData.type === 'Auto'">
                             <div class="form-floating my-2">
                                 <input type="text" class="form-control" id="floatingInputGrid" placeholder="Origen 1"
-                                    v-model="formData.name" required>
-                                <label for="floatingInputGrid">Nombre del Origen </label>
+                                    v-model="formData.filing" required>
+                                <label for="floatingInputGrid">Radicado </label>
 
                             </div>
                             <div class="form-floating my-2">
-                                <select class="form-select" id="floatingSelectGrid" v-model="formData.type" required>
-                                    <option disabled selected>Selecciona el tipo de origen</option>
-                                    <option value="Concertacion" class="text-capitalize"> Concertacion
-                                    </option>
-                                    <option value="Alerta Temprana" class="text-capitalize"> Alerta Temprana
-                                    </option>
-                                    <option value="Muto Propio" class="text-capitalize"> Muto Propio
-                                    </option>
-                                    <option value="Sentencia" class="text-capitalize"> Sentencia</option>
-                                    <option value="Auto" class="text-capitalize"> Auto</option>
+                                <input type="date" class="form-control" id="floatingInputGrid" placeholder="Origen 1"
+                                    :max=fechamax v-model="formData.origin_date" required>
+                                <label for="floatingInputGrid">Fecha Expedicion </label>
 
-                                </select>
-                                <label for="floatingSelectGrid">Tipo Origen</label>
-                            </div>
-
-                            <div v-if="formData.type === 'Sentencia' || formData.type === 'Auto'">
-                                <div class="form-floating my-2">
-                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder="Origen 1"
-                                        v-model="formData.filing" required>
-                                    <label for="floatingInputGrid">Radicado </label>
-
-                                </div>
-                                <div class="form-floating my-2">
-                                    <input type="date" class="form-control" id="floatingInputGrid" placeholder="Origen 1"
-                                        :max=fechamax v-model="formData.origin_date" required>
-                                    <label for="floatingInputGrid">Fecha Expedicion </label>
-
-                                </div>
-                                <div class="form-floating my-2">
-                                    <input type="date" class="form-control" id="floatingInputGrid" placeholder="Origen 1"
-                                        :max=fechamax :min=formData.origin_date v-model="formData.notification_date" required>
-                                    <label for="floatingInputGrid">Fecha Notificacion </label>
-
-                                </div>
                             </div>
                             <div class="form-floating my-2">
-                                <select class="form-select" id="floatingSelectGrid" v-model="formData.emitterId" required>
-                                    <option disabled selected>Selecciona una Entidad</option>
-                                    <option v-for="emitter in emitters" :key="emitter.id" :value="emitter.id"
-                                        class="text-capitalize">{{ emitter.name }}</option>
+                                <input type="date" class="form-control" id="floatingInputGrid" placeholder="Origen 1"
+                                    :max=fechamax :min=formData.origin_date v-model="formData.notification_date" required>
+                                <label for="floatingInputGrid">Fecha Notificacion </label>
 
-                                </select>
-                                <label for="floatingSelectGrid">Entidad que Emite</label>
-                            </div>      <div class="modal-footer">
+                            </div>
+                        </div>
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.emitterId" required>
+                                <option disabled selected>Selecciona una Entidad</option>
+                                <option v-for="emitter in emitters" :key="emitter.id" :value="emitter.id"
+                                    class="text-capitalize">{{ emitter.name }}</option>
+
+                            </select>
+                            <label for="floatingSelectGrid">Entidad que Emite</label>
+                        </div>
+                        <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
                             <button type="submit" class="btn btn-success">Guardar</button>
                         </div>
-                        </form>
-                 
+                    </form>
+
                 </div>
             </div>
         </div>

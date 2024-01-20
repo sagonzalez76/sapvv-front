@@ -1,4 +1,5 @@
 <script setup>
+import FooterComponent from '../components/FooterComponent.vue';
 import HeroComponent from '../components/HeroComponent.vue'
 import NavBarComponent from '../components/NavBarComponent.vue';
 </script>
@@ -7,6 +8,7 @@ import NavBarComponent from '../components/NavBarComponent.vue';
   <main class="fade-in-down">
     <NavBarComponent></NavBarComponent>
     <HeroComponent />
+    <FooterComponent></FooterComponent>
   </main>
 </template>
 

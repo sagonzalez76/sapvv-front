@@ -119,8 +119,8 @@ const deleteBeneficiary = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Beneficiarios de las Titulares</h2>
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
+        <h3>Beneficiarios de las Titulares</h3>
+        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearBeneficiarioModal">Crear
             Beneficiario</button>
     </div>

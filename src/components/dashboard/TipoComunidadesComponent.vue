@@ -11,11 +11,11 @@ const formData = ref({})
 onMounted(() => {
     refrescar()
 
-        // new DataTable('#example');
+    // new DataTable('#example');
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/type_comunitys', {
+    await axios.get('http://localhost:8000/type_actions', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 const getProgram = async (id) => {
 
-    await axios.get('http://localhost:8000/type_comunitys/' + id, {
+    await axios.get('http://localhost:8000/type_actions/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ const getProgram = async (id) => {
 
 const createProgram = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/type_comunitys', formData.value)
+    await axios.post('http://localhost:8000/type_actions', formData.value)
         .then(() => {
             alert('Tipos de Comunidad Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -67,7 +67,7 @@ const createProgram = async () => {
 
 const editProgram = async (id) => {
 
-    await axios.put(`http://localhost:8000/type_comunitys/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/type_actions/${id}`, formData.value)
         .then(() => {
             alert('Tipos de Comunidad Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -82,7 +82,7 @@ const editProgram = async (id) => {
 
 const deleteProgram = async (id) => {
     await getProgram(id)
-    await axios.delete('http://localhost:8000/type_comunitys/' + id)
+    await axios.delete('http://localhost:8000/type_actions/' + id)
         .then(() => {
             alert('Tipos de Comunidad Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -111,8 +111,8 @@ const getColorClass = (priority) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Tipos de Comunidades</h2>
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
+        <h3>Tipos de Comunidades</h3>
+        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearTiposdeComunidadModal">Crear
             Tipos de Comunidad</button>
     </div>
@@ -152,8 +152,8 @@ const getColorClass = (priority) => {
         <!-- MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL -->
 
 
-        <div class="modal fade" id="crearTiposdeComunidadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="crearTiposdeComunidadModal" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -164,16 +164,17 @@ const getColorClass = (priority) => {
                     <div class="modal-body">
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Tipos de Comunidad 1"
-                                v-model="formData.name" required>
+                            <input type="text" class="form-control" id="floatingInputGrid"
+                                placeholder="Tipos de Comunidad 1" v-model="formData.name" required>
                             <label for="floatingInputGrid">Nombre del Tipo de Comunidad </label>
 
                         </div>
-                       
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="createProgram" type="button" class="btn btn-success">Crear Tipos de Comunidad</button>
+                        <button @click="createProgram" type="button" class="btn btn-success">Crear Tipos de
+                            Comunidad</button>
                     </div>
                 </div>
             </div>
@@ -194,8 +195,8 @@ const getColorClass = (priority) => {
                     </div>
                     <div class="modal-body">
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Tipos de Comunidad 1"
-                                v-model="formData.name" >
+                            <input type="text" class="form-control" id="floatingInputGrid"
+                                placeholder="Tipos de Comunidad 1" v-model="formData.name">
                             <label for="floatingInputGrid">Nombre del Tipos de Comunidad</label>
 
                         </div>

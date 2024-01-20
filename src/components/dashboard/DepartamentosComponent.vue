@@ -11,7 +11,7 @@ const formData = ref({})
 onMounted(() => {
     refrescar()
 
-        // new DataTable('#example');
+    // new DataTable('#example');
 })
 
 const refrescar = async () => {
@@ -103,8 +103,8 @@ const deleteProgram = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Departamentos</h2>
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
+        <h3>Departamentos</h3>
+        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearDepartamentoModal">Crear
             Departamento</button>
     </div>
@@ -161,7 +161,7 @@ const deleteProgram = async (id) => {
                             <label for="floatingInputGrid">Nombre del Departamento </label>
 
                         </div>
-                       
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
@@ -187,7 +187,7 @@ const deleteProgram = async (id) => {
                     <div class="modal-body">
                         <div class="form-floating my-2">
                             <input type="text" class="form-control" id="floatingInputGrid" placeholder="Departamento 1"
-                                v-model="formData.name" >
+                                v-model="formData.name">
                             <label for="floatingInputGrid">Nombre del Departamento</label>
 
                         </div>

@@ -19,7 +19,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-0 border-bottom ">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-0 ">
         <!-- <h1 class="">Bienvenido <span class="text-capitalize">{{ role }}</span></h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">

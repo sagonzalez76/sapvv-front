@@ -215,13 +215,13 @@ const verArchivo = async (url) => {
 
 <template>
     <body class="container" style="max-width: 100%;">
-        <header class="d-flex justify-content-center py-2 mb-2 border-bottom">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <img class="bi me-2" width="80" height="70" src="/sena_logo_png.png">
-                <span class="fs-4 text-break">{{ action.description }}</span>
-            </a>
+        <header class="d-flex justify-content-center py-0 mb-2 border-bottom">
+            <p class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <img class="bi me-2" width="75" height="70" src="/sena_logo_png.png">
+                <span class="fs-6 text-break">{{ action.description }}</span>
+            </p>
 
-            <button type="button" class="btn btn-outline-primary ms-5" data-bs-toggle="modal"
+            <button type="button" class="btn btn-primary ms-5 btn-sm my-3 rounded-0" data-bs-toggle="modal"
                 data-bs-target="#crearAccionModal">Crear Evidencia</button>
         </header>
 
@@ -232,9 +232,9 @@ const verArchivo = async (url) => {
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">
                         <div class="col" v-for="image in images" :key="image.id">
                             <div class="card shadow-sm" v-if="image.type.startsWith('image/')">
-                                <div class="image-container" style="max-height: 300px;">
-                                    <img :src="servidor + image.url" class="card-img-top img-fluid" alt="..."
-                                        style="width: 100%; height: 15rem; object-fit:fill; max-width: 100;" />
+                                <div class="image-container" style="max-height: ;">
+                                    <img :src="servidor + image.url" class="card-img-top img-fluid object-fit-cover"
+                                        alt="..." />
                                 </div>
                                 <div class="card-body">
                                     <p class="card-text text-center fw-bold text-center fw-bold">{{ image.name }}</p>
@@ -254,7 +254,7 @@ const verArchivo = async (url) => {
                     </div>
                 </div>
             </div>
-            <h5 v-else class="">No hay contenido disponible</h5>
+            <h5 v-else class="">No hay imagenes disponible</h5>
 
             <hr>
             <h1>Audios</h1>
@@ -284,7 +284,7 @@ const verArchivo = async (url) => {
                     </div>
                 </div>
             </div>
-            <h5 v-else class="">No hay contenido disponible</h5>
+            <h5 v-else class="">No hay audios disponible</h5>
 
             <hr>
             <h1>Videos</h1>
@@ -314,7 +314,7 @@ const verArchivo = async (url) => {
                     </div>
                 </div>
             </div>
-            <h5 v-else class="">No hay contenido disponible</h5>
+            <h5 v-else class="">No hay videos disponible</h5>
 
             <hr>
             <h1>Documentos</h1>
@@ -354,7 +354,7 @@ const verArchivo = async (url) => {
                     </div>
                 </div>
             </div>
-            <h5 v-else class="">No hay contenido disponible</h5>
+            <h5 v-else class="">No hay documentos disponible</h5>
 
 
         </main>
@@ -390,7 +390,53 @@ const verArchivo = async (url) => {
     </body>
 </template>
 
-<style></style>
+<style>
+*{
+
+      font-family: 'Work Sans';
+}
+.object-fit-cover {
+    object-fit: cover;
+    height: 15rem;
+}
+
+
+.album {
+
+    animation: fadeIn 2s
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.01);
+    }
+    
+
+}
+
+@keyframes fadeIn {
+
+
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        transform: opacity 5;
+    }
+
+    100% {
+        transform: opacity 0;
+    }
+
+}
+</style>
 
 
 

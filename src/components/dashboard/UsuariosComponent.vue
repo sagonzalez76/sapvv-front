@@ -20,7 +20,7 @@ const formData = ref({
 
 onMounted(() => {
     refrescar()
-        // new DataTable('#example');
+    // new DataTable('#example');
 
 })
 
@@ -133,8 +133,8 @@ const deleteUser = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Usuarios</h2>
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
+        <h3>Usuarios</h3>
+        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearUsuarioModal">Crear
             Usuario</button>
     </div>

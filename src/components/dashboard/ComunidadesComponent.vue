@@ -147,11 +147,11 @@ const deleteComunity = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Comunidades</h2> {{ formData }}
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
-            data-bs-target="#crearComunidadModal">Crear
-            Comunidad</button>
-        <!-- {{ comunitys }}  -->
+        <h3>Comunidades</h3> {{ formData }}
+            <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
+                data-bs-target="#crearComunidadModal">Crear
+                Comunidad</button>
+            <!-- {{ comunitys }}  -->
     </div>
     <!-- {{ comunitys }} -->
 
@@ -228,7 +228,7 @@ const deleteComunity = async (id) => {
 
                             <label for="floatingSelectGrid">Tipo de Comunidad</label>
                         </div>
-                         
+
 
                         <div class="form-floating my-2">
 

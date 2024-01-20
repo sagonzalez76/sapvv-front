@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 
     await axios.get('http://localhost:8000/origins', {
-        
+
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -124,8 +124,8 @@ const deleteCommitment = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Compromisos</h2>
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
+        <h3>Compromisos</h3>
+        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearCompromisoModal">Crear
             Compromiso</button>
     </div>
@@ -138,7 +138,7 @@ const deleteCommitment = async (id) => {
                 <tr class="text-center align-middle">
                     <!-- <th scope="col" class="col-1">ID</th> -->
                     <th scope="col" class="col-auto">Nombre</th>
-                  
+
                     <th scope="col" class="col-auto">Origen del Compromiso</th>
                     <th scope="col" class="col-2">Acciones</th>
                 </tr>
@@ -182,7 +182,7 @@ const deleteCommitment = async (id) => {
                     </div>
 
 
-                    <form class="modal-body" @submit.prevent="createCommitment()" >
+                    <form class="modal-body" @submit.prevent="createCommitment()">
 
                         <div class="form-floating my-2">
                             <input type="text" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
@@ -190,9 +190,9 @@ const deleteCommitment = async (id) => {
                             <label for="floatingInputGrid">Nombre / Descripcion del Compromiso </label>
 
                         </div>
-                       
 
-                       
+
+
                         <div class="form-floating my-2">
                             <select class="form-select" id="floatingSelectGrid" v-model="formData.originId" required>
                                 <option disabled selected>Selecciona un Origen</option>
@@ -201,14 +201,15 @@ const deleteCommitment = async (id) => {
 
                             </select>
                             <label for="floatingSelectGrid">Entidad que Emite</label>
-                        </div>   <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button  type="submit" class="btn btn-success">Crear Compromiso</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <button type="submit" class="btn btn-success">Crear Compromiso</button>
+                        </div>
                     </form>
 
 
-                 
+
                 </div>
             </div>
         </div>
@@ -226,49 +227,51 @@ const deleteCommitment = async (id) => {
                         <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                   <form class="modal-body" @submit.prevent="editCommitment(formData.id)" >
+                    <form class="modal-body" @submit.prevent="editCommitment(formData.id)">
 
+                        <div class="form-floating my-2">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
+                                v-model="formData.name" required>
+                            <label for="floatingInputGrid">Nombre del Compromiso </label>
+
+                        </div>
+
+                        <div v-if="formData.type === 'Sentencia' || formData.type === 'Auto'">
                             <div class="form-floating my-2">
                                 <input type="text" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
-                                    v-model="formData.name" required>
-                                <label for="floatingInputGrid">Nombre del Compromiso </label>
+                                    v-model="formData.filing" required>
+                                <label for="floatingInputGrid">Radicado </label>
 
-                            </div>
-                    
-                            <div v-if="formData.type === 'Sentencia' || formData.type === 'Auto'">
-                                <div class="form-floating my-2">
-                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
-                                        v-model="formData.filing" required>
-                                    <label for="floatingInputGrid">Radicado </label>
-
-                                </div>
-                                <div class="form-floating my-2">
-                                    <input type="date" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
-                                        :max=fechamax v-model="formData.commitment_date" required>
-                                    <label for="floatingInputGrid">Fecha Expedicion </label>
-
-                                </div>
-                                <div class="form-floating my-2">
-                                    <input type="date" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
-                                        :max=fechamax :min=formData.commitment_date v-model="formData.notification_date" required>
-                                    <label for="floatingInputGrid">Fecha Notificacion </label>
-
-                                </div>
                             </div>
                             <div class="form-floating my-2">
-                                <select class="form-select" id="floatingSelectGrid" v-model="formData.originId" required>
-                                    <option disabled selected>Selecciona una Entidad</option>
-                                    <option v-for="origin in origins" :key="origin.id" :value="origin.id"
-                                        class="text-capitalize">{{ origin.name }}</option>
+                                <input type="date" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
+                                    :max=fechamax v-model="formData.commitment_date" required>
+                                <label for="floatingInputGrid">Fecha Expedicion </label>
 
-                                </select>
-                                <label for="floatingSelectGrid">Entidad que Emite</label>
-                            </div>      <div class="modal-footer">
+                            </div>
+                            <div class="form-floating my-2">
+                                <input type="date" class="form-control" id="floatingInputGrid" placeholder="Compromiso 1"
+                                    :max=fechamax :min=formData.commitment_date v-model="formData.notification_date"
+                                    required>
+                                <label for="floatingInputGrid">Fecha Notificacion </label>
+
+                            </div>
+                        </div>
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.originId" required>
+                                <option disabled selected>Selecciona una Entidad</option>
+                                <option v-for="origin in origins" :key="origin.id" :value="origin.id"
+                                    class="text-capitalize">{{ origin.name }}</option>
+
+                            </select>
+                            <label for="floatingSelectGrid">Entidad que Emite</label>
+                        </div>
+                        <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
                             <button type="submit" class="btn btn-success">Guardar</button>
                         </div>
-                        </form>
-                 
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -302,7 +305,8 @@ const deleteCommitment = async (id) => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="deleteCommitment(formData.id)" type="button" class="btn btn-danger">Eliminar</button>
+                        <button @click="deleteCommitment(formData.id)" type="button"
+                            class="btn btn-danger">Eliminar</button>
                     </div>
                 </div>
             </div>

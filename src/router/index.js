@@ -8,11 +8,15 @@ import Medidas from '../components/dashboard/MedidasComponent.vue'
 import Usuarios from '../components/dashboard/UsuariosComponent.vue'
 import Roles from '../components/dashboard/RolesComponent.vue'
 import Departamentos from '../components/dashboard/DepartamentosComponent.vue'
+import Dependencias from '../components/dashboard/DependenciasComponent.vue'
+
 import Emisores from '../components/dashboard/EmisoresComponent.vue'
 import Municipios from '../components/dashboard/MunicipiosComponent.vue'
 import Origenes from '../components/dashboard/OrigenesComponent.vue'
 import Acciones from "../components/dashboard/AccionesComponent.vue"
 import TipoComunidades from '../components/dashboard/TipoComunidadesComponent.vue'
+import TipoAcciones from '../components/dashboard/TipoAccionesComponent.vue'
+
 import Comunidades from '../components/dashboard/ComunidadesComponent.vue'
 import Titulares from '../components/dashboard/TitularesComponent.vue'
 import Representantes from '../components/dashboard/RepresentantesComponent.vue'
@@ -47,8 +51,12 @@ const router = createRouter({
         { path: '/dashboard/medidas', component: Medidas },
         { path: '/dashboard/emisores', component: Emisores },
         { path: '/dashboard/departamentos', component: Departamentos },
+        { path: '/dashboard/dependencias', component: Dependencias },
+
         { path: '/dashboard/municipios', component: Municipios },
         { path: '/dashboard/tipo_comunidades', component: TipoComunidades },
+        { path: '/dashboard/tipo_acciones', component: TipoAcciones },
+
         { path: '/dashboard/comunidades', component: Comunidades },
         { path: '/dashboard/titulares', component: Titulares },
         { path: '/dashboard/representantes', component: Representantes },

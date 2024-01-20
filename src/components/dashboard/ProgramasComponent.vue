@@ -121,8 +121,8 @@ const deleteProgram = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Programas</h2>
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
+        <h3>Programas</h3>
+        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearProgramaModal">Crear
             Programa</button>
     </div>
@@ -169,9 +169,9 @@ const deleteProgram = async (id) => {
 
 
         <div class="modal fade" id="crearProgramaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
+            aria-labelledby="staticBackdropLabel" aria-hidden="false">
+            <div class="modal-dialog ">
+                <div class="modal-content  border border-0 rounded rounded-0">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Programa </h1>
                         <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"

@@ -90,12 +90,18 @@ const rutasAtencion = [{
   ruta: '/dashboard/programas',
   xlink: '#file-earmark'
 },
-// {
-//   id: 7,
-//   nombre: 'Evidencias',
-//   ruta: '/dashboard/evidencias',
-//   xlink: '#file-earmark'
-// },
+{
+  id: 7,
+  nombre: 'Dependencias',
+  ruta: '/dashboard/dependencias',
+  xlink: '#file-earmark'
+},
+{
+  id: 12,
+  nombre: 'TiposAcciones',
+  ruta: '/dashboard/tipo_acciones',
+  xlink: '#tipocomunidad'
+},
 
 
 
@@ -110,11 +116,6 @@ const rutasAtencion = [{
   nombre: 'Concertaciones',
   ruta: '/dashboard/concertaciones',
   xlink: '#chevron-right'
-}, {
-  id: 8,
-  nombre: 'Acciones',
-  ruta: '/dashboard/acciones',
-  xlink: '#cart'
 },
 
 

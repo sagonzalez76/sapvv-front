@@ -127,12 +127,12 @@ const deleteComunity = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Titulares</h2>
-        <!-- {{ formData }} -->
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
-            data-bs-target="#crearTitularModal">Crear
-            Titular</button>
-        <!-- {{ comunitys }}  -->
+        <h3>Titulares</h3>
+            <!-- {{ formData }} -->
+            <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
+                data-bs-target="#crearTitularModal">Crear
+                Titular</button>
+            <!-- {{ comunitys }}  -->
     </div>
     <!-- {{ comunitys }} -->
 
@@ -163,7 +163,8 @@ const deleteComunity = async (id) => {
                     <td>{{ comunity.genre }}</td>
                     <td> <span v-for="municipality in comunity.municipalitys" :key="municipality.id">{{ municipality.name
                     }}<br> </span></td>
-                    <td> <span v-for="beneficiary in comunity.beneficiarys" :key="beneficiary.id"> {{ beneficiary.name}} {{ beneficiary.lastname}}<br><br> </span></td>
+                    <td> <span v-for="beneficiary in comunity.beneficiarys" :key="beneficiary.id"> {{ beneficiary.name }} {{
+                        beneficiary.lastname }}<br><br> </span></td>
 
 
                     <td>
@@ -287,78 +288,78 @@ const deleteComunity = async (id) => {
                         <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                     <form class="modal-body" @submit.prevent="editComunity(formData.id)">
+                    <form class="modal-body" @submit.prevent="editComunity(formData.id)">
 
-                            <div class="form-floating my-2">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
-                                    v-model="formData.name" required>
-                                <label for="floatingInputGrid">Nombre del Titular </label>
+                        <div class="form-floating my-2">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                                v-model="formData.name" required>
+                            <label for="floatingInputGrid">Nombre del Titular </label>
 
-                            </div>
-                            <div class="form-floating my-2">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
-                                    v-model="formData.lastname" required>
-                                <label for="floatingInputGrid">Apellido del Titular </label>
+                        </div>
+                        <div class="form-floating my-2">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                                v-model="formData.lastname" required>
+                            <label for="floatingInputGrid">Apellido del Titular </label>
 
-                            </div>
+                        </div>
 
-                            <div class="form-floating my-2">
-                                <select class="form-select" id="floatingSelectGrid" v-model="formData.id_type" required>
-                                    <option disabled selected>Selecciona el tipo de documento</option>
-                                    <option value="Cedula de Ciudadania" class="text-capitalize"> Cedula de Ciudadania
-                                    </option>
-                                    <option value="Tarjeta de Identidad" class="text-capitalize"> Tarjeta de Identidad
-                                    </option>
-                                    <option value="Cedula de Extranjeria" class="text-capitalize"> Cedula de Extranjeria
-                                    </option>
-                                    <option value="Pasaporte" class="text-capitalize"> Pasaporte</option>
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.id_type" required>
+                                <option disabled selected>Selecciona el tipo de documento</option>
+                                <option value="Cedula de Ciudadania" class="text-capitalize"> Cedula de Ciudadania
+                                </option>
+                                <option value="Tarjeta de Identidad" class="text-capitalize"> Tarjeta de Identidad
+                                </option>
+                                <option value="Cedula de Extranjeria" class="text-capitalize"> Cedula de Extranjeria
+                                </option>
+                                <option value="Pasaporte" class="text-capitalize"> Pasaporte</option>
 
-                                </select>
-                                <label for="floatingSelectGrid">Tipo Documento</label>
-                            </div>
+                            </select>
+                            <label for="floatingSelectGrid">Tipo Documento</label>
+                        </div>
 
-                            <div class="form-floating my-2">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
-                                    v-model="formData.id_number" required>
-                                <label for="floatingInputGrid">Numero de Identificacion del Titular </label>
+                        <div class="form-floating my-2">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                                v-model="formData.id_number" required>
+                            <label for="floatingInputGrid">Numero de Identificacion del Titular </label>
 
-                            </div>
+                        </div>
 
-                            <div class="form-floating my-2">
-                                <select class="form-select" id="floatingSelectGrid" v-model="formData.genre" required>
-                                    <option disabled selected>Selecciona el genero</option>
-                                    <option value="Masculino" class="text-capitalize"> Masculino
-                                    </option>
-                                    <option value="Femenino" class="text-capitalize"> Femenino
-                                    </option>
-
-
-                                </select>
-                                <label for="floatingSelectGrid">Genero/Identidad Genero</label>
-                            </div>
-
-                            <div class="form-floating my-2">
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.genre" required>
+                                <option disabled selected>Selecciona el genero</option>
+                                <option value="Masculino" class="text-capitalize"> Masculino
+                                </option>
+                                <option value="Femenino" class="text-capitalize"> Femenino
+                                </option>
 
 
-                                <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.municipalityIds"
-                                    multiple required>
-                                    <option disabled selected>Selecciona al menos un municipio</option>
-                                    <option v-for="municipality in municipalitys" :key="municipality.id"
-                                        :value="municipality.id" class="text-capitalize">{{ municipality.name }}</option>
+                            </select>
+                            <label for="floatingSelectGrid">Genero/Identidad Genero</label>
+                        </div>
 
-                                </select>
+                        <div class="form-floating my-2">
 
 
-                                <label for="floatingSelectGrid">Asocia el Titular a un municipio</label>
-                            </div>
+                            <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.municipalityIds"
+                                multiple required>
+                                <option disabled selected>Selecciona al menos un municipio</option>
+                                <option v-for="municipality in municipalitys" :key="municipality.id"
+                                    :value="municipality.id" class="text-capitalize">{{ municipality.name }}</option>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                                <button type="submit" class="btn btn-success">Crear Titular</button>
-                            </div>
+                            </select>
 
 
-                        </form>
+                            <label for="floatingSelectGrid">Asocia el Titular a un municipio</label>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <button type="submit" class="btn btn-success">Crear Titular</button>
+                        </div>
+
+
+                    </form>
                 </div>
             </div>
         </div>

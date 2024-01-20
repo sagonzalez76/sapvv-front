@@ -103,8 +103,8 @@ const deleteEmitter = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Emisores</h2>
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
+        <h3>Emisores</h3>
+        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearEmisorModal">Crear
             Emisor</button>
     </div>

@@ -9,10 +9,11 @@ const actionStore = useActionStore();
 
 const token = useAuthStore().token
 const actions = ref({})
+const type_actions = ref({})
 const formData = ref({})
 formData.value.done = false
 
-
+const dependencys = ref({})
 
 const getActionEvidence = (id) => {
     actionStore.getAction(id)
@@ -35,12 +36,52 @@ const refrescar = async () => {
     })
         .then((response) => {
             actions.value = response.data
-            // console.log(actions.value);
+            console.log(actions.value);
             // console.log(response.data);
         })
         .catch((error) => {
             console.log(error)
         })
+
+
+    await axios.get('http://localhost:8000/dependencys', {
+
+        //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
+
+        headers: {
+            'Authorization': `Bearer ${token}`,
+
+        },
+    })
+        .then((response) => {
+            dependencys.value = response.data
+            // console.log(departments.value);
+            // console.log(response.data);
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+
+
+
+    await axios.get('http://localhost:8000/type_actions', {
+
+        //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
+
+        headers: {
+            'Authorization': `Bearer ${token}`,
+
+        },
+    })
+        .then((response) => {
+            type_actions.value = response.data
+            // console.log(type_comunitys.value);
+            // console.log(response.data);
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+
 
 
 }
@@ -65,7 +106,7 @@ const createAction = async () => {
     console.log(formData.value);
     await axios.post('http://localhost:8000/actions', formData.value)
         .then(() => {
-            alert('Accion Creado')
+            alert('Accion Creada')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
             botonCerrarModal.click()
             refrescar()
@@ -113,8 +154,8 @@ const deleteAction = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h2>Acciones</h2>
-        <button type="button" class="btn btn-outline-primary ms-auto" data-bs-toggle="modal"
+        <h3>Acciones</h3>
+        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearAccionModal">Crear
             Accion</button>
     </div>
@@ -126,7 +167,10 @@ const deleteAction = async (id) => {
             <thead>
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-auto">Descripcion</th>
-                    <th scope="col" class="col-2">Completada</th>
+                    <th scope="col" class="col-auto">Tipo Accion</th>
+
+                    <th scope="col" class="col-2">Accion Completada</th>
+                    <th scope="col" class="col-auto">Dependencia que Atiende</th>
                     <th scope="col" class="col-2">Acciones</th>
 
                 </tr>
@@ -137,8 +181,12 @@ const deleteAction = async (id) => {
                 <tr class="text-center align-middle text-break" v-for="action in actions" :key=action.id
                     style="height: 100;">
                     <td>{{ action.description }}</td>
+                    <td>{{ action.typeAction.name }}</td>
+
                     <td v-if="action.done == true">SI</td>
                     <td v-else>NO</td>
+                    <td>{{ action.dependency.name }}</td>
+
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                             <button @click="getAction(action.id)" type="button" class="btn btn-outline-info"
@@ -147,7 +195,8 @@ const deleteAction = async (id) => {
                             <button @click="getAction(action.id)" type="button" class="btn btn-outline-danger"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                             </button>
-                            <button @click="getActionEvidence(action.id)" type="button" class="btn btn-outline-warning"><i class="bi bi-eye-fill"></i>
+                            <button @click="getActionEvidence(action.id)" type="button" class="btn btn-outline-warning"><i
+                                    class="bi bi-eye-fill"></i>
                             </button>
                         </div>
                     </td>
@@ -161,9 +210,9 @@ const deleteAction = async (id) => {
 
         <div class="modal fade" id="crearAccionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog ">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header ">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Accion </h1> {{ formData }}
                         <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -175,6 +224,26 @@ const deleteAction = async (id) => {
                                 v-model="formData.description" required>
                             <label for="floatingInputGrid">Descripcion del Accion </label>
 
+                        </div>
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.dependencyId" required>
+                                <option disabled selected>Selecciona la dependencia que atiende</option>
+                                <option v-for="dependency in dependencys" :key="dependency.id" :value="dependency.id"
+                                    class="text-capitalize">{{ dependency.name }}</option>
+
+                            </select>
+                            <label for="floatingSelectGrid">Dependencia</label>
+                        </div>
+
+
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.typeActionId" required>
+                                <option disabled selected>Selecciona el tipo de Accion:</option>
+                                <option v-for="type_action in type_actions" :key="type_action.id" :value="type_action.id"
+                                    class="text-capitalize">{{ type_action.name }}</option>
+
+                            </select>
+                            <label for="floatingSelectGrid">Tipo de Accion</label>
                         </div>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
