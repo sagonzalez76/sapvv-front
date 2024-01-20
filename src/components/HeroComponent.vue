@@ -66,11 +66,12 @@ const onSubmit = () => {
 
             <div class="g-recaptcha align-center mw-100" data-sitekey="6Lfws4MoAAAAAIi5jk_hYaqwDz74UWMPeankCfUE"></div>
 
-            <button v-if=!authStore.signIn class="w-100 btn btn-lg btn-primary mt-2 rounded-0" type="submit">Iniciar Sesion
+            <button v-if=!authStore.signIn class="w-100 btn btn-lg btn-primary mt-2 rounded-0" type="submit">Iniciar
+              Sesion
             </button>
 
 
-            <button v-else class="btn btn-primary w-100 btn btn-lg mt-2" type="button" disabled>
+            <button v-else class="btn rounded-0 btn-primary w-100 btn btn-lg mt-2" type="button" disabled>
               <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
               <span role="status"> Cargando...</span>
             </button>
@@ -139,9 +140,9 @@ const onSubmit = () => {
             como víctimas de desastres naturales, violencia, abuso,
             discriminación o cualquier otra circunstancia que los coloque en una posición de debilidad</p>
         </div>
-         <div class="col-md-10 mx-0 col-lg-5">
-            <img src="/imagen4.png" alt="" width="100%" id="imagen4">
-          </div>
+        <div class="col-md-10 mx-0 col-lg-5">
+          <img src="/imagen4.png" alt="" width="100%" id="imagen4">
+        </div>
       </div>
 
 
@@ -185,12 +186,13 @@ img {
     width: 100%;
     margin: 0 10px;
   }
-  #imagen2{
+
+  #imagen2 {
     margin-block-end: 50px;
   }
-   #imagen4{
+
+  #imagen4 {
     margin-block-start: 50px;
   }
-  
-}
-</style>
+
+}</style>

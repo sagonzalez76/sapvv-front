@@ -112,7 +112,7 @@ const getColorClass = (priority) => {
 <template>
     <div class="d-flex ">
         <h3>Tipos de Comunidades</h3>
-        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
+        <button type="button" class="btn rounded-0 btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearTiposdeComunidadModal">Crear
             Tipos de Comunidad</button>
     </div>
@@ -134,12 +134,12 @@ const getColorClass = (priority) => {
                     <td class="py-1 ">{{ program.id }}</td>
                     <td>{{ program.name }}</td>
                     <td>
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button @click="getProgram(program.id)" type="button" class="btn btn-outline-info"
+                        <div class="btn rounded-0-group" role="group" aria-label="Basic mixed styles example">
+                            <button @click="getProgram(program.id)" type="button" class="btn rounded-0 btn-outline-info"
                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-pencil-fill"></i>
                             </button>
 
-                            <button @click="getProgram(program.id)" type="button" class="btn btn-outline-danger"
+                            <button @click="getProgram(program.id)" type="button" class="btn rounded-0 btn-outline-danger"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                             </button>
                         </div>
@@ -158,7 +158,7 @@ const getColorClass = (priority) => {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Tipos de Comunidad </h1>
-                        <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -172,8 +172,8 @@ const getColorClass = (priority) => {
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="createProgram" type="button" class="btn btn-success">Crear Tipos de
+                        <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button @click="createProgram" type="button" class="btn rounded-0 btn-success">Crear Tipos de
                             Comunidad</button>
                     </div>
                 </div>
@@ -190,7 +190,7 @@ const getColorClass = (priority) => {
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Tipos de Comunidad
                         </h1>
-                        <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonActualizar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -203,8 +203,9 @@ const getColorClass = (priority) => {
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="editProgram(formData.id)" type="button" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button @click="editProgram(formData.id)" type="button"
+                            class="btn rounded-0 btn-success">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -218,7 +219,7 @@ const getColorClass = (priority) => {
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este tipos de comunidad?
                         </h1>
-                        <button type="button" id="cerrarBotonEliminar" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonEliminar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -238,8 +239,9 @@ const getColorClass = (priority) => {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="deleteProgram(formData.id)" type="button" class="btn btn-danger">Eliminar</button>
+                        <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button @click="deleteProgram(formData.id)" type="button"
+                            class="btn rounded-0 btn-danger">Eliminar</button>
                     </div>
                 </div>
             </div>
@@ -298,5 +300,10 @@ const getColorClass = (priority) => {
 
 .navbar .form-control {
     padding: .75rem 1rem;
+}
+.btn-success {
+
+    background-color: rgba(4, 125, 0, 0.998);
+
 }
 </style>

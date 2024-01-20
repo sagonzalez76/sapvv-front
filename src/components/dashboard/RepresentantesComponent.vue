@@ -122,7 +122,7 @@ const deleteAgent = async (id) => {
 <template>
     <div class="d-flex ">
         <h3>Representantes de las Comunidades</h3>
-        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
+        <button type="button" class="btn rounded-0 btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearRepresentanteModal">Crear
             Representante</button>
     </div>
@@ -157,12 +157,12 @@ const deleteAgent = async (id) => {
                     <td>{{ agent.comunity.name }}</td>
                     <td>{{ agent.comunityId }}</td>
                     <td>
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button @click="getAgent(agent.id)" type="button" class="btn btn-outline-info"
+                        <div class="btn rounded-0-group" role="group" aria-label="Basic mixed styles example">
+                            <button @click="getAgent(agent.id)" type="button" class="btn rounded-0 btn-outline-info"
                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-pencil-fill"></i>
                             </button>
 
-                            <button @click="getAgent(agent.id)" type="button" class="btn btn-outline-danger"
+                            <button @click="getAgent(agent.id)" type="button" class="btn rounded-0 btn-outline-danger"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                             </button>
                         </div>
@@ -181,7 +181,7 @@ const deleteAgent = async (id) => {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Representante </h1> {{ formData }}
-                        <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <form @submit.prevent="createAgent()">
@@ -237,9 +237,9 @@ const deleteAgent = async (id) => {
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <!-- <button @click="createAgent" type="button" class="btn btn-success">Crear Representante</button> -->
-                            <button type="submit" class="btn btn-success">Crear Representante</button>
+                            <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <!-- <button @click="createAgent" type="button" class="btn rounded-0 btn-success">Crear Representante</button> -->
+                            <button type="submit" class="btn rounded-0 btn-success">Crear Representante</button>
                         </div>
                     </form>
                 </div>
@@ -256,7 +256,7 @@ const deleteAgent = async (id) => {
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Representante {{ formData }}
                         </h1>
-                        <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonActualizar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <form @submit.prevent="editAgent(formData.id)">
@@ -312,9 +312,9 @@ const deleteAgent = async (id) => {
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <!-- <button @click="editAgent(formData.id)" type="button" class="btn btn-success">Guardar</button> -->
-                            <button type="submit" class="btn btn-success">Guardar</button>
+                            <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <!-- <button @click="editAgent(formData.id)" type="button" class="btn rounded-0 btn-success">Guardar</button> -->
+                            <button type="submit" class="btn rounded-0 btn-success">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -329,7 +329,7 @@ const deleteAgent = async (id) => {
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este representante?
                         </h1>
-                        <button type="button" id="cerrarBotonEliminar" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonEliminar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -349,8 +349,9 @@ const deleteAgent = async (id) => {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="deleteAgent(formData.id)" type="button" class="btn btn-danger">Eliminar</button>
+                        <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button @click="deleteAgent(formData.id)" type="button"
+                            class="btn rounded-0 btn-danger">Eliminar</button>
                     </div>
                 </div>
             </div>
@@ -409,5 +410,10 @@ const deleteAgent = async (id) => {
 
 .navbar .form-control {
     padding: .75rem 1rem;
+}
+.btn-success {
+
+    background-color: rgba(4, 125, 0, 0.998);
+
 }
 </style>

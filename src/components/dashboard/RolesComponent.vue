@@ -104,7 +104,7 @@ const deleteRole = async (id) => {
 <template>
     <div class="d-flex ">
         <h3>Roles</h3>
-        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
+        <button type="button" class="btn rounded-0 btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearRolModal">Crear
             Rol</button>
     </div>
@@ -129,12 +129,12 @@ const deleteRole = async (id) => {
                     <td class="text-capitalize">{{ role.description }}</td>
 
                     <td>
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button @click="getRole(role.id)" type="button" class="btn btn-outline-info"
+                        <div class="btn rounded-0-group" role="group" aria-label="Basic mixed styles example">
+                            <button @click="getRole(role.id)" type="button" class="btn rounded-0 btn-outline-info"
                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-pencil-fill"></i>
                             </button>
 
-                            <button @click="getRole(role.id)" type="button" class="btn btn-outline-danger"
+                            <button @click="getRole(role.id)" type="button" class="btn rounded-0 btn-outline-danger"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                             </button>
                         </div>
@@ -153,7 +153,7 @@ const deleteRole = async (id) => {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Rol </h1>
-                        <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -167,8 +167,8 @@ const deleteRole = async (id) => {
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="createRole" type="button" class="btn btn-success">Crear Rol</button>
+                        <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button @click="createRole" type="button" class="btn rounded-0 btn-success">Crear Rol</button>
                     </div>
                 </div>
             </div>
@@ -184,7 +184,7 @@ const deleteRole = async (id) => {
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Rol {{ formData }}
                         </h1>
-                        <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonActualizar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -198,8 +198,9 @@ const deleteRole = async (id) => {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="editRole(formData.id)" type="button" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button @click="editRole(formData.id)" type="button"
+                            class="btn rounded-0 btn-success">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -213,7 +214,7 @@ const deleteRole = async (id) => {
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este rol? {{ formData }}
                         </h1>
-                        <button type="button" id="cerrarBotonEliminar" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonEliminar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -233,8 +234,9 @@ const deleteRole = async (id) => {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="deleteRole(formData.id)" type="button" class="btn btn-danger">Eliminar</button>
+                        <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button @click="deleteRole(formData.id)" type="button"
+                            class="btn rounded-0 btn-danger">Eliminar</button>
                     </div>
                 </div>
             </div>
@@ -293,5 +295,11 @@ const deleteRole = async (id) => {
 
 .navbar .form-control {
     padding: .75rem 1rem;
+}
+
+.btn-success {
+
+    background-color: rgba(4, 125, 0, 0.998);
+
 }
 </style>

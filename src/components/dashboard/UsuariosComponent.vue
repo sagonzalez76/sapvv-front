@@ -134,7 +134,7 @@ const deleteUser = async (id) => {
 <template>
     <div class="d-flex ">
         <h3>Usuarios</h3>
-        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
+        <button type="button" class="btn rounded-0 btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearUsuarioModal">Crear
             Usuario</button>
     </div>
@@ -165,12 +165,12 @@ const deleteUser = async (id) => {
                     <td class="text-capitalize">{{ user.role.description }}</td>
                     <!-- <td class="text-capitalize">{{ user.password }}</td> -->
                     <td>
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button @click="getUser(user.id)" type="button" class="btn btn-outline-info"
+                        <div class="btn rounded-0-group" role="group" aria-label="Basic mixed styles example">
+                            <button @click="getUser(user.id)" type="button" class="btn rounded-0 btn-outline-info"
                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-pencil-fill"></i>
                             </button>
 
-                            <button @click="getUser(user.id)" type="button" class="btn btn-outline-danger"
+                            <button @click="getUser(user.id)" type="button" class="btn rounded-0 btn-outline-danger"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                             </button>
                         </div>
@@ -190,7 +190,7 @@ const deleteUser = async (id) => {
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Usuario </h1>
                         <!-- {{ formData.role.description }} -->
-                        <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -225,15 +225,15 @@ const deleteUser = async (id) => {
                             <select class="form-select" id="floatingSelectGrid" required v-model="formData.roleId">
                                 <option disabled selected>Selecciona el cargo del Usuario</option>
                                 <option v-for="role in roles" :key="role.id" :value="role.id" class="text-capitalize">{{
-                                                                    role.description }}</option>
+                                    role.description }}</option>
 
                             </select>
                             <label for="floatingSelectGrid">Rol</label>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="createUser" type="button" class="btn btn-success">Crear Usuario</button>
+                        <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button @click="createUser" type="button" class="btn rounded-0 btn-success">Crear Usuario</button>
                     </div>
                 </div>
             </div>
@@ -250,7 +250,7 @@ const deleteUser = async (id) => {
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Usuario
                             <!-- {{ formData }} -->
                         </h1>
-                        <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonActualizar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -270,7 +270,7 @@ const deleteUser = async (id) => {
                             <select class="form-select" id="floatingSelectGrid" required v-model="formData.roleId">
                                 <option disabled selected>Selecciona el cargo del Usuario</option>
                                 <option v-for="role in roles" :key="role.id" :value="role.id" class="text-capitalize">{{
-                                                                    role.description }}</option>
+                                    role.description }}</option>
 
                             </select>
                             <label for="floatingSelectGrid">Rol</label>
@@ -283,8 +283,9 @@ const deleteUser = async (id) => {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="editUser(formData.id)" type="button" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button @click="editUser(formData.id)" type="button"
+                            class="btn rounded-0 btn-success">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -298,7 +299,7 @@ const deleteUser = async (id) => {
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este usuario? {{ formData }}
                         </h1>
-                        <button type="button" id="cerrarBotonEliminar" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonEliminar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -318,8 +319,9 @@ const deleteUser = async (id) => {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="deleteUser(formData.id)" type="button" class="btn btn-danger">Eliminar</button>
+                        <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button @click="deleteUser(formData.id)" type="button"
+                            class="btn rounded-0 btn-danger">Eliminar</button>
                     </div>
                 </div>
             </div>
@@ -378,5 +380,10 @@ const deleteUser = async (id) => {
 
 .navbar .form-control {
     padding: .75rem 1rem;
+}
+.btn-success {
+
+    background-color: rgba(4, 125, 0, 0.998);
+
 }
 </style>

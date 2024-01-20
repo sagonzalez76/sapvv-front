@@ -129,7 +129,7 @@ const deleteComunity = async (id) => {
     <div class="d-flex ">
         <h3>Titulares</h3>
         <!-- {{ formData }} -->
-        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
+        <button type="button" class="btn rounded-0 btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearTitularModal">Crear
             Titular</button>
         <!-- {{ comunitys }}  -->
@@ -162,18 +162,18 @@ const deleteComunity = async (id) => {
                     <td>{{ comunity.id_number }}</td>
                     <td>{{ comunity.genre }}</td>
                     <td> <span v-for="municipality in comunity.municipalitys" :key="municipality.id">{{ municipality.name
-                                                }}<br> </span></td>
+                    }}<br> </span></td>
                     <td> <span v-for="beneficiary in comunity.beneficiarys" :key="beneficiary.id"> {{ beneficiary.name }} {{
-                                                beneficiary.lastname }}<br><br> </span></td>
+                        beneficiary.lastname }}<br><br> </span></td>
 
 
                     <td>
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button @click="getComunity(comunity.id)" type="button" class="btn btn-outline-info"
+                        <div class="btn rounded-0-group" role="group" aria-label="Basic mixed styles example">
+                            <button @click="getComunity(comunity.id)" type="button" class="btn rounded-0 btn-outline-info"
                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-pencil-fill"></i>
                             </button>
 
-                            <button @click="getComunity(comunity.id)" type="button" class="btn btn-outline-danger"
+                            <button @click="getComunity(comunity.id)" type="button" class="btn rounded-0 btn-outline-danger"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                             </button>
                         </div>
@@ -194,7 +194,7 @@ const deleteComunity = async (id) => {
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Titular </h1>
                         <!-- {{
                             formData }} -->
-                        <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <form class="modal-body" @submit.prevent="createComunity()">
@@ -263,8 +263,8 @@ const deleteComunity = async (id) => {
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <button type="submit" class="btn btn-success">Crear Titular</button>
+                            <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <button type="submit" class="btn rounded-0 btn-success">Crear Titular</button>
                         </div>
 
 
@@ -285,7 +285,7 @@ const deleteComunity = async (id) => {
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Titular <br>
                             {{ formData }}
                         </h1>
-                        <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonActualizar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <form class="modal-body" @submit.prevent="editComunity(formData.id)">
@@ -354,8 +354,8 @@ const deleteComunity = async (id) => {
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <button type="submit" class="btn btn-success">Crear Titular</button>
+                            <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <button type="submit" class="btn rounded-0 btn-success">Crear Titular</button>
                         </div>
 
 
@@ -372,7 +372,7 @@ const deleteComunity = async (id) => {
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este titular?
                         </h1>
-                        <button type="button" id="cerrarBotonEliminar" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonEliminar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -392,8 +392,9 @@ const deleteComunity = async (id) => {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="deleteComunity(formData.id)" type="button" class="btn btn-danger">Eliminar</button>
+                        <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button @click="deleteComunity(formData.id)" type="button"
+                            class="btn rounded-0 btn-danger">Eliminar</button>
                     </div>
                 </div>
             </div>
@@ -452,5 +453,10 @@ const deleteComunity = async (id) => {
 
 .navbar .form-control {
     padding: .75rem 1rem;
+}
+.btn-success {
+
+    background-color: rgba(4, 125, 0, 0.998);
+
 }
 </style>

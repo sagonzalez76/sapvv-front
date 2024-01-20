@@ -221,7 +221,7 @@ const verArchivo = async (url) => {
                 <span class="fs-6 text-break">{{ action.description }}</span>
             </p>
 
-            <button type="button" class="btn btn-primary ms-5 btn-sm my-3 rounded-0" data-bs-toggle="modal"
+            <button type="button" class="btn rounded-0 btn-primary ms-5 btn-sm my-3 rounded-0" data-bs-toggle="modal"
                 data-bs-target="#crearAccionModal">Crear Evidencia</button>
         </header>
 
@@ -239,14 +239,14 @@ const verArchivo = async (url) => {
                                 <div class="card-body">
                                     <p class="card-text text-center fw-bold text-center fw-bold">{{ image.name }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        <div class="btn rounded-0-group">
+                                            <button type="button" class="btn rounded-0 btn-sm btn-outline-secondary"
                                                 @click="verArchivo(image.url)">Ver</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            <button type="button" class="btn rounded-0 btn-sm btn-outline-secondary"
                                                 @click="descargarArchivo(image.url)">Descargar</button>
                                         </div>
                                         <small class="text-body-secondary">{{ calcularTiempoTranscurrido(image.createdAt)
-                                                                                    }}</small>
+                                        }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -269,14 +269,14 @@ const verArchivo = async (url) => {
                                 <div class="card-body">
                                     <p class="card-text text-center fw-bold">{{ audio.name }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        <div class="btn rounded-0-group">
+                                            <button type="button" class="btn rounded-0 btn-sm btn-outline-secondary"
                                                 @click="verArchivo(audio.url)">Ver</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            <button type="button" class="btn rounded-0 btn-sm btn-outline-secondary"
                                                 @click="descargarArchivo(audio.url)">Descargar</button>
                                         </div>
                                         <small class="text-body-secondary">{{ calcularTiempoTranscurrido(audio.createdAt)
-                                                                                    }}</small>
+                                        }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -299,14 +299,14 @@ const verArchivo = async (url) => {
                                 <div class="card-body">
                                     <p class="card-text text-center fw-bold">{{ video.name }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        <div class="btn rounded-0-group">
+                                            <button type="button" class="btn rounded-0 btn-sm btn-outline-secondary"
                                                 @click="verArchivo(video.url)">Ver</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            <button type="button" class="btn rounded-0 btn-sm btn-outline-secondary"
                                                 @click="descargarArchivo(video.url)">Descargar</button>
                                         </div>
                                         <small class="text-body-secondary">{{ calcularTiempoTranscurrido(video.createdAt)
-                                                                                    }}</small>
+                                        }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -339,14 +339,14 @@ const verArchivo = async (url) => {
                                     <a class="card-text text-center fw-bold text-wrap link-success link-offset-2 link-underline-opacity-0"
                                         href="www.google.com">{{ documento.name }}</a>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        <div class="btn rounded-0-group">
+                                            <button type="button" class="btn rounded-0 btn-sm btn-outline-secondary"
                                                 @click="verArchivo(documento.url)">Ver</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            <button type="button" class="btn rounded-0 btn-sm btn-outline-secondary"
                                                 @click="descargarArchivo(documento.url)">Descargar</button>
                                         </div>
                                         <small class="text-body-secondary">{{
-                                                                                    calcularTiempoTranscurrido(documento.createdAt) }}</small>
+                                            calcularTiempoTranscurrido(documento.createdAt) }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -369,15 +369,15 @@ const verArchivo = async (url) => {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Evidencia </h1> {{ archivosInput }}
-                        <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <form class="modal-body" @submit.prevent="subirArchivos()">
                         <input type="file" ref="archivosInput" class="form-control" id="floatingInputGrid" placeholder=""
                             multiple required>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <button type="submit" class="btn btn-success">Crear Accion</button>
+                            <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <button type="submit" class="btn rounded-0 btn-success">Crear Accion</button>
                         </div>
                     </form>
                 </div>
@@ -469,10 +469,10 @@ const verArchivo = async (url) => {
 <div class="card-body">
                                     <p class="card-text text-center fw-bold text-center fw-bold">{{ image.name }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        <div class="btn rounded-0-group">
+                                            <button type="button" class="btn rounded-0 btn-sm btn-outline-secondary"
                                                 @click="verArchivo(image.url)">Ver</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            <button type="button" class="btn rounded-0 btn-sm btn-outline-secondary"
                                                 @click="descargarArchivo(image.url)">Descargar</button>
                                         </div>
 <small class="text-body-secondary">{{ calcularTiempoTranscurrido(image.createdAt)

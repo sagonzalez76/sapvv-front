@@ -82,7 +82,7 @@ const role = useAuthStore().tokenRole
   </body> -->
 
   <!-- <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-    <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+    <button class="btn rounded-0 btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
             id="bd-theme"
             type="button"
             aria-expanded="false"
@@ -115,7 +115,7 @@ const role = useAuthStore().tokenRole
       </li>
     </ul>
   </div>  -->
-<IconsComponent></IconsComponent>
+  <IconsComponent></IconsComponent>
   <HeaderComponent class=""></HeaderComponent>
   <div class="container-fluid fade-in-down ">
     <div class="row">
@@ -123,28 +123,32 @@ const role = useAuthStore().tokenRole
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <ToolsComponent :role="role"></ToolsComponent>
         <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
-    
-       <router-view></router-view>
+
+        <router-view></router-view>
       </main>
     </div>
   </div>
 </template>
 
 <style scoped>
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
 
-   @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-5px);
-      }
-      to {
-        opacity: 5;
-        transform: translateY(0);
-      }
-    }
+  to {
+    opacity: 5;
+    transform: translateY(0);
+  }
+}
 
-     .fade-in-down {
-      animation: fadeInDown 0.5s ease-out;
-    }   
+.fade-in-down {
+  animation: fadeInDown 0.5s ease-out;
+}
 
+.btn-success {
+
+  background-color: blue !important;
+}
 </style>

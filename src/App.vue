@@ -36,4 +36,5 @@
   scroll-snap-align: start;
   /* Ajusta otros estilos según tus necesidades */
 }
+
 </style>

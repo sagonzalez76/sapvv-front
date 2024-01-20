@@ -125,7 +125,7 @@ const deleteCommitment = async (id) => {
 <template>
     <div class="d-flex ">
         <h3>Compromisos</h3>
-        <button type="button" class="btn btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
+        <button type="button" class="btn rounded-0 btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearCompromisoModal">Crear
             Compromiso</button>
     </div>
@@ -152,13 +152,15 @@ const deleteCommitment = async (id) => {
                     <td>{{ commitment.name }}</td>
                     <td>{{ commitment.origin.name }}</td>
                     <td>
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button @click="getCommitment(commitment.id)" type="button" class="btn btn-outline-info"
-                                data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-pencil-fill"></i>
+                        <div class="btn rounded-0-group" role="group" aria-label="Basic mixed styles example">
+                            <button @click="getCommitment(commitment.id)" type="button"
+                                class="btn rounded-0 btn-outline-info" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop"><i class="bi bi-pencil-fill"></i>
                             </button>
 
-                            <button @click="getCommitment(commitment.id)" type="button" class="btn btn-outline-danger"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
+                            <button @click="getCommitment(commitment.id)" type="button"
+                                class="btn rounded-0 btn-outline-danger" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                             </button>
                         </div>
                     </td>
@@ -175,9 +177,9 @@ const deleteCommitment = async (id) => {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Compromiso {{ formData }} {{ formData }}
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Compromiso
                         </h1>
-                        <button type="button" id="cerrarBotonCrear" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
 
@@ -200,11 +202,11 @@ const deleteCommitment = async (id) => {
                                     class="text-capitalize">{{ origin.name }}</option>
 
                             </select>
-                            <label for="floatingSelectGrid">Entidad que Emite</label>
+                            <label for="floatingSelectGrid">Origen</label>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <button type="submit" class="btn btn-success">Crear Compromiso</button>
+                            <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <button type="submit" class="btn rounded-0 btn-success">Crear Compromiso</button>
                         </div>
                     </form>
 
@@ -222,9 +224,9 @@ const deleteCommitment = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Compromiso {{ formData }}
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Compromiso
                         </h1>
-                        <button type="button" id="cerrarBotonActualizar" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonActualizar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <form class="modal-body" @submit.prevent="editCommitment(formData.id)">
@@ -267,8 +269,8 @@ const deleteCommitment = async (id) => {
                             <label for="floatingSelectGrid">Entidad que Emite</label>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <button type="submit" class="btn btn-success">Guardar</button>
+                            <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
+                            <button type="submit" class="btn rounded-0 btn-success">Guardar</button>
                         </div>
                     </form>
 
@@ -284,7 +286,7 @@ const deleteCommitment = async (id) => {
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este compromiso?
                         </h1>
-                        <button type="button" id="cerrarBotonEliminar" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="cerrarBotonEliminar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -304,9 +306,9 @@ const deleteCommitment = async (id) => {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+                        <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
                         <button @click="deleteCommitment(formData.id)" type="button"
-                            class="btn btn-danger">Eliminar</button>
+                            class="btn rounded-0 btn-danger">Eliminar</button>
                     </div>
                 </div>
             </div>
@@ -366,4 +368,11 @@ const deleteCommitment = async (id) => {
 .navbar .form-control {
     padding: .75rem 1rem;
 }
+
+.btn-success {
+
+    background-color: rgba(4, 125, 0, 0.998);
+
+}
+
 </style>
