@@ -204,7 +204,7 @@ const deleteProgram = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Programa {{ formData }}
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Programa
                         </h1>
                         <button type="button" id="cerrarBotonActualizar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
