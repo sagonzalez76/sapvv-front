@@ -6,7 +6,8 @@
       <img class="mx-2" src="https://cdn.contactcenterworld.com/images/company/sena-1200px-logo.png" alt="senalogo"
         width="30">
 
-      <a class="navbar-brand fw-bold d-none d-lg-block text-success" href="#">Coordinacion Misional - Regional Cauca</a>
+      <a class="navbar-brand fw-bold d-none d-lg-block text-successnpm run dev
+      " href="#">Coordinacion Misional - Regional Cauca</a>
       <a class="navbar-brand fw-bold d-lg-none" href="#">Coordinacion Misional</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

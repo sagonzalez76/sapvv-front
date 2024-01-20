@@ -15,7 +15,7 @@ const audios = ref({})
 const documentos = ref({})
 
 
-const servidor = "http://localhost:8000/uploads/"
+const servidor = "https://sapvv-back.onrender.com/uploads/"
 
 
 onMounted(() => {
@@ -34,7 +34,7 @@ onMounted(() => {
 
 const getImages = async () => {
 
-    await axios.get(`http://localhost:8000/actions/${action.id}/evidences/images`, {
+    await axios.get(`https://sapvv-back.onrender.com/actions/${action.id}/evidences/images`, {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -51,7 +51,7 @@ const getImages = async () => {
 
 const getVideos = async () => {
 
-    await axios.get(`http://localhost:8000/actions/${action.id}/evidences/videos`, {
+    await axios.get(`https://sapvv-back.onrender.com/actions/${action.id}/evidences/videos`, {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -67,7 +67,7 @@ const getVideos = async () => {
 }
 const getAudios = async () => {
 
-    await axios.get(`http://localhost:8000/actions/${action.id}/evidences/audios`, {
+    await axios.get(`https://sapvv-back.onrender.com/actions/${action.id}/evidences/audios`, {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -83,7 +83,7 @@ const getAudios = async () => {
 }
 const getDocumentos = async () => {
 
-    await axios.get(`http://localhost:8000/actions/${action.id}/evidences/documentos`, {
+    await axios.get(`https://sapvv-back.onrender.com/actions/${action.id}/evidences/documentos`, {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -114,7 +114,7 @@ const subirArchivos = async () => {
     try {
 
 
-        await axios.post('http://localhost:8000/evidences', formData, {
+        await axios.post('https://sapvv-back.onrender.com/evidences', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -167,14 +167,14 @@ const calcularTiempoTranscurrido = (createdAt) => {
 
 const descargarArchivo = async (url) => {
 
-    await axios.get(`http://localhost:8000/download/${url}`, {
+    await axios.get(`https://sapvv-back.onrender.com/download/${url}`, {
 
 
     })
         .then((response) => {
             console.log(response.config);
             const link = document.createElement('a');
-            link.href = `http://localhost:8000/download/${url}`;
+            link.href = `https://sapvv-back.onrender.com/download/${url}`;
             // link.target = '_blank';   Abre el enlace en una nueva pestaña
             link.download = ''; // Puedes establecer un nombre de archivo si lo deseas
             document.body.appendChild(link);
@@ -188,7 +188,7 @@ const descargarArchivo = async (url) => {
 }
 const verArchivo = async (url) => {
 
-    await axios.get(`http://localhost:8000/download/${url}`, {
+    await axios.get(`https://sapvv-back.onrender.com/download/${url}`, {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -197,7 +197,7 @@ const verArchivo = async (url) => {
         .then((response) => {
             console.log(response);
             const link = document.createElement('a');
-            link.href = `http://localhost:8000/uploads/${url}`;
+            link.href = `https://sapvv-back.onrender.com/uploads/${url}`;
             link.target = '_blank'; // Abre el enlace en una nueva pestaña
             // Puedes establecer un nombre de archivo si lo deseas
             document.body.appendChild(link);
@@ -246,7 +246,7 @@ const verArchivo = async (url) => {
                                                 @click="descargarArchivo(image.url)">Descargar</button>
                                         </div>
                                         <small class="text-body-secondary">{{ calcularTiempoTranscurrido(image.createdAt)
-                                        }}</small>
+                                                                                    }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -276,7 +276,7 @@ const verArchivo = async (url) => {
                                                 @click="descargarArchivo(audio.url)">Descargar</button>
                                         </div>
                                         <small class="text-body-secondary">{{ calcularTiempoTranscurrido(audio.createdAt)
-                                        }}</small>
+                                                                                    }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -306,7 +306,7 @@ const verArchivo = async (url) => {
                                                 @click="descargarArchivo(video.url)">Descargar</button>
                                         </div>
                                         <small class="text-body-secondary">{{ calcularTiempoTranscurrido(video.createdAt)
-                                        }}</small>
+                                                                                    }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -346,7 +346,7 @@ const verArchivo = async (url) => {
                                                 @click="descargarArchivo(documento.url)">Descargar</button>
                                         </div>
                                         <small class="text-body-secondary">{{
-                                            calcularTiempoTranscurrido(documento.createdAt) }}</small>
+                                                                                    calcularTiempoTranscurrido(documento.createdAt) }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -391,10 +391,11 @@ const verArchivo = async (url) => {
 </template>
 
 <style>
-*{
+* {
 
-      font-family: 'Work Sans';
+    font-family: 'Work Sans';
 }
+
 .object-fit-cover {
     object-fit: cover;
     height: 15rem;
@@ -416,7 +417,7 @@ const verArchivo = async (url) => {
     50% {
         transform: scale(1.01);
     }
-    
+
 
 }
 

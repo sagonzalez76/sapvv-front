@@ -16,7 +16,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/municipalitys', {
+    await axios.get('https://sapvv-back.onrender.com/municipalitys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -34,7 +34,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/departments', {
+    await axios.get('https://sapvv-back.onrender.com/departments', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -56,7 +56,7 @@ const refrescar = async () => {
 
 const getMunicipality = async (id) => {
 
-    await axios.get('http://localhost:8000/municipalitys/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/municipalitys/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -71,7 +71,7 @@ const getMunicipality = async (id) => {
 
 const createMunicipality = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/municipalitys', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/municipalitys', formData.value)
         .then(() => {
             alert('Municipio Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -86,7 +86,7 @@ const createMunicipality = async () => {
 
 const editMunicipality = async (id) => {
 
-    await axios.put(`http://localhost:8000/municipalitys/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/municipalitys/${id}`, formData.value)
         .then(() => {
             alert('Municipio Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -101,7 +101,7 @@ const editMunicipality = async (id) => {
 
 const deleteMunicipality = async (id) => {
     await getMunicipality(id)
-    await axios.delete('http://localhost:8000/municipalitys/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/municipalitys/' + id)
         .then(() => {
             alert('Municipio Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

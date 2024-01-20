@@ -14,7 +14,7 @@ export const useAuthStore = defineStore('auth', () => {
   const submitForm = async (json) => {
     signIn.value = true
 
-    await axios.post('http://localhost:8000/signIn', json)
+    await axios.post('https://sapvv-back.onrender.com/signIn', json)
 
       .then((response) => {
         router.push('/dashboard/programas')
