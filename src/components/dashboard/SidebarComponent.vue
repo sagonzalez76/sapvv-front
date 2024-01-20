@@ -7,7 +7,13 @@ const onLogout = () => {
   auth.logout()
 };
 
+const cerrarSidebar = () => {
 
+
+  const boton = document.getElementById('cerrarSidebar')
+  boton.click()
+
+}
 
 const rutasSeguridad = [{
   id: 1,
@@ -130,10 +136,10 @@ const rutasAtencion = [{
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="sidebarMenuLabel">SAPVV</h5>
         <button type="button" class="btn-close rounded-0" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
-          aria-label="Close"></button>
+          aria-label="Close" id="cerrarSidebar"></button>
       </div>
       <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-        <ul class="nav flex-column mb-2">
+        <!-- <ul class="nav flex-column mb-2">
           <h6
             class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-0 mb-1 text-body-secondary text-uppercase">
             <span>SEGURIDAD</span>
@@ -151,7 +157,7 @@ const rutasAtencion = [{
               {{ ruta.nombre }}
             </router-link>
           </li>
-        </ul>
+        </ul> -->
 
 
 
@@ -167,7 +173,8 @@ const rutasAtencion = [{
           </h6>
 
           <li class="nav-item" v-for="ruta in rutasAtencion" :key=ruta.id>
-            <router-link :to="ruta.ruta" class="nav-link d-flex align-items-center gap-2 active" aria-current="page">
+            <router-link :to="ruta.ruta" type="button" @click="cerrarSidebar()"
+              class="nav-link d-flex align-items-center gap-2 active" aria-current="page">
               <svg class="bi">
                 <use :xlink:href="ruta.xlink" />
               </svg>
