@@ -28,7 +28,7 @@ import Compromisos from "../components/dashboard/CompromisosComponent.vue"
 import Evidencias from "../components/dashboard/Acciones/EvidenciasComponent.vue"
 import Centros from "../components/dashboard/CentrosFormacionComponent.vue"
 import Emprendedores from "../components/dashboard/EmprendedoresComponent.vue"
-
+import ActividadesEconomicas from "../components/dashboard/ActividadesEconomicasComponent.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -59,6 +59,7 @@ const router = createRouter({
         { path: '/dashboard/municipios', component: Municipios },
         { path: '/dashboard/regionales', component: Regionales },
 
+        { path: '/dashboard/actividades_economicas', component: ActividadesEconomicas },
         { path: '/dashboard/tipo_comunidades', component: TipoComunidades },
         { path: '/dashboard/tipo_acciones', component: TipoAcciones },
         { path: '/dashboard/centros', component: Centros },

@@ -139,6 +139,12 @@ const rutasAtencion = [{
   ruta: '/dashboard/centros',
   xlink: '#chevron-right'
 },
+{
+  id: 5,
+  nombre: 'ActividadesEconomicas',
+  ruta: '/dashboard/actividades_economicas',
+  xlink: '#chevron-right'
+},
 
 
 
