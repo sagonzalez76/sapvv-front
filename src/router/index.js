@@ -12,6 +12,8 @@ import Dependencias from '../components/dashboard/DependenciasComponent.vue'
 
 import Emisores from '../components/dashboard/EmisoresComponent.vue'
 import Municipios from '../components/dashboard/MunicipiosComponent.vue'
+import Regionales from '../components/dashboard/RegionalesComponent.vue'
+
 import Origenes from '../components/dashboard/OrigenesComponent.vue'
 import Acciones from "../components/dashboard/AccionesComponent.vue"
 import TipoComunidades from '../components/dashboard/TipoComunidadesComponent.vue'
@@ -24,7 +26,8 @@ import Beneficiarios from '../components/dashboard/BeneficiariosComponent.vue'
 import Concertaciones from '../components/dashboard/ConcertacionesComponent.vue'
 import Compromisos from "../components/dashboard/CompromisosComponent.vue"
 import Evidencias from "../components/dashboard/Acciones/EvidenciasComponent.vue"
-
+import Centros from "../components/dashboard/CentrosFormacionComponent.vue"
+import Emprendedores from "../components/dashboard/EmprendedoresComponent.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,11 +57,17 @@ const router = createRouter({
         { path: '/dashboard/dependencias', component: Dependencias },
 
         { path: '/dashboard/municipios', component: Municipios },
+        { path: '/dashboard/regionales', component: Regionales },
+
         { path: '/dashboard/tipo_comunidades', component: TipoComunidades },
         { path: '/dashboard/tipo_acciones', component: TipoAcciones },
+        { path: '/dashboard/centros', component: Centros },
+
 
         { path: '/dashboard/comunidades', component: Comunidades },
         { path: '/dashboard/titulares', component: Titulares },
+        { path: '/dashboard/emprendedores', component: Emprendedores },
+
         { path: '/dashboard/representantes', component: Representantes },
         { path: '/dashboard/beneficiarios', component: Beneficiarios },
         { path: '/dashboard/origenes', component: Origenes },

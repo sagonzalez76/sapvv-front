@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-back.onrender.com/type_comunitys', {
+    await axios.get('http://localhost:8000/type_comunitys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 const getProgram = async (id) => {
 
-    await axios.get('https://sapvv-back.onrender.com/type_comunitys/' + id, {
+    await axios.get('http://localhost:8000/type_comunitys/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ const getProgram = async (id) => {
 
 const createProgram = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-back.onrender.com/type_comunitys', formData.value)
+    await axios.post('http://localhost:8000/type_comunitys', formData.value)
         .then(() => {
             alert('Tipos de Comunidad Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -67,7 +67,7 @@ const createProgram = async () => {
 
 const editProgram = async (id) => {
 
-    await axios.put(`https://sapvv-back.onrender.com/type_comunitys/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/type_comunitys/${id}`, formData.value)
         .then(() => {
             alert('Tipos de Comunidad Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -82,7 +82,7 @@ const editProgram = async (id) => {
 
 const deleteProgram = async (id) => {
     await getProgram(id)
-    await axios.delete('https://sapvv-back.onrender.com/type_comunitys/' + id)
+    await axios.delete('http://localhost:8000/type_comunitys/' + id)
         .then(() => {
             alert('Tipos de Comunidad Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -301,6 +301,7 @@ const getColorClass = (priority) => {
 .navbar .form-control {
     padding: .75rem 1rem;
 }
+
 .btn-success {
 
     background-color: rgba(4, 125, 0, 0.998);

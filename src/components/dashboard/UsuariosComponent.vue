@@ -25,7 +25,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-back.onrender.com/users', {
+    await axios.get('http://localhost:8000/users', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -43,7 +43,7 @@ const refrescar = async () => {
             console.log(error)
         })
 
-    await axios.get('https://sapvv-back.onrender.com/roles', {
+    await axios.get('http://localhost:8000/roles', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -65,7 +65,7 @@ const refrescar = async () => {
 
 const getUser = async (id) => {
 
-    await axios.get('https://sapvv-back.onrender.com/users/' + id, {
+    await axios.get('http://localhost:8000/users/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -83,7 +83,7 @@ const getUser = async (id) => {
 
 const createUser = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-back.onrender.com/signUp', formData.value)
+    await axios.post('http://localhost:8000/signUp', formData.value)
         .then(() => {
             alert('Usuario Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -98,7 +98,7 @@ const createUser = async () => {
 
 const editUser = async (id) => {
 
-    await axios.put(`https://sapvv-back.onrender.com/users/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/users/${id}`, formData.value)
         .then(() => {
             alert('Usuario Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -113,7 +113,7 @@ const editUser = async (id) => {
 
 const deleteUser = async (id) => {
     await getUser(id)
-    await axios.delete('https://sapvv-back.onrender.com/users/' + id)
+    await axios.delete('http://localhost:8000/users/' + id)
         .then(() => {
             alert('Usuario Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -381,6 +381,7 @@ const deleteUser = async (id) => {
 .navbar .form-control {
     padding: .75rem 1rem;
 }
+
 .btn-success {
 
     background-color: rgba(4, 125, 0, 0.998);

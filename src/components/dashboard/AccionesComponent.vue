@@ -27,7 +27,7 @@ onMounted(() => {
 
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-back.onrender.com/actions', {
+    await axios.get('http://localhost:8000/actions', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -44,7 +44,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('https://sapvv-back.onrender.com/dependencys', {
+    await axios.get('http://localhost:8000/dependencys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -64,7 +64,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('https://sapvv-back.onrender.com/type_actions', {
+    await axios.get('http://localhost:8000/type_actions', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -89,7 +89,7 @@ const refrescar = async () => {
 
 const getAction = async (id) => {
 
-    await axios.get('https://sapvv-back.onrender.com/actions/' + id, {
+    await axios.get('http://localhost:8000/actions/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -104,7 +104,7 @@ const getAction = async (id) => {
 
 const createAction = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-back.onrender.com/actions', formData.value)
+    await axios.post('http://localhost:8000/actions', formData.value)
         .then(() => {
             alert('Accion Creada')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -119,7 +119,7 @@ const createAction = async () => {
 
 const editAction = async (id) => {
 
-    await axios.put(`https://sapvv-back.onrender.com/actions/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/actions/${id}`, formData.value)
         .then(() => {
             alert('Accion Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -134,7 +134,7 @@ const editAction = async (id) => {
 
 const deleteAction = async (id) => {
     await getAction(id)
-    await axios.delete('https://sapvv-back.onrender.com/actions/' + id)
+    await axios.delete('http://localhost:8000/actions/' + id)
         .then(() => {
             alert('Accion Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

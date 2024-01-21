@@ -10,8 +10,7 @@ const municipalitys = ref({})
 const formData = ref({})
 
 
-formData.value.holder_type = "Persona"
-
+formData.value.holder_type = "Emprendedor"
 
 
 onMounted(() => {
@@ -21,7 +20,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/comunitys/holders', {
+    await axios.get('http://localhost:8000/comunitys/entrepreneurs', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -61,7 +60,7 @@ const refrescar = async () => {
 
 const getComunity = async (id) => {
 
-    await axios.get('http://localhost:8000/comunitys/holders/' + id, {
+    await axios.get('http://localhost:8000/comunitys/entrepreneurs/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -147,8 +146,10 @@ const deleteComunity = async (id) => {
                     <th scope="col" class="col-auto">Tipo Documento</th>
                     <th scope="col" class="col-auto">No. Documento</th>
                     <th scope="col" class="col-auto">Genero</th>
-                    <th scope="col" class="col-auto">Municipio(s) Residencia</th>
-                    <th scope="col" class="col-auto">Beneficiario(s)</th>
+                    <th scope="col" class="col-auto">Telefono</th>
+                    <th scope="col" class="col-auto">Correo Electronico</th>
+                    <th scope="col" class="col-auto">Edad</th>
+
 
                     <th scope="col" class="col-2">Acciones</th>
                 </tr>
@@ -162,10 +163,10 @@ const deleteComunity = async (id) => {
                     <td>{{ comunity.id_type }}</td>
                     <td>{{ comunity.id_number }}</td>
                     <td>{{ comunity.genre }}</td>
-                    <td> <span v-for="municipality in comunity.municipalitys" :key="municipality.id">{{ municipality.name
-                    }}<br> </span></td>
-                    <td> <span v-for="beneficiary in comunity.beneficiarys" :key="beneficiary.id"> {{ beneficiary.name }} {{
-                        beneficiary.lastname }}<br><br> </span></td>
+                    <td>{{ comunity.phone }}</td>
+                    <td>{{ comunity.email }}</td>
+                    <td>{{ comunity.age }}</td>
+
 
 
                     <td>
@@ -249,18 +250,45 @@ const deleteComunity = async (id) => {
                         </div>
 
                         <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.education_level" required>
+                                <option disabled selected>Selecciona el Nivel Educativo</option>
+                                <option value="Basica" class="text-capitalize"> Basica
+                                </option>
+                                <option value="Bachiller" class="text-capitalize"> Bachiller
+                                </option>
+                                <option value="Tecnico" class="text-capitalize"> Tecnico
+                                </option>
+                                <option value="Tecnologo" class="text-capitalize"> Tecnologo
+                                </option>
+                                <option value="Profesional" class="text-capitalize"> Profesional
+                                </option>
+                                <option value="Postgrado" class="text-capitalize"> Postgrado
+                                </option>
+                                <option value="Sin Formacion" class="text-capitalize"> Sin Formacion Academica
+                                </option>
 
-
-                            <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.municipalityIds"
-                                multiple required>
-                                <option disabled selected>Selecciona al menos un municipio</option>
-                                <option v-for="municipality in municipalitys" :key="municipality.id"
-                                    :value="municipality.id" class="text-capitalize">{{ municipality.name }}</option>
 
                             </select>
+                            <label for="floatingSelectGrid">Nivel Educativo</label>
+                        </div>
 
+                        <div class="form-floating my-2">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                                v-model="formData.phone" required>
+                            <label for="floatingInputGrid">Telefono/Celular del Emprendedor </label>
 
-                            <label for="floatingSelectGrid">Asocia el Titular a un municipio</label>
+                        </div>
+                        <div class="form-floating my-2">
+                            <input type="email" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                                v-model="formData.email" required>
+                            <label for="floatingInputGrid">Correo Electronico del Emprendedor </label>
+
+                        </div>
+                        <div class="form-floating my-2">
+                            <input type="number" class="form-control" id="floatingInputGrid" placeholder="Titular 1" min="0"
+                                max="120" v-model="formData.age" required>
+                            <label for="floatingInputGrid">Edad del Emprendedor </label>
+
                         </div>
 
                         <div class="modal-footer">
@@ -338,21 +366,48 @@ const deleteComunity = async (id) => {
                             </select>
                             <label for="floatingSelectGrid">Genero/Identidad Genero</label>
                         </div>
-
                         <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.education_level" required>
+                                <option disabled selected>Selecciona el Nivel Educativo</option>
+                                <option value="Basica" class="text-capitalize"> Basica
+                                </option>
+                                <option value="Bachiller" class="text-capitalize"> Bachiller
+                                </option>
+                                <option value="Tecnico" class="text-capitalize"> Tecnico
+                                </option>
+                                <option value="Tecnologo" class="text-capitalize"> Tecnologo
+                                </option>
+                                <option value="Profesional" class="text-capitalize"> Profesional
+                                </option>
+                                <option value="Postgrado" class="text-capitalize"> Postgrado
+                                </option>
+                                <option value="Sin Formacion" class="text-capitalize"> Sin Formacion Academica
+                                </option>
 
-
-                            <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.municipalityIds"
-                                multiple required>
-                                <option disabled selected>Selecciona al menos un municipio</option>
-                                <option v-for="municipality in municipalitys" :key="municipality.id"
-                                    :value="municipality.id" class="text-capitalize">{{ municipality.name }}</option>
 
                             </select>
-
-
-                            <label for="floatingSelectGrid">Asocia el Titular a un municipio</label>
+                            <label for="floatingSelectGrid">Nivel Educativo</label>
                         </div>
+
+                        <div class="form-floating my-2">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                                v-model="formData.phone" required>
+                            <label for="floatingInputGrid">Telefono/Celular del Emprendedor </label>
+
+                        </div>
+                        <div class="form-floating my-2">
+                            <input type="email" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                                v-model="formData.email" required>
+                            <label for="floatingInputGrid">Correo Electronico del Emprendedor </label>
+
+                        </div>
+                        <div class="form-floating my-2">
+                            <input type="number" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                                v-model="formData.age" required>
+                            <label for="floatingInputGrid">Edad del Emprendedor </label>
+
+                        </div>
+
 
                         <div class="modal-footer">
                             <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
@@ -460,5 +515,4 @@ const deleteComunity = async (id) => {
 
     background-color: rgba(4, 125, 0, 0.998);
 
-}
-</style>
+}</style>

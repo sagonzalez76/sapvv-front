@@ -5,7 +5,7 @@ import { onMounted } from 'vue'
 import { useAuthStore } from '../../stores/auth';
 
 const token = useAuthStore().token
-const municipalitys = ref({})
+const regionals = ref({})
 const departments = ref({})
 const formData = ref({})
 
@@ -16,7 +16,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/municipalitys', {
+    await axios.get('http://localhost:8000/regionals', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -24,9 +24,9 @@ const refrescar = async () => {
         },
     })
         .then((response) => {
-            municipalitys.value = response.data
-            // console.log(municipalitys.value);
-            // console.log(response.data);
+            regionals.value = response.data
+            // console.log(regionals.value);
+            console.log(response.data);
         })
         .catch((error) => {
             console.log(error)
@@ -54,9 +54,9 @@ const refrescar = async () => {
 }
 
 
-const getMunicipality = async (id) => {
+const getRegional = async (id) => {
 
-    await axios.get('http://localhost:8000/municipalitys/' + id, {
+    await axios.get('http://localhost:8000/regionals/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -69,11 +69,11 @@ const getMunicipality = async (id) => {
         })
 }
 
-const createMunicipality = async () => {
+const createRegional = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/municipalitys', formData.value)
+    await axios.post('http://localhost:8000/regionals', formData.value)
         .then(() => {
-            alert('Municipio Creado')
+            alert('Regional Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
             botonCerrarModal.click()
             refrescar()
@@ -84,11 +84,11 @@ const createMunicipality = async () => {
 }
 
 
-const editMunicipality = async (id) => {
+const editRegional = async (id) => {
 
-    await axios.put(`http://localhost:8000/municipalitys/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/regionals/${id}`, formData.value)
         .then(() => {
-            alert('Municipio Actualizado')
+            alert('Regional Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
             botonCerrarModal.click()
             refrescar()
@@ -99,14 +99,14 @@ const editMunicipality = async (id) => {
         })
 }
 
-const deleteMunicipality = async (id) => {
-    await getMunicipality(id)
-    await axios.delete('http://localhost:8000/municipalitys/' + id)
+const deleteRegional = async (id) => {
+    await getRegional(id)
+    await axios.delete('http://localhost:8000/regionals/' + id)
         .then(() => {
-            alert('Municipio Eliminado')
+            alert('Regional Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
             botonCerrarModal.click()
-            // console.log(municipalitys.value);
+            // console.log(regionals.value);
             // console.log(response.data);
             refrescar()
 
@@ -121,12 +121,12 @@ const deleteMunicipality = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h3>Municipios</h3>
+        <h3>Regionals</h3>
         <button type="button" class="btn rounded-0 btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
-            data-bs-target="#crearMunicipioModal">Crear
-            Municipio</button>
+            data-bs-target="#crearRegionalModal">Crear
+            Regional</button>
     </div>
-    <!-- {{ municipalitys }} -->
+    <!-- {{ regionals }} -->
 
 
     <div class="table-responsive small my-4 rounded">
@@ -144,22 +144,22 @@ const deleteMunicipality = async (id) => {
 
             <tbody>
 
-                <tr class="text-center align-middle text-break" v-for="municipality in municipalitys" :key=municipality.id
+                <tr class="text-center align-middle text-break" v-for="regional in regionals" :key=regional.id
                     style="height: 100;">
-                    <td class="py-1 ">{{ municipality.id }}</td>
-                    <td>{{ municipality.department.name }}</td>
-                    <td>{{ municipality.departmentId }}</td>
-                    <td>{{ municipality.name }}</td>
+                    <td class="py-1 ">{{ regional.id }}</td>
+                    <td>{{ regional.department.name }}</td>
+                    <td>{{ regional.departmentId }}</td>
+                    <td>{{ regional.name }}</td>
 
 
                     <td>
                         <div class="btn rounded-0-group" role="group" aria-label="Basic mixed styles example">
-                            <button @click="getMunicipality(municipality.id)" type="button"
+                            <button @click="getRegional(regional.id)" type="button"
                                 class="btn rounded-0 btn-outline-info" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop"><i class="bi bi-pencil-fill"></i>
                             </button>
 
-                            <button @click="getMunicipality(municipality.id)" type="button"
+                            <button @click="getRegional(regional.id)" type="button"
                                 class="btn rounded-0 btn-outline-danger" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                             </button>
@@ -173,21 +173,21 @@ const deleteMunicipality = async (id) => {
         <!-- MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL -->
 
 
-        <div class="modal fade" id="crearMunicipioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="crearRegionalModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Municipio </h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Regional </h1>
                         <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Municipio 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Regional 1"
                                 v-model="formData.name" required>
-                            <label for="floatingInputGrid">Nombre del Municipio </label>
+                            <label for="floatingInputGrid">Nombre del Regional </label>
 
                         </div>
                         <div class="form-floating my-2">
@@ -203,8 +203,8 @@ const deleteMunicipality = async (id) => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="createMunicipality" type="button" class="btn rounded-0 btn-success">Crear
-                            Municipio</button>
+                        <button @click="createRegional" type="button" class="btn rounded-0 btn-success">Crear
+                            Regional</button>
                     </div>
                 </div>
             </div>
@@ -218,16 +218,16 @@ const deleteMunicipality = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Municipio
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Regional
                         </h1>
                         <button type="button" id="cerrarBotonActualizar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Municipio 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Regional 1"
                                 v-model="formData.name">
-                            <label for="floatingInputGrid">Nombre del Municipio</label>
+                            <label for="floatingInputGrid">Nombre del Regional</label>
 
                         </div>
                         <div class="form-floating my-2">
@@ -243,7 +243,7 @@ const deleteMunicipality = async (id) => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="editMunicipality(formData.id)" type="button"
+                        <button @click="editRegional(formData.id)" type="button"
                             class="btn rounded-0 btn-success">Guardar</button>
                     </div>
                 </div>
@@ -256,7 +256,7 @@ const deleteMunicipality = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este municipio?
+                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este regional?
                         </h1>
                         <button type="button" id="cerrarBotonEliminar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -279,7 +279,7 @@ const deleteMunicipality = async (id) => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="deleteMunicipality(formData.id)" type="button"
+                        <button @click="deleteRegional(formData.id)" type="button"
                             class="btn rounded-0 btn-danger">Eliminar</button>
                     </div>
                 </div>

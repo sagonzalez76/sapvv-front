@@ -64,6 +64,11 @@ const rutasAtencion = [{
   nombre: 'Titulares',
   ruta: '/dashboard/titulares',
   xlink: '#tipocomunidad'
+},  {
+  id: 14,
+  nombre: 'Emprendedores',
+  ruta: '/dashboard/emprendedores',
+  xlink: '#tipocomunidad'
 }, {
   id: 14,
   nombre: 'Beneficiarios',
@@ -110,8 +115,6 @@ const rutasAtencion = [{
 },
 
 
-
-
 {
   id: 1,
   nombre: 'Medidas',
@@ -123,6 +126,20 @@ const rutasAtencion = [{
   ruta: '/dashboard/concertaciones',
   xlink: '#chevron-right'
 },
+{
+  id: 5,
+  nombre: 'Regionales',
+  ruta: '/dashboard/regionales',
+  xlink: '#chevron-right'
+},
+
+{
+  id: 5,
+  nombre: 'Centros',
+  ruta: '/dashboard/centros',
+  xlink: '#chevron-right'
+},
+
 
 
 
@@ -139,7 +156,7 @@ const rutasAtencion = [{
           aria-label="Close" id="cerrarSidebar"></button>
       </div>
       <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-        <!-- <ul class="nav flex-column mb-2">
+        <ul class="nav flex-column mb-2">
           <h6
             class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-0 mb-1 text-body-secondary text-uppercase">
             <span>SEGURIDAD</span>
@@ -157,7 +174,7 @@ const rutasAtencion = [{
               {{ ruta.nombre }}
             </router-link>
           </li>
-        </ul> -->
+        </ul>
 
 
 

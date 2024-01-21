@@ -15,7 +15,7 @@ const audios = ref({})
 const documentos = ref({})
 
 
-const servidor = "https://sapvv-back.onrender.com/uploads/"
+const servidor = "http://localhost:8000/uploads/"
 
 
 onMounted(() => {
@@ -34,7 +34,7 @@ onMounted(() => {
 
 const getImages = async () => {
 
-    await axios.get(`https://sapvv-back.onrender.com/actions/${action.id}/evidences/images`, {
+    await axios.get(`http://localhost:8000/actions/${action.id}/evidences/images`, {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -51,7 +51,7 @@ const getImages = async () => {
 
 const getVideos = async () => {
 
-    await axios.get(`https://sapvv-back.onrender.com/actions/${action.id}/evidences/videos`, {
+    await axios.get(`http://localhost:8000/actions/${action.id}/evidences/videos`, {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -67,7 +67,7 @@ const getVideos = async () => {
 }
 const getAudios = async () => {
 
-    await axios.get(`https://sapvv-back.onrender.com/actions/${action.id}/evidences/audios`, {
+    await axios.get(`http://localhost:8000/actions/${action.id}/evidences/audios`, {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -83,7 +83,7 @@ const getAudios = async () => {
 }
 const getDocumentos = async () => {
 
-    await axios.get(`https://sapvv-back.onrender.com/actions/${action.id}/evidences/documentos`, {
+    await axios.get(`http://localhost:8000/actions/${action.id}/evidences/documentos`, {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -114,7 +114,7 @@ const subirArchivos = async () => {
     try {
 
 
-        await axios.post('https://sapvv-back.onrender.com/evidences', formData, {
+        await axios.post('http://localhost:8000/evidences', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -167,14 +167,14 @@ const calcularTiempoTranscurrido = (createdAt) => {
 
 const descargarArchivo = async (url) => {
 
-    await axios.get(`https://sapvv-back.onrender.com/download/${url}`, {
+    await axios.get(`http://localhost:8000/download/${url}`, {
 
 
     })
         .then((response) => {
             console.log(response.config);
             const link = document.createElement('a');
-            link.href = `https://sapvv-back.onrender.com/download/${url}`;
+            link.href = `http://localhost:8000/download/${url}`;
             // link.target = '_blank';   Abre el enlace en una nueva pestaña
             link.download = ''; // Puedes establecer un nombre de archivo si lo deseas
             document.body.appendChild(link);
@@ -188,7 +188,7 @@ const descargarArchivo = async (url) => {
 }
 const verArchivo = async (url) => {
 
-    await axios.get(`https://sapvv-back.onrender.com/download/${url}`, {
+    await axios.get(`http://localhost:8000/download/${url}`, {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -197,7 +197,7 @@ const verArchivo = async (url) => {
         .then((response) => {
             console.log(response);
             const link = document.createElement('a');
-            link.href = `https://sapvv-back.onrender.com/uploads/${url}`;
+            link.href = `http://localhost:8000/uploads/${url}`;
             link.target = '_blank'; // Abre el enlace en una nueva pestaña
             // Puedes establecer un nombre de archivo si lo deseas
             document.body.appendChild(link);
