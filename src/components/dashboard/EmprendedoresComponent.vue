@@ -20,7 +20,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-front.onrender.com/entrepreneurs/', {
+    await axios.get('https://sapvv-back.onrender.com/entrepreneurs/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -39,7 +39,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('https://sapvv-front.onrender.com/municipalitys/', {
+    await axios.get('https://sapvv-back.onrender.com/municipalitys/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -60,7 +60,7 @@ const refrescar = async () => {
 
 const getComunity = async (id) => {
 
-    await axios.get('https://sapvv-front.onrender.com/entrepreneurs/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/entrepreneurs/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -75,7 +75,7 @@ const getComunity = async (id) => {
 
 const createComunity = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-front.onrender.com/comunitys', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/comunitys', formData.value)
         .then(() => {
             alert('Titular Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -91,7 +91,7 @@ const createComunity = async () => {
 
 const editComunity = async (id) => {
 
-    await axios.put(`https://sapvv-front.onrender.com/comunitys/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/comunitys/${id}`, formData.value)
         .then(() => {
             alert('Titular Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -107,7 +107,7 @@ const editComunity = async (id) => {
 
 const deleteComunity = async (id) => {
     await getComunity(id)
-    await axios.delete('https://sapvv-front.onrender.com/comunitys/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/comunitys/' + id)
         .then(() => {
             alert('Titular Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

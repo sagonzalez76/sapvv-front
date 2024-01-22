@@ -17,7 +17,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-front.onrender.com/training_centers', {
+    await axios.get('https://sapvv-back.onrender.com/training_centers', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -35,7 +35,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('https://sapvv-front.onrender.com/regionals', {
+    await axios.get('https://sapvv-back.onrender.com/regionals', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -55,7 +55,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get(`https://sapvv-front.onrender.com/municipalitys`, {
+    await axios.get(`https://sapvv-back.onrender.com/municipalitys`, {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -78,7 +78,7 @@ const refrescar = async () => {
 
 const getDepartmentMunicipalitys = async () => {
 
-    // await axios.get(`https://sapvv-front.onrender.com/departments/${formData.value.regionalId}/municipalitys`, {
+    // await axios.get(`https://sapvv-back.onrender.com/departments/${formData.value.regionalId}/municipalitys`, {
 
     //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -101,7 +101,7 @@ const getDepartmentMunicipalitys = async () => {
 
 const getTrainingCenter = async (id) => {
 
-    await axios.get('https://sapvv-front.onrender.com/training_centers/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/training_centers/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -117,7 +117,7 @@ const getTrainingCenter = async (id) => {
 
 const createTrainingCenter = async () => {
     // console.log(formData.value);
-    await axios.post('https://sapvv-front.onrender.com/training_centers', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/training_centers', formData.value)
         .then(() => {
             alert('Centro de Formacion Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -132,7 +132,7 @@ const createTrainingCenter = async () => {
 
 const editTrainingCenter = async (id) => {
 
-    await axios.put(`https://sapvv-front.onrender.com/training_centers/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/training_centers/${id}`, formData.value)
         .then(() => {
             alert('Centro de Formacion Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -147,7 +147,7 @@ const editTrainingCenter = async (id) => {
 
 const deleteTrainingCenter = async (id) => {
     await getTrainingCenter(id)
-    await axios.delete('https://sapvv-front.onrender.com/training_centers/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/training_centers/' + id)
         .then(() => {
             alert('Centro de Formacion Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

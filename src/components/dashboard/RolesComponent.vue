@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-front.onrender.com/roles', {
+    await axios.get('https://sapvv-back.onrender.com/roles', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 const getRole = async (id) => {
 
-    await axios.get('https://sapvv-front.onrender.com/roles/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/roles/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ const getRole = async (id) => {
 
 const createRole = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-front.onrender.com/roles', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/roles', formData.value)
         .then(() => {
             alert('Rol Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -67,7 +67,7 @@ const createRole = async () => {
 
 const editRole = async (id) => {
 
-    await axios.put(`https://sapvv-front.onrender.com/roles/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/roles/${id}`, formData.value)
         .then(() => {
             alert('Rol Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -82,7 +82,7 @@ const editRole = async (id) => {
 
 const deleteRole = async (id) => {
     await getRole(id)
-    await axios.delete('https://sapvv-front.onrender.com/roles/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/roles/' + id)
         .then(() => {
             alert('Rol Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
