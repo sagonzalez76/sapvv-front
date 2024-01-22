@@ -33,7 +33,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/productive_unity', {
+    await axios.get('https://sapvv-front.onrender.com/productive_unity', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -50,7 +50,7 @@ const refrescar = async () => {
             console.log(error)
         })
 
-    await axios.get('http://localhost:8000/financial_foundings', {
+    await axios.get('https://sapvv-front.onrender.com/financial_foundings', {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -66,7 +66,7 @@ const refrescar = async () => {
             console.log(error)
         })
 
-    await axios.get('http://localhost:8000/training_centers', {
+    await axios.get('https://sapvv-front.onrender.com/training_centers', {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -83,7 +83,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('http://localhost:8000/entrepreneurs/', {
+    await axios.get('https://sapvv-front.onrender.com/entrepreneurs/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -101,7 +101,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('http://localhost:8000/municipalitys/', {
+    await axios.get('https://sapvv-front.onrender.com/municipalitys/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -118,7 +118,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('http://localhost:8000/users/', {
+    await axios.get('https://sapvv-front.onrender.com/users/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -137,7 +137,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/economic_activitys/', {
+    await axios.get('https://sapvv-front.onrender.com/economic_activitys/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -155,7 +155,7 @@ const refrescar = async () => {
         })
 
 
-    // await axios.get('http://localhost:8000/type_enterprises', {
+    // await axios.get('https://sapvv-front.onrender.com/type_enterprises', {
 
     //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -174,7 +174,7 @@ const refrescar = async () => {
     //     })
 
 
-    // await axios.get('http://localhost:8000/municipalitys', {
+    // await axios.get('https://sapvv-front.onrender.com/municipalitys', {
 
     //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
     //     headers: {
@@ -192,7 +192,7 @@ const refrescar = async () => {
 
 
 
-    // await axios.get('http://localhost:8000/comunitys/entrepreneurs', {
+    // await axios.get('https://sapvv-front.onrender.com/comunitys/entrepreneurs', {
 
     //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
     //     headers: {
@@ -213,7 +213,7 @@ const refrescar = async () => {
 
 const getEnterprise = async (id) => {
 
-    await axios.get('http://localhost:8000/productive_unity/' + id, {
+    await axios.get('https://sapvv-front.onrender.com/productive_unity/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -230,7 +230,7 @@ const getEnterprise = async (id) => {
 const createEnterprise = async () => {
 
     formData.value.type = "Unidad Productiva"
-    await axios.post('http://localhost:8000/enterprises', formData.value)
+    await axios.post('https://sapvv-front.onrender.com/enterprises', formData.value)
         .then(() => {
             alert('Unidad Productiva Creada')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -247,7 +247,7 @@ const createEnterprise = async () => {
 
 const editEnterprise = async (id) => {
     formData.value.type = "Unidad Productiva"
-    await axios.put(`http://localhost:8000/enterprises/${id}`, formData.value)
+    await axios.put(`https://sapvv-front.onrender.com/enterprises/${id}`, formData.value)
         .then(() => {
             alert('Unidad Productiva Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -263,7 +263,7 @@ const editEnterprise = async (id) => {
 
 const deleteEnterprise = async (id) => {
     await getEnterprise(id)
-    await axios.delete('http://localhost:8000/enterprises/' + id)
+    await axios.delete('https://sapvv-front.onrender.com/enterprises/' + id)
         .then(() => {
             alert('Unidad Productiva Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

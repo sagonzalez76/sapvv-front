@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/financial_foundings', {
+    await axios.get('https://sapvv-front.onrender.com/financial_foundings', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 const getProgram = async (id) => {
 
-    await axios.get('http://localhost:8000/financial_foundings/' + id, {
+    await axios.get('https://sapvv-front.onrender.com/financial_foundings/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ const getProgram = async (id) => {
 
 const createProgram = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/financial_foundings', formData.value)
+    await axios.post('https://sapvv-front.onrender.com/financial_foundings', formData.value)
         .then(() => {
             alert('Fuente Financiacion Creada')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -67,7 +67,7 @@ const createProgram = async () => {
 
 const editProgram = async (id) => {
 
-    await axios.put(`http://localhost:8000/financial_foundings/${id}`, formData.value)
+    await axios.put(`https://sapvv-front.onrender.com/financial_foundings/${id}`, formData.value)
         .then(() => {
             alert('Fuente Financiacion Actualizada')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -82,7 +82,7 @@ const editProgram = async (id) => {
 
 const deleteProgram = async (id) => {
     await getProgram(id)
-    await axios.delete('http://localhost:8000/financial_foundings/' + id)
+    await axios.delete('https://sapvv-front.onrender.com/financial_foundings/' + id)
         .then(() => {
             alert('Fuente Financiacion Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -156,8 +156,8 @@ const deleteProgram = async (id) => {
                     <div class="modal-body">
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Fuente de Financiacion 1"
-                                v-model="formData.name" required>
+                            <input type="text" class="form-control" id="floatingInputGrid"
+                                placeholder="Fuente de Financiacion 1" v-model="formData.name" required>
                             <label for="floatingInputGrid">Nombre del Fuente de Financiacion </label>
 
                         </div>
@@ -187,8 +187,8 @@ const deleteProgram = async (id) => {
                     </div>
                     <div class="modal-body">
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Fuente de Financiacion 1"
-                                v-model="formData.name">
+                            <input type="text" class="form-control" id="floatingInputGrid"
+                                placeholder="Fuente de Financiacion 1" v-model="formData.name">
                             <label for="floatingInputGrid">Nombre del Fuente de Financiacion</label>
 
                         </div>

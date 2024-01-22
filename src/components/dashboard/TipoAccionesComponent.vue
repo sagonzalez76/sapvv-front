@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/type_actions', {
+    await axios.get('https://sapvv-front.onrender.com/type_actions', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 const getProgram = async (id) => {
 
-    await axios.get('http://localhost:8000/type_actions/' + id, {
+    await axios.get('https://sapvv-front.onrender.com/type_actions/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ const getProgram = async (id) => {
 
 const createProgram = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/type_actions', formData.value)
+    await axios.post('https://sapvv-front.onrender.com/type_actions', formData.value)
         .then(() => {
             alert('Tipos de Comunidad Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -67,7 +67,7 @@ const createProgram = async () => {
 
 const editProgram = async (id) => {
 
-    await axios.put(`http://localhost:8000/type_actions/${id}`, formData.value)
+    await axios.put(`https://sapvv-front.onrender.com/type_actions/${id}`, formData.value)
         .then(() => {
             alert('Tipos de Comunidad Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -82,7 +82,7 @@ const editProgram = async (id) => {
 
 const deleteProgram = async (id) => {
     await getProgram(id)
-    await axios.delete('http://localhost:8000/type_actions/' + id)
+    await axios.delete('https://sapvv-front.onrender.com/type_actions/' + id)
         .then(() => {
             alert('Tipos de Comunidad Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -157,7 +157,7 @@ const getColorClass = (priority) => {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Tipos de Accion  </h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Tipos de Accion </h1>
                         <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -173,7 +173,8 @@ const getColorClass = (priority) => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
-                        <button @click="createProgram" type="button" class="btn rounded-0 btn-success">Crear Tipo de Accion</button>
+                        <button @click="createProgram" type="button" class="btn rounded-0 btn-success">Crear Tipo de
+                            Accion</button>
                     </div>
                 </div>
             </div>

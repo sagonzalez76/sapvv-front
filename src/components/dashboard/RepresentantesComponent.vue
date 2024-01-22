@@ -16,7 +16,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/agents', {
+    await axios.get('https://sapvv-front.onrender.com/agents', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -34,7 +34,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/comunitys', {
+    await axios.get('https://sapvv-front.onrender.com/comunitys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -56,7 +56,7 @@ const refrescar = async () => {
 
 const getAgent = async (id) => {
 
-    await axios.get('http://localhost:8000/agents/' + id, {
+    await axios.get('https://sapvv-front.onrender.com/agents/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -71,7 +71,7 @@ const getAgent = async (id) => {
 
 const createAgent = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/agents', formData.value)
+    await axios.post('https://sapvv-front.onrender.com/agents', formData.value)
         .then(() => {
             alert('Representante Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -86,7 +86,7 @@ const createAgent = async () => {
 
 const editAgent = async (id) => {
 
-    await axios.put(`http://localhost:8000/agents/${id}`, formData.value)
+    await axios.put(`https://sapvv-front.onrender.com/agents/${id}`, formData.value)
         .then(() => {
             alert('Representante Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -101,7 +101,7 @@ const editAgent = async (id) => {
 
 const deleteAgent = async (id) => {
     await getAgent(id)
-    await axios.delete('http://localhost:8000/agents/' + id)
+    await axios.delete('https://sapvv-front.onrender.com/agents/' + id)
         .then(() => {
             alert('Representante Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

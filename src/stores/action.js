@@ -14,7 +14,7 @@ export const useActionStore = defineStore('action', () => {
 
   const getAction = async (id) => {
 
-    await axios.get(`http://localhost:8000/actions/${id}`, {
+    await axios.get(`https://sapvv-front.onrender.com/actions/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },

@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/departments', {
+    await axios.get('https://sapvv-front.onrender.com/departments', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 const getProgram = async (id) => {
 
-    await axios.get('http://localhost:8000/departments/' + id, {
+    await axios.get('https://sapvv-front.onrender.com/departments/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ const getProgram = async (id) => {
 
 const createProgram = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/departments', formData.value)
+    await axios.post('https://sapvv-front.onrender.com/departments', formData.value)
         .then(() => {
             alert('Departamento Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -67,7 +67,7 @@ const createProgram = async () => {
 
 const editProgram = async (id) => {
 
-    await axios.put(`http://localhost:8000/departments/${id}`, formData.value)
+    await axios.put(`https://sapvv-front.onrender.com/departments/${id}`, formData.value)
         .then(() => {
             alert('Departamento Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -82,7 +82,7 @@ const editProgram = async (id) => {
 
 const deleteProgram = async (id) => {
     await getProgram(id)
-    await axios.delete('http://localhost:8000/departments/' + id)
+    await axios.delete('https://sapvv-front.onrender.com/departments/' + id)
         .then(() => {
             alert('Departamento Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

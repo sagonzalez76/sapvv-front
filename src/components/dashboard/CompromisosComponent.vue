@@ -18,7 +18,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/commitments', {
+    await axios.get('https://sapvv-front.onrender.com/commitments', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -36,7 +36,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/origins', {
+    await axios.get('https://sapvv-front.onrender.com/origins', {
 
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
@@ -59,7 +59,7 @@ const refrescar = async () => {
 
 const getCommitment = async (id) => {
 
-    await axios.get('http://localhost:8000/commitments/' + id, {
+    await axios.get('https://sapvv-front.onrender.com/commitments/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -74,7 +74,7 @@ const getCommitment = async (id) => {
 
 const createCommitment = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/commitments', formData.value)
+    await axios.post('https://sapvv-front.onrender.com/commitments', formData.value)
         .then(() => {
             alert('Compromiso Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -89,7 +89,7 @@ const createCommitment = async () => {
 
 const editCommitment = async (id) => {
 
-    await axios.put(`http://localhost:8000/commitments/${id}`, formData.value)
+    await axios.put(`https://sapvv-front.onrender.com/commitments/${id}`, formData.value)
         .then(() => {
             alert('Compromiso Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -104,7 +104,7 @@ const editCommitment = async (id) => {
 
 const deleteCommitment = async (id) => {
     await getCommitment(id)
-    await axios.delete('http://localhost:8000/commitments/' + id)
+    await axios.delete('https://sapvv-front.onrender.com/commitments/' + id)
         .then(() => {
             alert('Compromiso Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

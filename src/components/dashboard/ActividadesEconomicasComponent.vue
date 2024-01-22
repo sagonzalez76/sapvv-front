@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/economic_activitys', {
+    await axios.get('https://sapvv-front.onrender.com/economic_activitys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 const getProgram = async (id) => {
 
-    await axios.get('http://localhost:8000/economic_activitys/' + id, {
+    await axios.get('https://sapvv-front.onrender.com/economic_activitys/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ const getProgram = async (id) => {
 
 const createProgram = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/economic_activitys', formData.value)
+    await axios.post('https://sapvv-front.onrender.com/economic_activitys', formData.value)
         .then(() => {
             alert('Actividad Economica Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -67,7 +67,7 @@ const createProgram = async () => {
 
 const editProgram = async (id) => {
 
-    await axios.put(`http://localhost:8000/economic_activitys/${id}`, formData.value)
+    await axios.put(`https://sapvv-front.onrender.com/economic_activitys/${id}`, formData.value)
         .then(() => {
             alert('Actividad Economica Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -82,7 +82,7 @@ const editProgram = async (id) => {
 
 const deleteProgram = async (id) => {
     await getProgram(id)
-    await axios.delete('http://localhost:8000/economic_activitys/' + id)
+    await axios.delete('https://sapvv-front.onrender.com/economic_activitys/' + id)
         .then(() => {
             alert('Actividad Economica Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

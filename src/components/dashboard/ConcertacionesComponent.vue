@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/concertations', {
+    await axios.get('https://sapvv-front.onrender.com/concertations', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 const getConcertation = async (id) => {
 
-    await axios.get('http://localhost:8000/concertations/' + id, {
+    await axios.get('https://sapvv-front.onrender.com/concertations/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ const getConcertation = async (id) => {
 
 const createConcertation = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/concertations', formData.value)
+    await axios.post('https://sapvv-front.onrender.com/concertations', formData.value)
         .then(() => {
             alert('Concertacion Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -67,7 +67,7 @@ const createConcertation = async () => {
 
 const editConcertation = async (id) => {
 
-    await axios.put(`http://localhost:8000/concertations/${id}`, formData.value)
+    await axios.put(`https://sapvv-front.onrender.com/concertations/${id}`, formData.value)
         .then(() => {
             alert('Concertacion Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -82,7 +82,7 @@ const editConcertation = async (id) => {
 
 const deleteConcertation = async (id) => {
     await getConcertation(id)
-    await axios.delete('http://localhost:8000/concertations/' + id)
+    await axios.delete('https://sapvv-front.onrender.com/concertations/' + id)
         .then(() => {
             alert('Concertacion Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

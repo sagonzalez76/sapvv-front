@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/emitters', {
+    await axios.get('https://sapvv-front.onrender.com/emitters', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 const getEmitter = async (id) => {
 
-    await axios.get('http://localhost:8000/emitters/' + id, {
+    await axios.get('https://sapvv-front.onrender.com/emitters/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ const getEmitter = async (id) => {
 
 const createEmitter = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/emitters', formData.value)
+    await axios.post('https://sapvv-front.onrender.com/emitters', formData.value)
         .then(() => {
             alert('Emisor Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -67,7 +67,7 @@ const createEmitter = async () => {
 
 const editEmitter = async (id) => {
 
-    await axios.put(`http://localhost:8000/emitters/${id}`, formData.value)
+    await axios.put(`https://sapvv-front.onrender.com/emitters/${id}`, formData.value)
         .then(() => {
             alert('Emisor Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -82,7 +82,7 @@ const editEmitter = async (id) => {
 
 const deleteEmitter = async (id) => {
     await getEmitter(id)
-    await axios.delete('http://localhost:8000/emitters/' + id)
+    await axios.delete('https://sapvv-front.onrender.com/emitters/' + id)
         .then(() => {
             alert('Emisor Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

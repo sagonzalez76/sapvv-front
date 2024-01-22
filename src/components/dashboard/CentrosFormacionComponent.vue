@@ -17,7 +17,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/training_centers', {
+    await axios.get('https://sapvv-front.onrender.com/training_centers', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -35,7 +35,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/regionals', {
+    await axios.get('https://sapvv-front.onrender.com/regionals', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -55,30 +55,30 @@ const refrescar = async () => {
 
 
 
-        await axios.get(`http://localhost:8000/municipalitys`, {
+    await axios.get(`https://sapvv-front.onrender.com/municipalitys`, {
 
-            //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
+        //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
-            headers: {
-                'Authorization': `Bearer ${token}`,
+        headers: {
+            'Authorization': `Bearer ${token}`,
 
-            },
+        },
+    })
+        .then((response) => {
+            municipalitys.value = response.data
+            // console.log(regionals.value);
+            console.log(response.data);
         })
-            .then((response) => {
-                municipalitys.value = response.data
-                // console.log(regionals.value);
-                console.log(response.data);
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    
+        .catch((error) => {
+            console.log(error)
+        })
+
 
 }
 
 const getDepartmentMunicipalitys = async () => {
 
-    // await axios.get(`http://localhost:8000/departments/${formData.value.regionalId}/municipalitys`, {
+    // await axios.get(`https://sapvv-front.onrender.com/departments/${formData.value.regionalId}/municipalitys`, {
 
     //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -101,7 +101,7 @@ const getDepartmentMunicipalitys = async () => {
 
 const getTrainingCenter = async (id) => {
 
-    await axios.get('http://localhost:8000/training_centers/' + id, {
+    await axios.get('https://sapvv-front.onrender.com/training_centers/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -117,7 +117,7 @@ const getTrainingCenter = async (id) => {
 
 const createTrainingCenter = async () => {
     // console.log(formData.value);
-    await axios.post('http://localhost:8000/training_centers', formData.value)
+    await axios.post('https://sapvv-front.onrender.com/training_centers', formData.value)
         .then(() => {
             alert('Centro de Formacion Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -132,7 +132,7 @@ const createTrainingCenter = async () => {
 
 const editTrainingCenter = async (id) => {
 
-    await axios.put(`http://localhost:8000/training_centers/${id}`, formData.value)
+    await axios.put(`https://sapvv-front.onrender.com/training_centers/${id}`, formData.value)
         .then(() => {
             alert('Centro de Formacion Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -147,7 +147,7 @@ const editTrainingCenter = async (id) => {
 
 const deleteTrainingCenter = async (id) => {
     await getTrainingCenter(id)
-    await axios.delete('http://localhost:8000/training_centers/' + id)
+    await axios.delete('https://sapvv-front.onrender.com/training_centers/' + id)
         .then(() => {
             alert('Centro de Formacion Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -228,7 +228,7 @@ const deleteTrainingCenter = async (id) => {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Centro de Formacion </h1> 
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Centro de Formacion </h1>
                         <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -266,7 +266,7 @@ const deleteTrainingCenter = async (id) => {
                         </div> -->
                         <div class="modal-footer">
                             <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <button  type="submit" class="btn rounded-0 btn-success">Crear
+                            <button type="submit" class="btn rounded-0 btn-success">Crear
                                 Centro de Formacion</button>
                         </div>
                     </form>
@@ -302,8 +302,7 @@ const deleteTrainingCenter = async (id) => {
 
                         </div>
                         <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid"
-                                v-model="formData.regionalId" required>
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.regionalId" required>
                                 <option disabled selected>Selecciona la regional a la que pertenece el Centro</option>
                                 <option v-for="regional in regionals" :key="regional.id" :value="regional.id"
                                     class="text-capitalize">{{ regional.name }}</option>

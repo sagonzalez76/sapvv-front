@@ -12,7 +12,7 @@ export const useEvidenceStore = defineStore('evidence', () => {
 
     const getEvidence = async (id) => {
         console.log("WORKINGGGGGG");
-        await axios.get(`http://localhost:8000/actions/${id}/evidences`, {
+        await axios.get(`https://sapvv-front.onrender.com/actions/${id}/evidences`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
