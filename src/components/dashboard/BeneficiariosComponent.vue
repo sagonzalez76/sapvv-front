@@ -29,10 +29,10 @@ const refrescar = async () => {
             // console.log(response.data);
         })
         .catch((error) => {
-            console.log(error)
+            console.log('Error en refrescar', error)
         })
 
-    await axios.get('http://localhost:8000/comunitys/holders', {
+    await axios.get('http://localhost:8000/holders', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -47,7 +47,7 @@ const refrescar = async () => {
             // console.log(response.data);
         })
         .catch((error) => {
-            console.log(error)
+            console.log('Error en refrescar', error)
         })
 }
 
@@ -63,7 +63,7 @@ const getBeneficiary = async (id) => {
             formData.value = response.data
         })
         .catch((error) => {
-            console.log(error)
+            console.log('Error en GetBeneficiaryFront', error)
         })
 }
 
@@ -77,7 +77,7 @@ const createBeneficiary = async () => {
             refrescar()
         })
         .catch((error) => {
-            console.log(error.response.data.error)
+            console.log('Error en CreateBeneficiaryFront', error)
         })
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-secondary fixed-top max-h-25" id="navbar-sapvv">
+  <nav class="navbar navbar-expand-lg bg-white fixed-top max-h-25" id="navbar-sapvv">
 
     <div class="container-fluid">
 
@@ -24,16 +24,16 @@
         <ul class="navbar-nav nav-pills me-2 mb-2 mb-lg-0 rounded-0">
           <li class="nav-item p-1">
 
-            <a class="nav-link rounded-4 px-2" href="#hero">Inicio</a>
+            <a class="nav-link rounded-3 px-2" href="#hero">Inicio</a>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link rounded-4 px-2" href="#hero2">Quienes Somos</a>
+            <a class="nav-link rounded-3 px-2" href="#hero2">Quienes Somos</a>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link rounded-4 px-2" href="#hero3">PQR's</a>
+            <a class="nav-link rounded-3 px-2" href="#hero3">PQR's</a>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link rounded-4 px-2" href="#hero4">Contacto</a>
+            <a class="nav-link rounded-3 px-2" href="#hero4">Contacto</a>
           </li>
 
           <li class="nav-item p-1">
@@ -59,16 +59,23 @@
 <style scoped>
 .nav-link.active {
   transform: scale(1.07);
-  background-color: rgba(4, 125, 0, 0.998);
-  color: #fff;
+  background-color: rgba(4, 125, 0, 0.263);
+  color: #117e00;
   transition: box-shadow 15s ease;
   transition-duration: 100ms;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-
+  padding-block: 5px;
 
   /* Cambiar la sombra */
 
   /* transition: border-width 0.3s ease, border-color 0.3s ease; */
+}
+
+
+nav {
+  width: 100%;
+  mask-image: linear-gradient(to top, transparent, rgb(255, 255, 255) 10%);
+
 }
 </style>
 

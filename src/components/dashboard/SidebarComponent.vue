@@ -44,7 +44,7 @@ const rutasAtencion = [{
 },
 {
   id: 12,
-  nombre: 'TiposComunidades',
+  nombre: 'Tipos Comunidades',
   ruta: '/dashboard/tipo_comunidades',
   xlink: '#tipocomunidad'
 },
@@ -109,7 +109,7 @@ const rutasAtencion = [{
 },
 {
   id: 12,
-  nombre: 'TiposAcciones',
+  nombre: 'Tipos Acciones',
   ruta: '/dashboard/tipo_acciones',
   xlink: '#tipocomunidad'
 },
@@ -141,8 +141,21 @@ const rutasAtencion = [{
 },
 {
   id: 5,
-  nombre: 'ActividadesEconomicas',
+  nombre: 'Actividades Economicas',
   ruta: '/dashboard/actividades_economicas',
+  xlink: '#chevron-right'
+},
+{
+  id: 5,
+  nombre: 'Fuentes de Financiacion',
+  ruta: '/dashboard/fuentes_financiacion',
+  xlink: '#chevron-right'
+},
+
+{
+  id: 5,
+  nombre: 'Unidades Productivas',
+  ruta: '/dashboard/unidades_productivas',
   xlink: '#chevron-right'
 },
 

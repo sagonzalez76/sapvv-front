@@ -20,7 +20,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/comunitys/entrepreneurs', {
+    await axios.get('http://localhost:8000/entrepreneurs/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -39,7 +39,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/municipalitys', {
+    await axios.get('http://localhost:8000/municipalitys/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -60,7 +60,7 @@ const refrescar = async () => {
 
 const getComunity = async (id) => {
 
-    await axios.get('http://localhost:8000/comunitys/entrepreneurs/' + id, {
+    await axios.get('http://localhost:8000/entrepreneurs/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },

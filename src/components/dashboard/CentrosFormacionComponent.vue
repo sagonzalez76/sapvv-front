@@ -17,7 +17,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/trainingcenters', {
+    await axios.get('http://localhost:8000/training_centers', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -78,30 +78,30 @@ const refrescar = async () => {
 
 const getDepartmentMunicipalitys = async () => {
 
-    await axios.get(`http://localhost:8000/departments/${formData.value.regionalId}/municipalitys`, {
+    // await axios.get(`http://localhost:8000/departments/${formData.value.regionalId}/municipalitys`, {
 
-        //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
+    //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
-        headers: {
-            'Authorization': `Bearer ${token}`,
+    //     headers: {
+    //         'Authorization': `Bearer ${token}`,
 
-        },
-    })
-        .then((response) => {
-            municipalitys.value = response.data
-            // console.log(regionals.value);
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.log(error)
-        })
+    //     },
+    // })
+    //     .then((response) => {
+    //         municipalitys.value = response.data
+    //         // console.log(regionals.value);
+    //         console.log(response.data);
+    //     })
+    //     .catch((error) => {
+    //         console.log(error)
+    //     })
 }
 
 
 
 const getTrainingCenter = async (id) => {
 
-    await axios.get('http://localhost:8000/trainingcenters/' + id, {
+    await axios.get('http://localhost:8000/training_centers/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -117,7 +117,7 @@ const getTrainingCenter = async (id) => {
 
 const createTrainingCenter = async () => {
     // console.log(formData.value);
-    await axios.post('http://localhost:8000/trainingcenters', formData.value)
+    await axios.post('http://localhost:8000/training_centers', formData.value)
         .then(() => {
             alert('Centro de Formacion Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -132,7 +132,7 @@ const createTrainingCenter = async () => {
 
 const editTrainingCenter = async (id) => {
 
-    await axios.put(`http://localhost:8000/trainingcenters/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/training_centers/${id}`, formData.value)
         .then(() => {
             alert('Centro de Formacion Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -147,7 +147,7 @@ const editTrainingCenter = async (id) => {
 
 const deleteTrainingCenter = async (id) => {
     await getTrainingCenter(id)
-    await axios.delete('http://localhost:8000/trainingcenters/' + id)
+    await axios.delete('http://localhost:8000/training_centers/' + id)
         .then(() => {
             alert('Centro de Formacion Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -177,14 +177,14 @@ const deleteTrainingCenter = async (id) => {
 
     <div class="table-responsive small my-4 rounded">
         <table id="" class=" table table-dark table-hover table-striped  stable-sm ">
-            <thead>
+            <thead class="">
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-1">ID</th>
 
                     <th scope="col" class="col-auto">Codigo</th>
                     <th scope="col" class="col-1">Nombre</th>
                     <th scope="col" class="col-auto">Regional a la que pertenece</th>
-                    <th scope="col" class="col-auto">Ubicacion</th>
+                    <!-- <th scope="col" class="col-auto">Ubicacion</th> -->
 
                     <th scope="col" class="col-2">Acciones</th>
                 </tr>
@@ -199,7 +199,7 @@ const deleteTrainingCenter = async (id) => {
                     <td>{{ trainingcenter.code }}</td>
                     <td>{{ trainingcenter.name }}</td>
                     <td>{{ trainingcenter.regional.name }}</td>
-                    <td>{{ trainingcenter.municipality.name }}</td>
+                    <!-- <td>{{ trainingcenter.municipality.name }}</td> -->
 
 
                     <td>
@@ -255,7 +255,7 @@ const deleteTrainingCenter = async (id) => {
                             </select>
                             <label for="floatingSelectGrid">Regional</label>
                         </div>
-                        <div class="form-floating my-2">
+                        <!-- <div class="form-floating my-2">
                             <select class="form-select" id="floatingSelectGrid" v-model="formData.municipalityId" required>
                                 <option disabled selected>Selecciona el municipio en el que se ubica el Centro</option>
                                 <option v-for="municipality in municipalitys" :key="municipality.id"
@@ -263,7 +263,7 @@ const deleteTrainingCenter = async (id) => {
 
                             </select>
                             <label for="floatingSelectGrid">Municipio</label>
-                        </div>
+                        </div> -->
                         <div class="modal-footer">
                             <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
                             <button  type="submit" class="btn rounded-0 btn-success">Crear
@@ -302,7 +302,7 @@ const deleteTrainingCenter = async (id) => {
 
                         </div>
                         <div class="form-floating my-2">
-                            <select @change="getDepartmentMunicipalitys()" class="form-select" id="floatingSelectGrid"
+                            <select class="form-select" id="floatingSelectGrid"
                                 v-model="formData.regionalId" required>
                                 <option disabled selected>Selecciona la regional a la que pertenece el Centro</option>
                                 <option v-for="regional in regionals" :key="regional.id" :value="regional.id"

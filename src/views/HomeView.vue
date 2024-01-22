@@ -28,5 +28,7 @@ import NavBarComponent from '../components/NavBarComponent.vue';
 
 .fade-in-down {
   animation: fadeInDown 0.5s ease-out;
+  /* background-color: rgba(226, 226, 226, 0.381); */
 }
+
 </style>

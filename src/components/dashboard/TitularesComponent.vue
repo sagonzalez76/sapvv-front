@@ -21,7 +21,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/comunitys/holders', {
+    await axios.get(`http://localhost:8000/holders`, {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -35,7 +35,7 @@ const refrescar = async () => {
             // console.log(response.data);
         })
         .catch((error) => {
-            console.log(error)
+            console.log('Error en refrescar Holders', error)
         })
 
 
@@ -61,7 +61,7 @@ const refrescar = async () => {
 
 const getComunity = async (id) => {
 
-    await axios.get('http://localhost:8000/comunitys/holders/' + id, {
+    await axios.get('http://localhost:8000/holders/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
