@@ -18,7 +18,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-back.onrender.com/commitments', {
+    await axios.get('http://localhost:8000/commitments', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -36,7 +36,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('https://sapvv-back.onrender.com/origins', {
+    await axios.get('http://localhost:8000/origins', {
 
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
@@ -59,7 +59,7 @@ const refrescar = async () => {
 
 const getCommitment = async (id) => {
 
-    await axios.get('https://sapvv-back.onrender.com/commitments/' + id, {
+    await axios.get('http://localhost:8000/commitments/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -74,7 +74,7 @@ const getCommitment = async (id) => {
 
 const createCommitment = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-back.onrender.com/commitments', formData.value)
+    await axios.post('http://localhost:8000/commitments', formData.value)
         .then(() => {
             alert('Compromiso Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -89,7 +89,7 @@ const createCommitment = async () => {
 
 const editCommitment = async (id) => {
 
-    await axios.put(`https://sapvv-back.onrender.com/commitments/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/commitments/${id}`, formData.value)
         .then(() => {
             alert('Compromiso Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -104,7 +104,7 @@ const editCommitment = async (id) => {
 
 const deleteCommitment = async (id) => {
     await getCommitment(id)
-    await axios.delete('https://sapvv-back.onrender.com/commitments/' + id)
+    await axios.delete('http://localhost:8000/commitments/' + id)
         .then(() => {
             alert('Compromiso Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -133,7 +133,7 @@ const deleteCommitment = async (id) => {
 
 
     <div class="table-responsive small my-4 rounded">
-        <table id="" class=" table table-dark table-hover table-striped  stable-sm ">
+        <table id="" class=" table bg-secondary table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
                     <!-- <th scope="col" class="col-1">ID</th> -->
@@ -174,7 +174,8 @@ const deleteCommitment = async (id) => {
 
         <div class="modal fade" id="crearCompromisoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Compromiso

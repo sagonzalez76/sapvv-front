@@ -2,6 +2,7 @@
 import { useAuthStore } from '../../stores/auth.js';
 
 const auth = useAuthStore()
+const role = useAuthStore().tokenRole
 
 const onLogout = () => {
   auth.logout()
@@ -30,139 +31,146 @@ const rutasSeguridad = [{
 
 ]
 
-const rutasAtencion = [{
-  id: 10,
-  nombre: 'Departamentos',
-  ruta: '/dashboard/departamentos',
-  xlink: '#departamentos'
-},
-{
-  id: 11,
-  nombre: 'Municipios',
-  ruta: '/dashboard/municipios',
-  xlink: '#municipios'
-},
-{
-  id: 12,
-  nombre: 'Tipos Comunidades',
-  ruta: '/dashboard/tipo_comunidades',
-  xlink: '#tipocomunidad'
-},
-{
-  id: 13,
-  nombre: 'Comunidades',
-  ruta: '/dashboard/comunidades',
-  xlink: '#tipocomunidad'
-},
-{
-  id: 4,
-  nombre: 'Representantes',
-  ruta: '/dashboard/representantes',
-  xlink: '#representante'
-}, {
-  id: 14,
-  nombre: 'Titulares',
-  ruta: '/dashboard/titulares',
-  xlink: '#tipocomunidad'
-},  {
-  id: 14,
-  nombre: 'Emprendedores',
-  ruta: '/dashboard/emprendedores',
-  xlink: '#tipocomunidad'
-}, {
-  id: 14,
-  nombre: 'Beneficiarios',
-  ruta: '/dashboard/beneficiarios',
-  xlink: '#tipocomunidad'
-}, {
-  id: 3,
-  nombre: 'Emisores',
-  ruta: '/dashboard/emisores',
-  xlink: '#representante'
-}, {
-  id: 14,
-  nombre: 'Origenes',
-  ruta: '/dashboard/origenes',
-  xlink: '#calendario'
-}, {
-  id: 14,
-  nombre: 'Compromisos',
-  ruta: '/dashboard/compromisos',
-  xlink: '#puzzle'
-}, {
-  id: 7,
-  nombre: 'Acciones',
-  ruta: '/dashboard/acciones',
-  xlink: '#file-earmark'
-},
-{
-  id: 7,
-  nombre: 'Programas',
-  ruta: '/dashboard/programas',
-  xlink: '#file-earmark'
-},
-{
-  id: 7,
-  nombre: 'Dependencias',
-  ruta: '/dashboard/dependencias',
-  xlink: '#file-earmark'
-},
-{
-  id: 12,
-  nombre: 'Tipos Acciones',
-  ruta: '/dashboard/tipo_acciones',
-  xlink: '#tipocomunidad'
-},
-
-
-{
-  id: 1,
-  nombre: 'Medidas',
-  ruta: '/dashboard/medidas',
-  xlink: '#graph-up'
-}, {
-  id: 5,
-  nombre: 'Concertaciones',
-  ruta: '/dashboard/concertaciones',
-  xlink: '#chevron-right'
-},
-{
-  id: 5,
-  nombre: 'Regionales',
-  ruta: '/dashboard/regionales',
-  xlink: '#chevron-right'
-},
-
-{
-  id: 5,
-  nombre: 'Centros',
-  ruta: '/dashboard/centros',
-  xlink: '#chevron-right'
-},
-{
-  id: 5,
-  nombre: 'Actividades Economicas',
-  ruta: '/dashboard/actividades_economicas',
-  xlink: '#chevron-right'
-},
-{
-  id: 5,
-  nombre: 'Fuentes de Financiacion',
-  ruta: '/dashboard/fuentes_financiacion',
-  xlink: '#chevron-right'
-},
-
-{
-  id: 5,
-  nombre: 'Unidades Productivas',
-  ruta: '/dashboard/unidades_productivas',
-  xlink: '#chevron-right'
-},
-
-
-
-
-]
+const rutasAtencion = [
+  {
+    id: 3,
+    nombre: 'Departamentos',
+    ruta: '/dashboard/departamentos',
+    xlink: '#departamentos'
+  },
+  {
+    id: 4,
+    nombre: 'Municipios',
+    ruta: '/dashboard/municipios',
+    xlink: '#municipios'
+  },
+  {
+    id: 5,
+    nombre: 'Tipos Comunidades',
+    ruta: '/dashboard/tipo_comunidades',
+    xlink: '#tipocomunidad'
+  },
+  {
+    id: 6,
+    nombre: 'Comunidades',
+    ruta: '/dashboard/comunidades',
+    xlink: '#tipocomunidad'
+  },
+  {
+    id: 7,
+    nombre: 'Representantes',
+    ruta: '/dashboard/representantes',
+    xlink: '#representante'
+  },
+  {
+    id: 8,
+    nombre: 'Titulares',
+    ruta: '/dashboard/titulares',
+    xlink: '#tipocomunidad'
+  },
+  {
+    id: 9,
+    nombre: 'Emprendedores',
+    ruta: '/dashboard/emprendedores',
+    xlink: '#tipocomunidad'
+  },
+  {
+    id: 10,
+    nombre: 'Beneficiarios',
+    ruta: '/dashboard/beneficiarios',
+    xlink: '#tipocomunidad'
+  },
+  {
+    id: 11,
+    nombre: 'Emisores',
+    ruta: '/dashboard/emisores',
+    xlink: '#representante'
+  },
+  {
+    id: 12,
+    nombre: 'Origenes',
+    ruta: '/dashboard/origenes',
+    xlink: '#calendario'
+  },
+  {
+    id: 13,
+    nombre: 'Compromisos',
+    ruta: '/dashboard/compromisos',
+    xlink: '#puzzle'
+  },
+  {
+    id: 14,
+    nombre: 'Acciones',
+    ruta: '/dashboard/acciones',
+    xlink: '#acciones'
+  },
+  {
+    id: 15,
+    nombre: 'Programas',
+    ruta: '/dashboard/programas',
+    xlink: '#programa'
+  },
+  {
+    id: 16,
+    nombre: 'Dependencias',
+    ruta: '/dashboard/dependencias',
+    xlink: '#dependencia'
+  },
+  {
+    id: 17,
+    nombre: 'Tipos Acciones',
+    ruta: '/dashboard/tipo_acciones',
+    xlink: '#tipocomunidad'
+  },
+  {
+    id: 18,
+    nombre: 'Medidas',
+    ruta: '/dashboard/medidas',
+    xlink: '#accion'
+  },
+  {
+    id: 19,
+    nombre: 'Concertaciones',
+    ruta: '/dashboard/concertaciones',
+    xlink: '#concertaciones'
+  },
+  {
+    id: 20,
+    nombre: 'Regionales',
+    ruta: '/dashboard/regionales',
+    xlink: '#regional'
+  },
+  {
+    id: 21,
+    nombre: 'Centros',
+    ruta: '/dashboard/centros',
+    xlink: '#school'
+  },
+  {
+    id: 22,
+    nombre: 'Actividades Economicas',
+    ruta: '/dashboard/actividades_economicas',
+    xlink: '#bank'
+  },
+  {
+    id: 23,
+    nombre: 'Fuentes de Financiacion',
+    ruta: '/dashboard/fuentes_financiacion',
+    xlink: '#finance'
+  },
+  {
+    id: 24,
+    nombre: 'Unidades Productivas',
+    ruta: '/dashboard/unidades_productivas',
+    xlink: '#empresa'
+  },
+  {
+    id: 25,
+    nombre: 'Planes de Negocio',
+    ruta: '/dashboard/planes_negocio',
+    xlink: '#plan'
+  }
+];
 </script>
 
 <template>
@@ -175,7 +183,8 @@ const rutasAtencion = [{
           aria-label="Close" id="cerrarSidebar"></button>
       </div>
       <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-        <ul class="nav flex-column mb-2">
+
+        <ul v-if="role == 'juridico'" class="nav flex-column mb-2">
           <h6
             class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-0 mb-1 text-body-secondary text-uppercase">
             <span>SEGURIDAD</span>
@@ -186,7 +195,8 @@ const rutasAtencion = [{
             </a>
           </h6>
           <li class="nav-item" v-for="ruta in rutasSeguridad" :key=ruta.id>
-            <router-link :to="ruta.ruta" class="nav-link d-flex align-items-center gap-2 active" aria-current="page">
+            <router-link :to="ruta.ruta" class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+              @click="cerrarSidebar()">
               <svg class="bi">
                 <use :xlink:href="ruta.xlink" />
               </svg>

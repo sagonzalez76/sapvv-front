@@ -46,9 +46,9 @@ const onSubmit = () => {
 
       </div> -->
 
-        <div class="col-md-10 mx-auto col-lg-5 px-1">
-          <form @submit.prevent="onSubmit" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
-            <div class="form-floating mb-3">
+        <div class="col-md-10 mx-auto col-lg-5 px-1 ">
+          <form @submit.prevent="onSubmit" class="p-4 p-md-5 border rounded-3 ">
+            <div class="form-floating mb-3 ">
               <input type="email" autocomplete="email" v-model="json.email" class="form-control" id="floatingInput"
                 placeholder="correo@correo.com" required>
               <label for="floatingInput">Correo Electronico</label>
@@ -177,7 +177,7 @@ img {
 
 .row img {
   width: 100%;
-  mask-image: linear-gradient(to top, transparent, white 15%);
+  mask-image: linear-gradient(to top, transparent, white 10%);
 
 }
 
@@ -194,5 +194,14 @@ img {
   #imagen4 {
     margin-block-start: 50px;
   }
+}
 
-}</style>
+form{
+    background-color: rgba(4, 131, 0, 0.09);
+
+}
+
+
+
+
+</style>

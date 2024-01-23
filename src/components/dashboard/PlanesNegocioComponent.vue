@@ -23,7 +23,7 @@ const mes = ('0' + (fecha.getMonth() + 1)).slice(-2);
 const dia = ('0' + fecha.getDate()).slice(-2);
 const fechamax = `${año}-${mes}-${dia}`;
 
-formData.value.type = "Unidad Productiva"
+formData.value.type = "Plan Negocio"
 
 
 onMounted(() => {
@@ -33,7 +33,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/productive_unity', {
+    await axios.get('http://localhost:8000/business_plans', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -229,27 +229,27 @@ const getEnterprise = async (id) => {
 
 const createEnterprise = async () => {
 
-    formData.value.type = "Unidad Productiva"
+    formData.value.type = "Plan Negocio"
     await axios.post('http://localhost:8000/enterprises', formData.value)
         .then(() => {
-            alert('Unidad Productiva Creada')
+            alert('Plan de Negocio Creada')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
             botonCerrarModal.click()
             refrescar()
             console.log(formData.value);
         })
         .catch((error) => {
-            alert('Unidad Productiva ya existe')
+            alert('Plan de Negocio ya existe')
             console.log(error)
         })
 }
 
 
 const editEnterprise = async (id) => {
-    formData.value.type = "Unidad Productiva"
+    formData.value.type = "Plan Negocio"
     await axios.put(`http://localhost:8000/enterprises/${id}`, formData.value)
         .then(() => {
-            alert('Unidad Productiva Actualizado')
+            alert('Plan de Negocio Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
             botonCerrarModal.click()
             refrescar()
@@ -265,7 +265,7 @@ const deleteEnterprise = async (id) => {
     await getEnterprise(id)
     await axios.delete('http://localhost:8000/enterprises/' + id)
         .then(() => {
-            alert('Unidad Productiva Eliminado')
+            alert('Plan de Negocio Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
             botonCerrarModal.click()
             // console.log(enterprises.value);
@@ -283,10 +283,10 @@ const deleteEnterprise = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h3>Unidades Productivas</h3>
+        <h3>Planes de Negocio</h3>
         <button type="button" class="btn rounded-0 btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearComunidadModal">Crear
-            Unidad Productiva</button>
+            Plan de Negocio</button>
         <!-- {{ enterprises }}  -->
     </div>
     <!-- {{ enterprises }} -->
@@ -298,16 +298,13 @@ const deleteEnterprise = async (id) => {
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-1">ID</th>
                     <th scope="col" class="col-auto">Nombre</th>
-                    <th scope="col" class="col-auto">Descripcion</th>
                     <th scope="col" class="col-auto">Zona</th>
-                    <th scope="col" class="col-auto">Direccion</th>
                     <th scope="col" class="col-auto">Sector Economico</th>
-                    <th scope="col" class="col-auto">Fecha Creacion </th>
                     <th scope="col" class="col-auto">Observaciones</th>
                     <th scope="col" class="col-auto">Mes</th>
-                    <th scope="col" class="col-auto">Fuente de Financiacion</th>
                     <th scope="col" class="col-auto">Centro de Formacion</th>
                     <th scope="col" class="col-auto">Actividad Economica</th>
+                    <th scope="col" class="col-auto">Fuente del Servicio</th>
 
                     <th scope="col" class="col-auto">Municipio</th>
                     <th scope="col" class="col-auto">Emprendedor</th>
@@ -324,20 +321,18 @@ const deleteEnterprise = async (id) => {
                     style="height: 100;">
                     <td class="py-1 ">{{ enterprise.id }}</td>
                     <td>{{ enterprise.name }}</td>
-                    <td>{{ enterprise.description }}</td>
                     <td>{{ enterprise.zone }}</td>
-                    <td>{{ enterprise.address }}</td>
                     <td>{{ enterprise.economic_sector }}</td>
-                    <td>{{ enterprise.creation_date }}</td>
                     <td>{{ enterprise.observation }}</td>
                     <td>{{ enterprise.month }}</td>
-                    <td>{{ enterprise.financialFounding.name }}</td>
                     <td>{{ enterprise.trainingCenter.name }}</td>
                     <td>{{ enterprise.economicActivity.name }}</td>
+                    <td>{{ enterprise.source_service }}</td>
 
                     <td>{{ enterprise.municipality.name }}</td>
                     <td>{{ enterprise.comunity.name }} {{ enterprise.comunity.lastname }}</td>
                     <td>{{ enterprise.user.name }} {{ enterprise.user.lastname }}</td>
+
 
 
                     <td>
@@ -366,7 +361,7 @@ const deleteEnterprise = async (id) => {
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content modal-dialog-scrollable">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Unidad Productiva </h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Plan de Negocio </h1>
                         <!-- {{
                             formData }} -->
                         <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
@@ -375,16 +370,9 @@ const deleteEnterprise = async (id) => {
                     <form class="modal-body" @submit.prevent="createEnterprise">
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Unidad Productiva 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Comunidad 1"
                                 v-model="formData.name" required>
                             <label for="floatingInputGrid">Nombre de la Empresa </label>
-
-                        </div>
-
-                        <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Unidad Productiva 1"
-                                v-model="formData.description" required>
-                            <label for="floatingInputGrid">Descripcion de la Empresa </label>
 
                         </div>
 
@@ -398,14 +386,6 @@ const deleteEnterprise = async (id) => {
 
                             <label for="floatingSelectGrid">Zona</label>
                         </div>
-
-                        <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Unidad Productiva 1"
-                                v-model="formData.address" required>
-                            <label for="floatingInputGrid">Direccion de la Empresa </label>
-
-                        </div>
-
 
                         <div class="form-floating my-2">
                             <select class="form-select" id="floatingSelectGrid" v-model="formData.economic_sector" required>
@@ -428,18 +408,28 @@ const deleteEnterprise = async (id) => {
                         </div>
 
                         <div class="form-floating my-2">
-                            <input type="date" class="form-control" id="floatingInputGrid" placeholder="Origen 1"
-                                :max=fechamax v-model="formData.creation_date" required>
-                            <label for="floatingInputGrid">Fecha Creacion </label>
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.source_service" required>
+                                <option disabled selected>Selecciona una Fuente</option>
+                                <option value="Resultado de Formacion SENA" class="text-capitalize">Resultado de
+                                    Formacion SENA</option>
+                                <option value="Solicitud Ente Territorial" class="text-capitalize">Solicitud Ente
+                                    Territorial</option>
+                                <option value="Remision otras Entidades" class="text-capitalize">Remision otras
+                                    Entidades</option>
+                                <option value="Interes Particular" class="text-capitalize">Interes Particular</option>
 
+                            </select>
+
+                            <label for="floatingSelectGrid"> Fuente del Servicio</label>
                         </div>
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Unidad Productiva 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Comunidad 1"
                                 v-model="formData.observation" required>
                             <label for="floatingInputGrid">Observacion </label>
 
                         </div>
+
 
 
                         <div class="form-floating my-2">
@@ -463,32 +453,17 @@ const deleteEnterprise = async (id) => {
                             <label for="floatingSelectGrid">Mes</label>
                         </div>
 
-
-                        <div class="form-floating my-2">
-
-
-                            <select class="form-select h-auto" id="floatingSelectGrid"
-                                v-model="formData.financialFoundingId" required>
-                                <option disabled selected>Selecciona una funete de financiacion</option>
-                                <option v-for="founding in foundings" :key="founding.id" :value="founding.id"
-                                    class="text-capitalize">{{ founding.name }}</option>
-
-                            </select>
-                            <label for="floatingSelectGrid">Asocia la Unidad Productiva a una Fuente de Financiacion
-                            </label>
-                        </div>
-
                         <div class="form-floating my-2">
 
 
                             <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.trainingCenterId"
                                 required>
-                                <option disabled selected>Selecciona una Centro de Formacion</option>
+                                <option disabled selected>Selecciona un Centro de Formacion</option>
                                 <option v-for="center in centers" :key="center.id" :value="center.id"
                                     class="text-capitalize">{{ center.name }}</option>
 
                             </select>
-                            <label for="floatingSelectGrid">Asocia la Unidad Productiva a un Centro de Formacion
+                            <label for="floatingSelectGrid">Asocia el Plan de Negocio a un Centro de Formacion
                             </label>
                         </div>
 
@@ -503,7 +478,7 @@ const deleteEnterprise = async (id) => {
                                     class="text-capitalize">{{ comunity.name }} {{ comunity.lastname }}</option>
 
                             </select>
-                            <label for="floatingSelectGrid">Asocia la Unidad Productiva a un Emprendedor
+                            <label for="floatingSelectGrid">Asocia el Plan de Negocio a un Emprendedor
                             </label>
                         </div>
                         <div class="form-floating my-2">
@@ -516,7 +491,7 @@ const deleteEnterprise = async (id) => {
                                     class="text-capitalize">{{ activity.name }}</option>
 
                             </select>
-                            <label for="floatingSelectGrid">Asocia la Unidad Productiva a una Actividad Economica
+                            <label for="floatingSelectGrid">Asocia el Plan de Negocio a una Actividad Economica
                             </label>
                         </div>
                         <div class="form-floating my-2">
@@ -529,7 +504,7 @@ const deleteEnterprise = async (id) => {
                                     :value="municipality.id" class="text-capitalize">{{ municipality.name }}</option>
 
                             </select>
-                            <label for="floatingSelectGrid">Asocia la Unidad Productiva a un Municipio
+                            <label for="floatingSelectGrid">Asocia el Plan de Negocio a un Municipio
                             </label>
                         </div>
 
@@ -543,15 +518,14 @@ const deleteEnterprise = async (id) => {
                                     user.name }} {{ user.lastname }}</option>
 
                             </select>
-                            <label for="floatingSelectGrid">Asocia la Unidad Productiva a un Dinamizador
+                            <label for="floatingSelectGrid">Asocia el Plan de Negocio a un Dinamizador
                             </label>
                         </div>
 
 
                         <div class="modal-footer">
                             <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <button type="submit" class="btn rounded-0 btn-success">Crear
-                                Unidad Productiva</button>
+                            <button type="submit" class="btn rounded-0 btn-success">Crear Plan de Negocio </button>
                         </div>
 
                     </form>
@@ -568,7 +542,7 @@ const deleteEnterprise = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Unidad Productiva <br>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Comunidad <br>
                         </h1>
                         <button type="button" id="cerrarBotonActualizar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -577,16 +551,9 @@ const deleteEnterprise = async (id) => {
                         <div class="modal-body">
 
                             <div class="form-floating my-2">
-                                <input type="text" class="form-control" id="floatingInputGrid"
-                                    placeholder="Unidad Productiva 1" v-model="formData.name" required>
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Comunidad 1"
+                                    v-model="formData.name" required>
                                 <label for="floatingInputGrid">Nombre de la Empresa </label>
-
-                            </div>
-
-                            <div class="form-floating my-2">
-                                <input type="text" class="form-control" id="floatingInputGrid"
-                                    placeholder="Unidad Productiva 1" v-model="formData.description" required>
-                                <label for="floatingInputGrid">Descripcion de la Empresa </label>
 
                             </div>
 
@@ -602,17 +569,9 @@ const deleteEnterprise = async (id) => {
                             </div>
 
                             <div class="form-floating my-2">
-                                <input type="text" class="form-control" id="floatingInputGrid"
-                                    placeholder="Unidad Productiva 1" v-model="formData.address" required>
-                                <label for="floatingInputGrid">Direccion de la Empresa </label>
-
-                            </div>
-
-
-                            <div class="form-floating my-2">
                                 <select class="form-select" id="floatingSelectGrid" v-model="formData.economic_sector"
                                     required>
-                                    <option disabled selected>Selecciona la Zona</option>
+                                    <option disabled selected>Selecciona el Sector Economico</option>
                                     <option value="Sector Agropecuario" class="text-capitalize">Sector Agropecuario</option>
                                     <option value="Sector Servicios" class="text-capitalize">Sector Servicios</option>
                                     <option value="Sector Industrial" class="text-capitalize">Sector Industrial</option>
@@ -628,22 +587,33 @@ const deleteEnterprise = async (id) => {
 
                                 </select>
 
-                                <label for="floatingSelectGrid">Zona</label>
+                                <label for="floatingSelectGrid">Sector Economico</label>
                             </div>
 
                             <div class="form-floating my-2">
-                                <input type="date" class="form-control" id="floatingInputGrid" placeholder="Origen 1"
-                                    :max=fechamax v-model="formData.creation_date" required>
-                                <label for="floatingInputGrid">Fecha Creacion </label>
+                                <select class="form-select" id="floatingSelectGrid" v-model="formData.source_service"
+                                    required>
+                                    <option disabled selected>Selecciona una Fuente</option>
+                                    <option value="Resultado de Formacion SENA" class="text-capitalize">Resultado de
+                                        Formacion SENA</option>
+                                    <option value="Solicitud Ente Territorial" class="text-capitalize">Solicitud Ente
+                                        Territorial</option>
+                                    <option value="Remision otras Entidades" class="text-capitalize">Remision otras
+                                        Entidades</option>
+                                    <option value="Interes Particular" class="text-capitalize">Interes Particular</option>
 
+                                </select>
+
+                                <label for="floatingSelectGrid"> Fuente del Servicio</label>
                             </div>
 
                             <div class="form-floating my-2">
-                                <input type="text" class="form-control" id="floatingInputGrid"
-                                    placeholder="Unidad Productiva 1" v-model="formData.observation" required>
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Comunidad 1"
+                                    v-model="formData.observation" required>
                                 <label for="floatingInputGrid">Observacion </label>
 
                             </div>
+
 
 
                             <div class="form-floating my-2">
@@ -667,51 +637,21 @@ const deleteEnterprise = async (id) => {
                                 <label for="floatingSelectGrid">Mes</label>
                             </div>
 
-
-
-                            <!-- <div class="form-floating my-2">
-                                <select class="form-select h-auto" id="floatingSelectGrid"
-                                    v-model="formData.municipalityIds" required multiple>
-                                    <option disabled>Selecciona los municipios:</option>
-                                    <option v-for="municipality in municipalitys" :key="municipality.id"
-                                        :value="municipality.id" class="text-capitalize"
-                                        :selected="formData.municipalitys && formData.municipalitys.some(item => item.id === municipality.id)">
-                                        {{ municipality.name }}
-                                    </option>
-
-                                </select>
-
-
-                                <label for="floatingSelectGrid">Asocia la unidad productiva a uno o mas municipios</label>
-                            </div> -->
-
-                            <div class="form-floating my-2">
-
-
-                                <select class="form-select h-auto" id="floatingSelectGrid"
-                                    v-model="formData.financialFoundingId" required>
-                                    <option disabled selected>Selecciona una fuente de financiacion</option>
-                                    <option v-for="founding in foundings" :key="founding.id" :value="founding.id"
-                                        class="text-capitalize">{{ founding.name }}</option>
-
-                                </select>
-                                <label for="floatingSelectGrid">Asocia la Unidad Productiva a una Fuente de Financiacion
-                                </label>
-                            </div>
-
                             <div class="form-floating my-2">
 
 
                                 <select class="form-select h-auto" id="floatingSelectGrid"
                                     v-model="formData.trainingCenterId" required>
-                                    <option disabled selected>Selecciona una Centro de Formacion</option>
+                                    <option disabled selected>Selecciona un Centro de Formacion</option>
                                     <option v-for="center in centers" :key="center.id" :value="center.id"
                                         class="text-capitalize">{{ center.name }}</option>
 
                                 </select>
-                                <label for="floatingSelectGrid">Asocia la Unidad Productiva a un Centro de Formacion
+                                <label for="floatingSelectGrid">Asocia el Plan de Negocio a un Centro de Formacion
                                 </label>
                             </div>
+
+
                             <div class="form-floating my-2">
 
 
@@ -719,10 +659,10 @@ const deleteEnterprise = async (id) => {
                                     required>
                                     <option disabled selected>Selecciona un Emprendedor</option>
                                     <option v-for="comunity in comunitys" :key="comunity.id" :value="comunity.id"
-                                        class="text-capitalize">{{ comunity.name }}</option>
+                                        class="text-capitalize">{{ comunity.name }} {{ comunity.lastname }}</option>
 
                                 </select>
-                                <label for="floatingSelectGrid">Asocia la Unidad Productiva a un Emprendedor
+                                <label for="floatingSelectGrid">Asocia el Plan de Negocio a un Emprendedor
                                 </label>
                             </div>
                             <div class="form-floating my-2">
@@ -735,7 +675,7 @@ const deleteEnterprise = async (id) => {
                                         class="text-capitalize">{{ activity.name }}</option>
 
                                 </select>
-                                <label for="floatingSelectGrid">Asocia la Unidad Productiva a una Actividad Economica
+                                <label for="floatingSelectGrid">Asocia el Plan de Negocio a una Actividad Economica
                                 </label>
                             </div>
                             <div class="form-floating my-2">
@@ -748,23 +688,10 @@ const deleteEnterprise = async (id) => {
                                         :value="municipality.id" class="text-capitalize">{{ municipality.name }}</option>
 
                                 </select>
-                                <label for="floatingSelectGrid">Asocia la Unidad Productiva a un Municipio
+                                <label for="floatingSelectGrid">Asocia el Plan de Negocio a un Municipio
                                 </label>
                             </div>
-                            <div class="form-floating my-2">
 
-
-                                <select class="form-select h-auto" id="floatingSelectGrid"
-                                    v-model="formData.economicActivityId" required>
-                                    <option disabled selected>Selecciona un Dinamizador</option>
-                                    <option v-for="activity in activitys" :key="activity.id" :value="activity.id"
-                                        class="text-capitalize">{{
-                                            activity.name }}</option>
-
-                                </select>
-                                <label for="floatingSelectGrid">Asocia la Unidad Productiva a una Actividad Economica
-                                </label>
-                            </div>
 
                             <div class="form-floating my-2">
 
@@ -776,7 +703,7 @@ const deleteEnterprise = async (id) => {
                                         user.name }} {{ user.lastname }}</option>
 
                                 </select>
-                                <label for="floatingSelectGrid">Asocia la Unidad Productiva a un Dinamizador
+                                <label for="floatingSelectGrid">Asocia el Plan de Negocio a un Dinamizador
                                 </label>
                             </div>
 
@@ -800,7 +727,7 @@ const deleteEnterprise = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar esta unidad productiva?
+                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este comunidad?
                         </h1>
                         <button type="button" id="cerrarBotonEliminar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>

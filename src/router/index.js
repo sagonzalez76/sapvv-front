@@ -20,6 +20,8 @@ import TipoComunidades from '../components/dashboard/TipoComunidadesComponent.vu
 import TipoAcciones from '../components/dashboard/TipoAccionesComponent.vue'
 import FuentesFinanciacion from '../components/dashboard/FuentesFinanciacionComponent.vue'
 import UnidadesProductivas from '../components/dashboard/UnidadesProductivasComponent.vue'
+import PlanesNegocio from '../components/dashboard/PlanesNegocioComponent.vue'
+
 
 import Comunidades from '../components/dashboard/ComunidadesComponent.vue'
 import Titulares from '../components/dashboard/TitularesComponent.vue'
@@ -47,51 +49,41 @@ const router = createRouter({
       component: Dashboard,
       meta: { requiresAuth: true, roles: ['student', 'director', 'juridico', 'enlace', 'dinamizador'] },
       children: [
-        { path: '/dashboard/usuarios', component: Usuarios },
+        {
+          path: '/dashboard/usuarios',component: Usuarios
+        },
         { path: '/dashboard/roles', component: Roles },
         { path: '/dashboard/programas', component: Programas },
         { path: '/dashboard/acciones', component: Acciones },
         { path: '/dashboard/evidencias', component: Evidencias },
-
 
         { path: '/dashboard/medidas', component: Medidas },
         { path: '/dashboard/emisores', component: Emisores },
         { path: '/dashboard/departamentos', component: Departamentos },
         { path: '/dashboard/dependencias', component: Dependencias },
 
-
         { path: '/dashboard/municipios', component: Municipios },
         { path: '/dashboard/regionales', component: Regionales },
-
 
         { path: '/dashboard/actividades_economicas', component: ActividadesEconomicas },
         { path: '/dashboard/fuentes_financiacion', component: FuentesFinanciacion },
         { path: '/dashboard/unidades_productivas', component: UnidadesProductivas },
-
+        { path: '/dashboard/planes_negocio', component: PlanesNegocio },
 
         { path: '/dashboard/tipo_comunidades', component: TipoComunidades },
         { path: '/dashboard/tipo_acciones', component: TipoAcciones },
         { path: '/dashboard/centros', component: Centros },
 
-
         { path: '/dashboard/comunidades', component: Comunidades },
         { path: '/dashboard/titulares', component: Titulares },
         { path: '/dashboard/emprendedores', component: Emprendedores },
 
-        
         { path: '/dashboard/representantes', component: Representantes },
         { path: '/dashboard/beneficiarios', component: Beneficiarios },
         { path: '/dashboard/origenes', component: Origenes },
         { path: '/dashboard/compromisos', component: Compromisos },
 
-
-
         { path: '/dashboard/concertaciones', component: Concertaciones },
-       
-
-
-
-
 
       ],
     },

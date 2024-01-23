@@ -16,7 +16,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-back.onrender.com/beneficiarys', {
+    await axios.get('http://localhost:8000/beneficiarys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -32,7 +32,7 @@ const refrescar = async () => {
             console.log('Error en refrescar', error)
         })
 
-    await axios.get('https://sapvv-back.onrender.com/holders', {
+    await axios.get('http://localhost:8000/holders', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -54,7 +54,7 @@ const refrescar = async () => {
 
 const getBeneficiary = async (id) => {
 
-    await axios.get('https://sapvv-back.onrender.com/beneficiarys/' + id, {
+    await axios.get('http://localhost:8000/beneficiarys/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -69,7 +69,7 @@ const getBeneficiary = async (id) => {
 
 const createBeneficiary = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-back.onrender.com/beneficiarys', formData.value)
+    await axios.post('http://localhost:8000/beneficiarys', formData.value)
         .then(() => {
             alert('Beneficiario Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -84,7 +84,7 @@ const createBeneficiary = async () => {
 
 const editBeneficiary = async (id) => {
 
-    await axios.put(`https://sapvv-back.onrender.com/beneficiarys/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/beneficiarys/${id}`, formData.value)
         .then(() => {
             alert('Beneficiario Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -99,7 +99,7 @@ const editBeneficiary = async (id) => {
 
 const deleteBeneficiary = async (id) => {
     await getBeneficiary(id)
-    await axios.delete('https://sapvv-back.onrender.com/beneficiarys/' + id)
+    await axios.delete('http://localhost:8000/beneficiarys/' + id)
         .then(() => {
             alert('Beneficiario Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -128,7 +128,7 @@ const deleteBeneficiary = async (id) => {
 
 
     <div class="table-responsive small my-4 rounded">
-        <table id="" class=" table table-dark table-hover table-striped  stable-sm ">
+        <table id="" class=" table bg-secondary table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-auto">Nombre</th>
@@ -177,7 +177,8 @@ const deleteBeneficiary = async (id) => {
 
         <div class="modal fade" id="crearBeneficiarioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Beneficiario </h1>

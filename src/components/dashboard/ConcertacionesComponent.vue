@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-back.onrender.com/concertations', {
+    await axios.get('http://localhost:8000/concertations', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 const getConcertation = async (id) => {
 
-    await axios.get('https://sapvv-back.onrender.com/concertations/' + id, {
+    await axios.get('http://localhost:8000/concertations/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ const getConcertation = async (id) => {
 
 const createConcertation = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-back.onrender.com/concertations', formData.value)
+    await axios.post('http://localhost:8000/concertations', formData.value)
         .then(() => {
             alert('Concertacion Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -67,7 +67,7 @@ const createConcertation = async () => {
 
 const editConcertation = async (id) => {
 
-    await axios.put(`https://sapvv-back.onrender.com/concertations/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/concertations/${id}`, formData.value)
         .then(() => {
             alert('Concertacion Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -82,7 +82,7 @@ const editConcertation = async (id) => {
 
 const deleteConcertation = async (id) => {
     await getConcertation(id)
-    await axios.delete('https://sapvv-back.onrender.com/concertations/' + id)
+    await axios.delete('http://localhost:8000/concertations/' + id)
         .then(() => {
             alert('Concertacion Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -111,7 +111,7 @@ const deleteConcertation = async (id) => {
 
 
     <div class="table-responsive small my-4 rounded">
-        <table id="example" class=" table table-dark table-hover table-striped  stable-sm ">
+        <table id="example" class=" table bg-secondary table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-1">ID</th>
@@ -150,7 +150,8 @@ const deleteConcertation = async (id) => {
 
         <div class="modal fade" id="crearConcertacionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Concertacion </h1>

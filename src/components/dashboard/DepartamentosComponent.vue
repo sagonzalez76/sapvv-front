@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-back.onrender.com/departments', {
+    await axios.get('http://localhost:8000/departments', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 const getProgram = async (id) => {
 
-    await axios.get('https://sapvv-back.onrender.com/departments/' + id, {
+    await axios.get('http://localhost:8000/departments/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ const getProgram = async (id) => {
 
 const createProgram = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-back.onrender.com/departments', formData.value)
+    await axios.post('http://localhost:8000/departments', formData.value)
         .then(() => {
             alert('Departamento Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -67,7 +67,7 @@ const createProgram = async () => {
 
 const editProgram = async (id) => {
 
-    await axios.put(`https://sapvv-back.onrender.com/departments/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/departments/${id}`, formData.value)
         .then(() => {
             alert('Departamento Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -82,7 +82,7 @@ const editProgram = async (id) => {
 
 const deleteProgram = async (id) => {
     await getProgram(id)
-    await axios.delete('https://sapvv-back.onrender.com/departments/' + id)
+    await axios.delete('http://localhost:8000/departments/' + id)
         .then(() => {
             alert('Departamento Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -111,7 +111,7 @@ const deleteProgram = async (id) => {
 
 
     <div class="table-responsive small my-4 rounded">
-        <table id="example" class=" table table-dark table-hover table-striped  stable-sm ">
+        <table id="example" class=" table bg-secondary table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-1">ID</th>
@@ -146,7 +146,8 @@ const deleteProgram = async (id) => {
 
         <div class="modal fade" id="crearDepartamentoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Departamento </h1>

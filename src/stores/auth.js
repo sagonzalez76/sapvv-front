@@ -14,10 +14,10 @@ export const useAuthStore = defineStore('auth', () => {
     const submitForm = async (json) => {
         signIn.value = true
 
-        await axios.post('https://sapvv-back.onrender.com/signIn', json)
+        await axios.post('http://localhost:8000/signIn', json)
 
             .then((response) => {
-                router.push('/dashboard/programas')
+                router.push('/dashboard/medidas')
                 localStorage.setItem('token', response.data.tokenSession)
                 token.value = localStorage.getItem('token')
                 decodedToken()
@@ -41,6 +41,7 @@ export const useAuthStore = defineStore('auth', () => {
 
                 const decodedToken = jwt_decode(token.value);
                 tokenRole.value = decodedToken.role
+                console.log(tokenRole.value);
 
             } catch (error) {
                 console.error('Error al decodificar el token: ', error);

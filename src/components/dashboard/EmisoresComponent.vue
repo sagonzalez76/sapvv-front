@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-back.onrender.com/emitters', {
+    await axios.get('http://localhost:8000/emitters', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -37,7 +37,7 @@ const refrescar = async () => {
 
 const getEmitter = async (id) => {
 
-    await axios.get('https://sapvv-back.onrender.com/emitters/' + id, {
+    await axios.get('http://localhost:8000/emitters/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ const getEmitter = async (id) => {
 
 const createEmitter = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-back.onrender.com/emitters', formData.value)
+    await axios.post('http://localhost:8000/emitters', formData.value)
         .then(() => {
             alert('Emisor Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -67,7 +67,7 @@ const createEmitter = async () => {
 
 const editEmitter = async (id) => {
 
-    await axios.put(`https://sapvv-back.onrender.com/emitters/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/emitters/${id}`, formData.value)
         .then(() => {
             alert('Emisor Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -82,7 +82,7 @@ const editEmitter = async (id) => {
 
 const deleteEmitter = async (id) => {
     await getEmitter(id)
-    await axios.delete('https://sapvv-back.onrender.com/emitters/' + id)
+    await axios.delete('http://localhost:8000/emitters/' + id)
         .then(() => {
             alert('Emisor Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -111,7 +111,7 @@ const deleteEmitter = async (id) => {
 
 
     <div class="table-responsive small my-4 rounded">
-        <table id="example" class=" table table-dark table-hover table-striped  stable-sm ">
+        <table id="example" class=" table bg-secondary table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-auto">Nombre Emisor</th>
@@ -148,7 +148,8 @@ const deleteEmitter = async (id) => {
 
         <div class="modal fade" id="crearEmisorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Emisor </h1>

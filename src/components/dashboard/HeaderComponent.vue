@@ -70,7 +70,7 @@
 .navbar-brand {
   padding-top: .75rem;
   padding-bottom: .75rem;
-  background-color: rgba(4, 125, 0, 0.998);
+  background: linear-gradient(to right, rgba(4, 125, 0, 0.998), rgba(4, 53, 3, 0.998));
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
 }
 

@@ -17,7 +17,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-back.onrender.com/training_centers', {
+    await axios.get('http://localhost:8000/training_centers', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -35,7 +35,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('https://sapvv-back.onrender.com/regionals', {
+    await axios.get('http://localhost:8000/regionals', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -55,7 +55,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get(`https://sapvv-back.onrender.com/municipalitys`, {
+    await axios.get(`http://localhost:8000/municipalitys`, {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -78,7 +78,7 @@ const refrescar = async () => {
 
 const getDepartmentMunicipalitys = async () => {
 
-    // await axios.get(`https://sapvv-back.onrender.com/departments/${formData.value.regionalId}/municipalitys`, {
+    // await axios.get(`http://localhost:8000/departments/${formData.value.regionalId}/municipalitys`, {
 
     //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -101,7 +101,7 @@ const getDepartmentMunicipalitys = async () => {
 
 const getTrainingCenter = async (id) => {
 
-    await axios.get('https://sapvv-back.onrender.com/training_centers/' + id, {
+    await axios.get('http://localhost:8000/training_centers/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -117,7 +117,7 @@ const getTrainingCenter = async (id) => {
 
 const createTrainingCenter = async () => {
     // console.log(formData.value);
-    await axios.post('https://sapvv-back.onrender.com/training_centers', formData.value)
+    await axios.post('http://localhost:8000/training_centers', formData.value)
         .then(() => {
             alert('Centro de Formacion Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -132,7 +132,7 @@ const createTrainingCenter = async () => {
 
 const editTrainingCenter = async (id) => {
 
-    await axios.put(`https://sapvv-back.onrender.com/training_centers/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/training_centers/${id}`, formData.value)
         .then(() => {
             alert('Centro de Formacion Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -147,7 +147,7 @@ const editTrainingCenter = async (id) => {
 
 const deleteTrainingCenter = async (id) => {
     await getTrainingCenter(id)
-    await axios.delete('https://sapvv-back.onrender.com/training_centers/' + id)
+    await axios.delete('http://localhost:8000/training_centers/' + id)
         .then(() => {
             alert('Centro de Formacion Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -176,13 +176,13 @@ const deleteTrainingCenter = async (id) => {
 
 
     <div class="table-responsive small my-4 rounded">
-        <table id="" class=" table table-dark table-hover table-striped  stable-sm ">
+        <table id="" class=" table bg-secondary table-hover table-striped  stable-sm ">
             <thead class="">
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-1">ID</th>
 
                     <th scope="col" class="col-auto">Codigo</th>
-                    <th scope="col" class="col-1">Nombre</th>
+                    <th scope="col" class="col-auto">Nombre</th>
                     <th scope="col" class="col-auto">Regional a la que pertenece</th>
                     <!-- <th scope="col" class="col-auto">Ubicacion</th> -->
 
@@ -225,7 +225,8 @@ const deleteTrainingCenter = async (id) => {
 
         <div class="modal fade" id="crearMunicipioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Centro de Formacion </h1>

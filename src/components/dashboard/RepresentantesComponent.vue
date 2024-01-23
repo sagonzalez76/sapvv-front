@@ -16,7 +16,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-back.onrender.com/agents', {
+    await axios.get('http://localhost:8000/agents', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -34,7 +34,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('https://sapvv-back.onrender.com/comunitys', {
+    await axios.get('http://localhost:8000/comunitys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -56,7 +56,7 @@ const refrescar = async () => {
 
 const getAgent = async (id) => {
 
-    await axios.get('https://sapvv-back.onrender.com/agents/' + id, {
+    await axios.get('http://localhost:8000/agents/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -71,7 +71,7 @@ const getAgent = async (id) => {
 
 const createAgent = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-back.onrender.com/agents', formData.value)
+    await axios.post('http://localhost:8000/agents', formData.value)
         .then(() => {
             alert('Representante Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -86,7 +86,7 @@ const createAgent = async () => {
 
 const editAgent = async (id) => {
 
-    await axios.put(`https://sapvv-back.onrender.com/agents/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/agents/${id}`, formData.value)
         .then(() => {
             alert('Representante Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -101,7 +101,7 @@ const editAgent = async (id) => {
 
 const deleteAgent = async (id) => {
     await getAgent(id)
-    await axios.delete('https://sapvv-back.onrender.com/agents/' + id)
+    await axios.delete('http://localhost:8000/agents/' + id)
         .then(() => {
             alert('Representante Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -130,7 +130,7 @@ const deleteAgent = async (id) => {
 
 
     <div class="table-responsive small my-4 rounded">
-        <table id="" class=" table table-dark table-hover table-striped  stable-sm ">
+        <table id="" class=" table bg-secondary table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-1">ID</th>
@@ -177,7 +177,8 @@ const deleteAgent = async (id) => {
 
         <div class="modal fade" id="crearRepresentanteModal" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Representante </h1>

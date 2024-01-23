@@ -16,7 +16,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-back.onrender.com/regionals', {
+    await axios.get('http://localhost:8000/regionals', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -34,7 +34,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('https://sapvv-back.onrender.com/departments', {
+    await axios.get('http://localhost:8000/departments', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -56,7 +56,7 @@ const refrescar = async () => {
 
 const getRegional = async (id) => {
 
-    await axios.get('https://sapvv-back.onrender.com/regionals/' + id, {
+    await axios.get('http://localhost:8000/regionals/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -71,7 +71,7 @@ const getRegional = async (id) => {
 
 const createRegional = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-back.onrender.com/regionals', formData.value)
+    await axios.post('http://localhost:8000/regionals', formData.value)
         .then(() => {
             alert('Regional Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -86,7 +86,7 @@ const createRegional = async () => {
 
 const editRegional = async (id) => {
 
-    await axios.put(`https://sapvv-back.onrender.com/regionals/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/regionals/${id}`, formData.value)
         .then(() => {
             alert('Regional Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -101,7 +101,7 @@ const editRegional = async (id) => {
 
 const deleteRegional = async (id) => {
     await getRegional(id)
-    await axios.delete('https://sapvv-back.onrender.com/regionals/' + id)
+    await axios.delete('http://localhost:8000/regionals/' + id)
         .then(() => {
             alert('Regional Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -130,7 +130,7 @@ const deleteRegional = async (id) => {
 
 
     <div class="table-responsive small my-4 rounded">
-        <table id="" class=" table table-dark table-hover table-striped  stable-sm ">
+        <table id="" class=" table bg-secondary table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-1">ID</th>
@@ -168,7 +168,8 @@ const deleteRegional = async (id) => {
 
         <div class="modal fade" id="crearRegionalModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Regional </h1>

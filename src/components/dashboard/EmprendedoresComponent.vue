@@ -20,7 +20,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('https://sapvv-back.onrender.com/entrepreneurs/', {
+    await axios.get('http://localhost:8000/entrepreneurs/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -39,7 +39,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('https://sapvv-back.onrender.com/municipalitys/', {
+    await axios.get('http://localhost:8000/municipalitys/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -60,7 +60,7 @@ const refrescar = async () => {
 
 const getComunity = async (id) => {
 
-    await axios.get('https://sapvv-back.onrender.com/entrepreneurs/' + id, {
+    await axios.get('http://localhost:8000/entrepreneurs/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -75,15 +75,15 @@ const getComunity = async (id) => {
 
 const createComunity = async () => {
     console.log(formData.value);
-    await axios.post('https://sapvv-back.onrender.com/comunitys', formData.value)
+    await axios.post('http://localhost:8000/comunitys', formData.value)
         .then(() => {
-            alert('Titular Creado')
+            alert('Emprendedor Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
             botonCerrarModal.click()
             refrescar()
         })
         .catch((error) => {
-            alert('Titular ya existe')
+            alert('Emprendedor ya existe')
             console.log(error)
         })
 }
@@ -91,9 +91,9 @@ const createComunity = async () => {
 
 const editComunity = async (id) => {
 
-    await axios.put(`https://sapvv-back.onrender.com/comunitys/${id}`, formData.value)
+    await axios.put(`http://localhost:8000/comunitys/${id}`, formData.value)
         .then(() => {
-            alert('Titular Actualizado')
+            alert('Emprendedor Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
             botonCerrarModal.click()
             refrescar()
@@ -107,9 +107,9 @@ const editComunity = async (id) => {
 
 const deleteComunity = async (id) => {
     await getComunity(id)
-    await axios.delete('https://sapvv-back.onrender.com/comunitys/' + id)
+    await axios.delete('http://localhost:8000/comunitys/' + id)
         .then(() => {
-            alert('Titular Eliminado')
+            alert('Emprendedor Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
             botonCerrarModal.click()
             // console.log(comunitys.value);
@@ -127,18 +127,18 @@ const deleteComunity = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h3>Titulares</h3>
+        <h3>Emprendedores</h3>
         <!-- {{ formData }} -->
         <button type="button" class="btn rounded-0 btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearTitularModal">Crear
-            Titular</button>
+            Emprendedor</button>
         <!-- {{ comunitys }}  -->
     </div>
     <!-- {{ comunitys }} -->
 
 
     <div class="table-responsive small my-4 rounded">
-        <table id="" class=" table table-dark table-hover table-striped  stable-sm ">
+        <table id="" class=" table bg-secondary table-hover table-striped  stable-sm ">
             <thead>
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-auto">Nombre </th>
@@ -193,7 +193,7 @@ const deleteComunity = async (id) => {
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content modal-dialog-scrollable">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Titular </h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Emprendedor </h1>
                         <!-- {{
                             formData }} -->
                         <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
@@ -202,15 +202,15 @@ const deleteComunity = async (id) => {
                     <form class="modal-body" @submit.prevent="createComunity()">
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Emprendedor 1"
                                 v-model="formData.name" required>
-                            <label for="floatingInputGrid">Nombre del Titular </label>
+                            <label for="floatingInputGrid">Nombre del Emprendedor </label>
 
                         </div>
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Emprendedor 1"
                                 v-model="formData.lastname" required>
-                            <label for="floatingInputGrid">Apellido del Titular </label>
+                            <label for="floatingInputGrid">Apellido del Emprendedor </label>
 
                         </div>
 
@@ -230,9 +230,9 @@ const deleteComunity = async (id) => {
                         </div>
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Emprendedor 1"
                                 v-model="formData.id_number" required>
-                            <label for="floatingInputGrid">Numero de Identificacion del Titular </label>
+                            <label for="floatingInputGrid">Numero de Identificacion del Emprendedor </label>
 
                         </div>
 
@@ -273,27 +273,27 @@ const deleteComunity = async (id) => {
                         </div>
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Emprendedor 1"
                                 v-model="formData.phone" required>
                             <label for="floatingInputGrid">Telefono/Celular del Emprendedor </label>
 
                         </div>
                         <div class="form-floating my-2">
-                            <input type="email" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                            <input type="email" class="form-control" id="floatingInputGrid" placeholder="Emprendedor 1"
                                 v-model="formData.email" required>
                             <label for="floatingInputGrid">Correo Electronico del Emprendedor </label>
 
                         </div>
                         <div class="form-floating my-2">
-                            <input type="number" class="form-control" id="floatingInputGrid" placeholder="Titular 1" min="0"
-                                max="120" v-model="formData.age" required>
+                            <input type="number" class="form-control" id="floatingInputGrid" placeholder="Emprendedor 1"
+                                min="0" max="120" v-model="formData.age" required>
                             <label for="floatingInputGrid">Edad del Emprendedor </label>
 
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <button type="submit" class="btn rounded-0 btn-success">Crear Titular</button>
+                            <button type="submit" class="btn rounded-0 btn-success">Crear Emprendedor</button>
                         </div>
 
 
@@ -311,7 +311,7 @@ const deleteComunity = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Titular <br>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Emprendedor <br>
                             {{ formData }}
                         </h1>
                         <button type="button" id="cerrarBotonActualizar" class="btn rounded-0-close" data-bs-dismiss="modal"
@@ -320,15 +320,15 @@ const deleteComunity = async (id) => {
                     <form class="modal-body" @submit.prevent="editComunity(formData.id)">
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Emprendedor 1"
                                 v-model="formData.name" required>
-                            <label for="floatingInputGrid">Nombre del Titular </label>
+                            <label for="floatingInputGrid">Nombre del Emprendedor </label>
 
                         </div>
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Emprendedor 1"
                                 v-model="formData.lastname" required>
-                            <label for="floatingInputGrid">Apellido del Titular </label>
+                            <label for="floatingInputGrid">Apellido del Emprendedor </label>
 
                         </div>
 
@@ -348,9 +348,9 @@ const deleteComunity = async (id) => {
                         </div>
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Emprendedor 1"
                                 v-model="formData.id_number" required>
-                            <label for="floatingInputGrid">Numero de Identificacion del Titular </label>
+                            <label for="floatingInputGrid">Numero de Identificacion del Emprendedor </label>
 
                         </div>
 
@@ -390,19 +390,19 @@ const deleteComunity = async (id) => {
                         </div>
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Emprendedor 1"
                                 v-model="formData.phone" required>
                             <label for="floatingInputGrid">Telefono/Celular del Emprendedor </label>
 
                         </div>
                         <div class="form-floating my-2">
-                            <input type="email" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                            <input type="email" class="form-control" id="floatingInputGrid" placeholder="Emprendedor 1"
                                 v-model="formData.email" required>
                             <label for="floatingInputGrid">Correo Electronico del Emprendedor </label>
 
                         </div>
                         <div class="form-floating my-2">
-                            <input type="number" class="form-control" id="floatingInputGrid" placeholder="Titular 1"
+                            <input type="number" class="form-control" id="floatingInputGrid" placeholder="Emprendedor 1"
                                 v-model="formData.age" required>
                             <label for="floatingInputGrid">Edad del Emprendedor </label>
 
@@ -411,7 +411,7 @@ const deleteComunity = async (id) => {
 
                         <div class="modal-footer">
                             <button type="button" class="btn rounded-0 btn-primary" data-bs-dismiss="modal">Volver</button>
-                            <button type="submit" class="btn rounded-0 btn-success">Crear Titular</button>
+                            <button type="submit" class="btn rounded-0 btn-success">Crear Emprendedor</button>
                         </div>
 
 
@@ -426,7 +426,7 @@ const deleteComunity = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este titular?
+                        <h1 class="modal-title fs-5" id="eliminarModal">Seguro deseas eliminar este emprendedor?
                         </h1>
                         <button type="button" id="cerrarBotonEliminar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
