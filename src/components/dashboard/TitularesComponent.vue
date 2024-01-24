@@ -21,7 +21,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get(`http://localhost:8000/holders`, {
+    await axios.get(`https://sapvv-back.onrender.com/holders`, {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -40,7 +40,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/municipalitys', {
+    await axios.get('https://sapvv-back.onrender.com/municipalitys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -61,7 +61,7 @@ const refrescar = async () => {
 
 const getComunity = async (id) => {
 
-    await axios.get('http://localhost:8000/holders/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/holders/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -78,7 +78,7 @@ const createComunity = async () => {
     console.log(formData.value);
     formData.value.holder_type = "Persona"
 
-    await axios.post('http://localhost:8000/comunitys', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/comunitys', formData.value)
         .then(() => {
             alert('Titular Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -86,7 +86,7 @@ const createComunity = async () => {
             refrescar()
         })
         .catch((error) => {
-            alert('Titular ya existe')
+            alert(error.response.data.message);
             console.log(error)
         })
 }
@@ -94,7 +94,7 @@ const createComunity = async () => {
 
 const editComunity = async (id) => {
 
-    await axios.put(`http://localhost:8000/comunitys/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/comunitys/${id}`, formData.value)
         .then(() => {
             alert('Titular Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -103,14 +103,14 @@ const editComunity = async (id) => {
 
         })
         .catch((error) => {
-            alert(error.response.data.message)
+            alert(error.response.data.message);
             console.log(error)
         })
 }
 
 const deleteComunity = async (id) => {
     await getComunity(id)
-    await axios.delete('http://localhost:8000/comunitys/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/comunitys/' + id)
         .then(() => {
             alert('Titular Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -165,9 +165,9 @@ const deleteComunity = async (id) => {
                     <td>{{ comunity.id_number }}</td>
                     <td>{{ comunity.genre }}</td>
                     <td> <span v-for="municipality in comunity.municipalitys" :key="municipality.id">{{ municipality.name
-                    }}<br> </span></td>
+                                                }}<br> </span></td>
                     <td> <span v-for="beneficiary in comunity.beneficiarys" :key="beneficiary.id"> {{ beneficiary.name }} {{
-                        beneficiary.lastname }}<br><br> </span></td>
+                                                beneficiary.lastname }}<br><br> </span></td>
 
 
                     <td>
@@ -286,7 +286,7 @@ const deleteComunity = async (id) => {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Titular <br>
-                            {{ formData }}
+
                         </h1>
                         <button type="button" id="cerrarBotonActualizar" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>

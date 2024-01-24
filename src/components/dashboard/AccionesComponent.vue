@@ -10,6 +10,7 @@ const actionStore = useActionStore();
 const token = useAuthStore().token
 const actions = ref({})
 const type_actions = ref({})
+const measures = ref({})
 const formData = ref({})
 formData.value.done = false
 
@@ -27,7 +28,7 @@ onMounted(() => {
 
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/actions', {
+    await axios.get('https://sapvv-back.onrender.com/actions', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -44,7 +45,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('http://localhost:8000/dependencys', {
+    await axios.get('https://sapvv-back.onrender.com/dependencys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -64,7 +65,32 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/type_actions', {
+
+
+    await axios.get('https://sapvv-back.onrender.com/measures', {
+
+        //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
+
+        headers: {
+            'Authorization': `Bearer ${token}`,
+
+        },
+    })
+        .then((response) => {
+            measures.value = response.data
+            // console.log(departments.value);
+            // console.log(response.data);
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+
+
+
+
+
+
+    await axios.get('https://sapvv-back.onrender.com/type_actions', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -89,7 +115,7 @@ const refrescar = async () => {
 
 const getAction = async (id) => {
 
-    await axios.get('http://localhost:8000/actions/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/actions/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -104,7 +130,7 @@ const getAction = async (id) => {
 
 const createAction = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/actions', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/actions', formData.value)
         .then(() => {
             alert('Accion Creada')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -119,7 +145,7 @@ const createAction = async () => {
 
 const editAction = async (id) => {
 
-    await axios.put(`http://localhost:8000/actions/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/actions/${id}`, formData.value)
         .then(() => {
             alert('Accion Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -134,7 +160,7 @@ const editAction = async (id) => {
 
 const deleteAction = async (id) => {
     await getAction(id)
-    await axios.delete('http://localhost:8000/actions/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/actions/' + id)
         .then(() => {
             alert('Accion Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -213,7 +239,7 @@ const deleteAction = async (id) => {
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Accion </h1> {{ formData }}
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Accion </h1>
                         <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -225,6 +251,17 @@ const deleteAction = async (id) => {
                             <label for="floatingInputGrid">Descripcion del Accion </label>
 
                         </div>
+
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.measureId" required>
+                                <option disabled selected>Selecciona la medida que atiende</option>
+                                <option v-for="measure in measures" :key="measure.id" :value="measure.id"
+                                    class="text-capitalize">{{ measure.name }}</option>
+
+                            </select>
+                            <label for="floatingSelectGrid">Medida</label>
+                        </div>
+
                         <div class="form-floating my-2">
                             <select class="form-select" id="floatingSelectGrid" v-model="formData.dependencyId" required>
                                 <option disabled selected>Selecciona la dependencia que atiende</option>
@@ -276,9 +313,40 @@ const deleteAction = async (id) => {
                     <form class="modal-body" @submit.prevent="editAction(formData.id)">
                         <div class="form-floating my-2">
                             <input type="text" class="form-control" id="floatingInputGrid" placeholder="Accion 1"
-                                v-model="formData.description">
-                            <label for="floatingInputGrid">Descripcion del Accion</label>
+                                v-model="formData.description" required>
+                            <label for="floatingInputGrid">Descripcion del Accion </label>
 
+                        </div>
+
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.measureId" required>
+                                <option disabled selected>Selecciona la medida que atiende</option>
+                                <option v-for="measure in measures" :key="measure.id" :value="measure.id"
+                                    class="text-capitalize">{{ measure.name }}</option>
+
+                            </select>
+                            <label for="floatingSelectGrid">Medida</label>
+                        </div>
+
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.dependencyId" required>
+                                <option disabled selected>Selecciona la dependencia que atiende</option>
+                                <option v-for="dependency in dependencys" :key="dependency.id" :value="dependency.id"
+                                    class="text-capitalize">{{ dependency.name }}</option>
+
+                            </select>
+                            <label for="floatingSelectGrid">Dependencia</label>
+                        </div>
+
+
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid" v-model="formData.typeActionId" required>
+                                <option disabled selected>Selecciona el tipo de Accion:</option>
+                                <option v-for="type_action in type_actions" :key="type_action.id" :value="type_action.id"
+                                    class="text-capitalize">{{ type_action.name }}</option>
+
+                            </select>
+                            <label for="floatingSelectGrid">Tipo de Accion</label>
                         </div>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"

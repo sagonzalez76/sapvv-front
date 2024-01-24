@@ -33,7 +33,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/productive_unity', {
+    await axios.get('https://sapvv-back.onrender.com/productive_unity', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -50,7 +50,7 @@ const refrescar = async () => {
             console.log(error)
         })
 
-    await axios.get('http://localhost:8000/financial_foundings', {
+    await axios.get('https://sapvv-back.onrender.com/financial_foundings', {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -66,7 +66,7 @@ const refrescar = async () => {
             console.log(error)
         })
 
-    await axios.get('http://localhost:8000/training_centers', {
+    await axios.get('https://sapvv-back.onrender.com/training_centers', {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -83,7 +83,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('http://localhost:8000/entrepreneurs/', {
+    await axios.get('https://sapvv-back.onrender.com/entrepreneurs/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -101,7 +101,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('http://localhost:8000/municipalitys/', {
+    await axios.get('https://sapvv-back.onrender.com/municipalitys/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -118,7 +118,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('http://localhost:8000/users/', {
+    await axios.get('https://sapvv-back.onrender.com/users/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -137,7 +137,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/economic_activitys/', {
+    await axios.get('https://sapvv-back.onrender.com/economic_activitys/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -155,7 +155,7 @@ const refrescar = async () => {
         })
 
 
-    // await axios.get('http://localhost:8000/type_enterprises', {
+    // await axios.get('https://sapvv-back.onrender.com/type_enterprises', {
 
     //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -174,7 +174,7 @@ const refrescar = async () => {
     //     })
 
 
-    // await axios.get('http://localhost:8000/municipalitys', {
+    // await axios.get('https://sapvv-back.onrender.com/municipalitys', {
 
     //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
     //     headers: {
@@ -192,7 +192,7 @@ const refrescar = async () => {
 
 
 
-    // await axios.get('http://localhost:8000/comunitys/entrepreneurs', {
+    // await axios.get('https://sapvv-back.onrender.com/comunitys/entrepreneurs', {
 
     //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
     //     headers: {
@@ -213,7 +213,7 @@ const refrescar = async () => {
 
 const getEnterprise = async (id) => {
 
-    await axios.get('http://localhost:8000/productive_unity/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/productive_unity/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -230,7 +230,7 @@ const getEnterprise = async (id) => {
 const createEnterprise = async () => {
 
     formData.value.type = "Unidad Productiva"
-    await axios.post('http://localhost:8000/enterprises', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/enterprises', formData.value)
         .then(() => {
             alert('Unidad Productiva Creada')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -247,7 +247,7 @@ const createEnterprise = async () => {
 
 const editEnterprise = async (id) => {
     formData.value.type = "Unidad Productiva"
-    await axios.put(`http://localhost:8000/enterprises/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/enterprises/${id}`, formData.value)
         .then(() => {
             alert('Unidad Productiva Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -263,7 +263,7 @@ const editEnterprise = async (id) => {
 
 const deleteEnterprise = async (id) => {
     await getEnterprise(id)
-    await axios.delete('http://localhost:8000/enterprises/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/enterprises/' + id)
         .then(() => {
             alert('Unidad Productiva Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -460,7 +460,7 @@ const deleteEnterprise = async (id) => {
                             </select>
 
 
-                            <label for="floatingSelectGrid">Mes</label>
+                            <label for="floatingSelectGrid">Mes Reporte</label>
                         </div>
 
 
@@ -540,7 +540,7 @@ const deleteEnterprise = async (id) => {
                             <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.userId" required>
                                 <option disabled selected>Selecciona un Dinamizador</option>
                                 <option v-for="user in users" :key="user.id" :value="user.id" class="text-capitalize">{{
-                                    user.name }} {{ user.lastname }}</option>
+                                                                    user.name }} {{ user.lastname }}</option>
 
                             </select>
                             <label for="floatingSelectGrid">Asocia la Unidad Productiva a un Dinamizador
@@ -612,7 +612,7 @@ const deleteEnterprise = async (id) => {
                             <div class="form-floating my-2">
                                 <select class="form-select" id="floatingSelectGrid" v-model="formData.economic_sector"
                                     required>
-                                    <option disabled selected>Selecciona la Zona</option>
+                                    <option disabled selected>Selecciona un Sector Economico</option>
                                     <option value="Sector Agropecuario" class="text-capitalize">Sector Agropecuario</option>
                                     <option value="Sector Servicios" class="text-capitalize">Sector Servicios</option>
                                     <option value="Sector Industrial" class="text-capitalize">Sector Industrial</option>
@@ -628,7 +628,7 @@ const deleteEnterprise = async (id) => {
 
                                 </select>
 
-                                <label for="floatingSelectGrid">Zona</label>
+                                <label for="floatingSelectGrid">Sector Economico</label>
                             </div>
 
                             <div class="form-floating my-2">
@@ -664,7 +664,7 @@ const deleteEnterprise = async (id) => {
                                 </select>
 
 
-                                <label for="floatingSelectGrid">Mes</label>
+                                <label for="floatingSelectGrid">Mes Reporte</label>
                             </div>
 
 
@@ -759,7 +759,7 @@ const deleteEnterprise = async (id) => {
                                     <option disabled selected>Selecciona un Dinamizador</option>
                                     <option v-for="activity in activitys" :key="activity.id" :value="activity.id"
                                         class="text-capitalize">{{
-                                            activity.name }}</option>
+                                                                                activity.name }}</option>
 
                                 </select>
                                 <label for="floatingSelectGrid">Asocia la Unidad Productiva a una Actividad Economica
@@ -773,7 +773,7 @@ const deleteEnterprise = async (id) => {
                                     required>
                                     <option disabled selected>Selecciona un Dinamizador</option>
                                     <option v-for="user in users" :key="user.id" :value="user.id" class="text-capitalize">{{
-                                        user.name }} {{ user.lastname }}</option>
+                                                                            user.name }} {{ user.lastname }}</option>
 
                                 </select>
                                 <label for="floatingSelectGrid">Asocia la Unidad Productiva a un Dinamizador

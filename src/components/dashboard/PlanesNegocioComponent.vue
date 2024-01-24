@@ -13,6 +13,7 @@ const activitys = ref({})
 const enterprises = ref({})
 const municipalitys = ref({})
 const foundings = ref({})
+const role = useAuthStore().tokenRole
 
 
 const formData = ref({})
@@ -33,7 +34,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/business_plans', {
+    await axios.get('https://sapvv-back.onrender.com/business_plans', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -50,7 +51,7 @@ const refrescar = async () => {
             console.log(error)
         })
 
-    await axios.get('http://localhost:8000/financial_foundings', {
+    await axios.get('https://sapvv-back.onrender.com/financial_foundings', {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -66,7 +67,7 @@ const refrescar = async () => {
             console.log(error)
         })
 
-    await axios.get('http://localhost:8000/training_centers', {
+    await axios.get('https://sapvv-back.onrender.com/training_centers', {
 
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -83,7 +84,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('http://localhost:8000/entrepreneurs/', {
+    await axios.get('https://sapvv-back.onrender.com/entrepreneurs/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -101,7 +102,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('http://localhost:8000/municipalitys/', {
+    await axios.get('https://sapvv-back.onrender.com/municipalitys/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -118,7 +119,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('http://localhost:8000/users/', {
+    await axios.get('https://sapvv-back.onrender.com/users/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -137,7 +138,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/economic_activitys/', {
+    await axios.get('https://sapvv-back.onrender.com/economic_activitys/', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -155,7 +156,7 @@ const refrescar = async () => {
         })
 
 
-    // await axios.get('http://localhost:8000/type_enterprises', {
+    // await axios.get('https://sapvv-back.onrender.com/type_enterprises', {
 
     //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -174,7 +175,7 @@ const refrescar = async () => {
     //     })
 
 
-    // await axios.get('http://localhost:8000/municipalitys', {
+    // await axios.get('https://sapvv-back.onrender.com/municipalitys', {
 
     //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
     //     headers: {
@@ -192,7 +193,7 @@ const refrescar = async () => {
 
 
 
-    // await axios.get('http://localhost:8000/comunitys/entrepreneurs', {
+    // await axios.get('https://sapvv-back.onrender.com/comunitys/entrepreneurs', {
 
     //     //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
     //     headers: {
@@ -213,7 +214,7 @@ const refrescar = async () => {
 
 const getEnterprise = async (id) => {
 
-    await axios.get('http://localhost:8000/productive_unity/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/productive_unity/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -230,7 +231,7 @@ const getEnterprise = async (id) => {
 const createEnterprise = async () => {
 
     formData.value.type = "Plan Negocio"
-    await axios.post('http://localhost:8000/enterprises', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/enterprises', formData.value)
         .then(() => {
             alert('Plan de Negocio Creada')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -247,7 +248,7 @@ const createEnterprise = async () => {
 
 const editEnterprise = async (id) => {
     formData.value.type = "Plan Negocio"
-    await axios.put(`http://localhost:8000/enterprises/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/enterprises/${id}`, formData.value)
         .then(() => {
             alert('Plan de Negocio Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -263,7 +264,7 @@ const editEnterprise = async (id) => {
 
 const deleteEnterprise = async (id) => {
     await getEnterprise(id)
-    await axios.delete('http://localhost:8000/enterprises/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/enterprises/' + id)
         .then(() => {
             alert('Plan de Negocio Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -283,7 +284,7 @@ const deleteEnterprise = async (id) => {
 
 <template>
     <div class="d-flex ">
-        <h3>Planes de Negocio</h3>
+        <h3>Planes de Negocio</h3>{{ role }}
         <button type="button" class="btn rounded-0 btn-primary ms-auto rounded rounded-0 btn-sm" data-bs-toggle="modal"
             data-bs-target="#crearComunidadModal">Crear
             Plan de Negocio</button>
@@ -515,7 +516,7 @@ const deleteEnterprise = async (id) => {
                             <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.userId" required>
                                 <option disabled selected>Selecciona un Dinamizador</option>
                                 <option v-for="user in users" :key="user.id" :value="user.id" class="text-capitalize">{{
-                                    user.name }} {{ user.lastname }}</option>
+                                                                    user.name }} {{ user.lastname }}</option>
 
                             </select>
                             <label for="floatingSelectGrid">Asocia el Plan de Negocio a un Dinamizador
@@ -700,7 +701,7 @@ const deleteEnterprise = async (id) => {
                                     required>
                                     <option disabled selected>Selecciona un Dinamizador</option>
                                     <option v-for="user in users" :key="user.id" :value="user.id" class="text-capitalize">{{
-                                        user.name }} {{ user.lastname }}</option>
+                                                                            user.name }} {{ user.lastname }}</option>
 
                                 </select>
                                 <label for="floatingSelectGrid">Asocia el Plan de Negocio a un Dinamizador

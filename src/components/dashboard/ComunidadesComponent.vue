@@ -21,7 +21,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/comunitys', {
+    await axios.get('https://sapvv-back.onrender.com/comunitys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -40,7 +40,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/type_comunitys', {
+    await axios.get('https://sapvv-back.onrender.com/type_comunitys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -59,7 +59,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('http://localhost:8000/municipalitys', {
+    await axios.get('https://sapvv-back.onrender.com/municipalitys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -80,7 +80,7 @@ const refrescar = async () => {
 
 const getComunity = async (id) => {
 
-    await axios.get('http://localhost:8000/comunitys/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/comunitys/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -97,7 +97,7 @@ const createComunity = async () => {
     console.log(formData.value);
     formData.value.holder_type = "Comunidad"
 
-    await axios.post('http://localhost:8000/comunitys', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/comunitys', formData.value)
         .then(() => {
             alert('Comunidad Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -113,7 +113,7 @@ const createComunity = async () => {
 
 const editComunity = async (id) => {
 
-    await axios.put(`http://localhost:8000/comunitys/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/comunitys/${id}`, formData.value)
         .then(() => {
             alert('Comunidad Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -129,7 +129,7 @@ const editComunity = async (id) => {
 
 const deleteComunity = async (id) => {
     await getComunity(id)
-    await axios.delete('http://localhost:8000/comunitys/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/comunitys/' + id)
         .then(() => {
             alert('Comunidad Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -159,7 +159,7 @@ const deleteComunity = async (id) => {
 
 
     <div class="table-responsive small my-4 rounded">
-        <table id="" class=" table table-dark table-hover table-striped  stable-sm ">
+        <table id="" class=" table bg-secondary table-hover table-striped  stable-sm fade-in-down">
             <thead>
                 <tr class="text-center align-middle">
                     <th scope="col" class="col-1">ID</th>
@@ -179,7 +179,7 @@ const deleteComunity = async (id) => {
                     <!-- <td>{{ comunity.typeComunityId }}</td> -->
 
                     <td> <span v-for="municipality in comunity.municipalitys" :key="municipality.id">{{ municipality.name
-                    }}<br> </span></td>
+                                                }}<br> </span></td>
                     <td>{{ comunity.name }}</td>
 
                     <td>
@@ -223,7 +223,7 @@ const deleteComunity = async (id) => {
 
                         <div class="form-floating my-2">
                             <select class="form-select" id="floatingSelectGrid" v-model="formData.typeComunityId" required>
-                                <option disabled selected>Selecciona el el tipo de Comunidad</option>
+                                <option disabled selected>Selecciona el tipo de Comunidad</option>
                                 <option v-for="type_comunity in type_comunitys" :key="type_comunity.id"
                                     :value="type_comunity.id" class="text-capitalize">{{ type_comunity.name }}</option>
                             </select>

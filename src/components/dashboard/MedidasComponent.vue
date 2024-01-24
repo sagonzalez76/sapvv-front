@@ -5,6 +5,7 @@ import { onMounted } from 'vue'
 import { useAuthStore } from '../../stores/auth';
 
 const token = useAuthStore().token
+const role = useAuthStore().tokenRole
 const measures = ref({})
 const comunitys = ref({})
 const commitments = ref({})
@@ -25,7 +26,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/measures', {
+    await axios.get('https://sapvv-back.onrender.com/measures', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -43,7 +44,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/all', {
+    await axios.get('https://sapvv-back.onrender.com/all', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -60,7 +61,7 @@ const refrescar = async () => {
         })
 
 
-    await axios.get('http://localhost:8000/commitments', {
+    await axios.get('https://sapvv-back.onrender.com/commitments', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -80,7 +81,7 @@ const refrescar = async () => {
 
 const getMeasure = async (id) => {
 
-    await axios.get('http://localhost:8000/measures/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/measures/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -95,7 +96,7 @@ const getMeasure = async (id) => {
 
 const createMeasure = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/measures', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/measures', formData.value)
         .then(() => {
             alert('Medida Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -110,7 +111,7 @@ const createMeasure = async () => {
 
 const editMeasure = async (id) => {
 
-    await axios.put(`http://localhost:8000/measures/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/measures/${id}`, formData.value)
         .then(() => {
             alert('Medida Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -126,7 +127,7 @@ const editMeasure = async (id) => {
 
 const deleteMeasure = async (id) => {
     await getMeasure(id)
-    await axios.delete('http://localhost:8000/measures/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/measures/' + id)
         .then(() => {
             alert('Medida Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -166,6 +167,7 @@ const deleteMeasure = async (id) => {
                     <th scope="col" class="col-auto">Estado</th>
                     <th scope="col" class="col-auto">Anio</th>
                     <th scope="col" class="col-auto">Comunidades Asociadas a la Medida</th>
+                    <th scope="col" class="col-auto">Origen de la Medida</th>
 
 
                     <th scope="col" class="col-2">Acciones</th>
@@ -181,9 +183,12 @@ const deleteMeasure = async (id) => {
                     <td>{{ measure.name }}</td>
                     <td>{{ measure.state }}</td>
                     <td>{{ measure.year }}</td>
-                    <td class="align-middle"> <span v-for="comunity in measure.comunitys" :key="comunity.id"> {{
-                        comunity.name }}<br><br> </span>
+                    <td class=""> <span v-for="comunity in measure.comunitys" :key="comunity.id"> {{
+                                                comunity.name }}<br><br> </span>
                     </td>
+                    <td>{{ measure.commitment.name }}</td>
+
+
 
                     <td>
                         <div class="btn rounded-0-group" role="group" aria-label="Basic mixed styles example">
@@ -208,7 +213,7 @@ const deleteMeasure = async (id) => {
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
 
-                <div class="modal-content">
+                <div class="modal-content modal-dialog-scrollable">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Medida </h1>
                         <button type="button" id="cerrarBotonCrear" class="btn rounded-0-close" data-bs-dismiss="modal"
@@ -246,8 +251,8 @@ const deleteMeasure = async (id) => {
 
 
                         <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid" v-model="formData.comunityIds" multiple
-                                required>
+                            <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.comunityIds"
+                                multiple required>
                                 <option disabled selected>Selecciona una o mas Comunidades</option>
                                 <option v-for="comunity in comunitys" :key="comunity.id" :value="comunity.id"
                                     class="text-capitalize">{{ comunity.name }}</option>
@@ -255,12 +260,10 @@ const deleteMeasure = async (id) => {
                             </select>
                             <label for="floatingSelectGrid">Comunidad, Titular o Emprendedor</label>
                         </div>
-                        <br><br>
-                        <br>
 
                         <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid" v-model="formData.commitmentId" multiple
-                                required>
+                            <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.commitmentId"
+                                multiple required>
                                 <option disabled selected>Selecciona un Compromiso</option>
                                 <option v-for="commitment in commitments" :key="commitment.id" :value="commitment.id"
                                     class="text-capitalize">{{ commitment.name }}</option>

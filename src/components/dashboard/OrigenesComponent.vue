@@ -24,7 +24,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/origins', {
+    await axios.get('https://sapvv-back.onrender.com/origins', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -43,7 +43,7 @@ const refrescar = async () => {
 
 
 
-    await axios.get('http://localhost:8000/emitters', {
+    await axios.get('https://sapvv-back.onrender.com/emitters', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -65,7 +65,7 @@ const refrescar = async () => {
 
 const getOrigin = async (id) => {
 
-    await axios.get('http://localhost:8000/origins/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/origins/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -80,7 +80,7 @@ const getOrigin = async (id) => {
 
 const createOrigin = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/origins', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/origins', formData.value)
         .then(() => {
             alert('Origen Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -95,7 +95,7 @@ const createOrigin = async () => {
 
 const editOrigin = async (id) => {
 
-    await axios.put(`http://localhost:8000/origins/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/origins/${id}`, formData.value)
         .then(() => {
             alert('Origen Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -110,7 +110,7 @@ const editOrigin = async (id) => {
 
 const deleteOrigin = async (id) => {
     await getOrigin(id)
-    await axios.delete('http://localhost:8000/origins/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/origins/' + id)
         .then(() => {
             alert('Origen Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

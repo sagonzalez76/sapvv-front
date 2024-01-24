@@ -25,7 +25,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/users', {
+    await axios.get('https://sapvv-back.onrender.com/users', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -43,7 +43,7 @@ const refrescar = async () => {
             console.log(error)
         })
 
-    await axios.get('http://localhost:8000/roles', {
+    await axios.get('https://sapvv-back.onrender.com/roles', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -65,7 +65,7 @@ const refrescar = async () => {
 
 const getUser = async (id) => {
 
-    await axios.get('http://localhost:8000/users/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/users/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -83,7 +83,7 @@ const getUser = async (id) => {
 
 const createUser = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/signUp', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/signUp', formData.value)
         .then(() => {
             alert('Usuario Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -91,14 +91,15 @@ const createUser = async () => {
             refrescar()
         })
         .catch((error) => {
-            console.log(error.response.data.error)
+            alert(error.response.data.message);
+            console.log(error)
         })
 }
 
 
 const editUser = async (id) => {
 
-    await axios.put(`http://localhost:8000/users/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/users/${id}`, formData.value)
         .then(() => {
             alert('Usuario Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -107,13 +108,14 @@ const editUser = async (id) => {
 
         })
         .catch((error) => {
+            alert(error.response.data.message);
             console.log(error)
         })
 }
 
 const deleteUser = async (id) => {
     await getUser(id)
-    await axios.delete('http://localhost:8000/users/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/users/' + id)
         .then(() => {
             alert('Usuario Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')
@@ -197,39 +199,40 @@ const deleteUser = async (id) => {
                     <div class="modal-body">
 
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Usuario 1"
+                            <input type="text" class="form-control" id="floatingInputGrid1" placeholder="Usuario 1"
                                 v-model="formData.name" required>
-                            <label for="floatingInputGrid">Nombres </label>
+                            <label for="floatingInputGrid1">Nombres </label>
 
                         </div>
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Usuario 1"
+                            <input type="text" class="form-control" id="floatingInputGrid2" placeholder="Usuario 1"
                                 v-model="formData.lastname" required>
-                            <label for="floatingInputGrid">Apellidos </label>
-
-                        </div>
-                        <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Usuario 1"
-                                v-model="formData.password" required>
-                            <label for="floatingInputGrid">Contrase&ntilde;a </label>
+                            <label for="floatingInputGrid2">Apellidos </label>
 
                         </div>
 
 
 
+
                         <div class="form-floating my-2">
-                            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com"
+                            <input type="email" class="form-control" id="floatingInputGrid3" placeholder="name@example.com"
                                 v-model="formData.email" required>
-                            <label for="floatingInputGrid">Correo Electr&oacute;nico</label>
+                            <label for="floatingInputGrid3">Correo Electr&oacute;nico</label>
                         </div>
                         <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid" required v-model="formData.roleId">
+                            <input type="password" class="form-control" id="floatingInputGrid4" placeholder="Usuario 1"
+                                v-model="formData.password" required>
+                            <label for="floatingInputGrid4">Contrase&ntilde;a </label>
+
+                        </div>
+                        <div class="form-floating my-2">
+                            <select class="form-select" id="floatingSelectGrid5" required v-model="formData.roleId">
                                 <option disabled selected>Selecciona el cargo del Usuario</option>
                                 <option v-for="role in roles" :key="role.id" :value="role.id" class="text-capitalize">{{
-                                    role.description }}</option>
+                                                                    role.description }}</option>
 
                             </select>
-                            <label for="floatingSelectGrid">Rol</label>
+                            <label for="floatingSelectGrid5">Rol</label>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -256,31 +259,31 @@ const deleteUser = async (id) => {
                     </div>
                     <div class="modal-body">
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Usuario 1"
+                            <input type="text" class="form-control" id="floatingInputGrid6" placeholder="Usuario 1"
                                 v-model="formData.name">
-                            <label for="floatingInputGrid">Nombre</label>
+                            <label for="floatingInputGrid6">Nombre</label>
 
                         </div>
                         <div class="form-floating my-2">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="Usuario 1"
+                            <input type="text" class="form-control" id="floatingInputGrid7" placeholder="Usuario 1"
                                 v-model="formData.lastname">
-                            <label for="floatingInputGrid">Apellido</label>
+                            <label for="floatingInputGrid7">Apellido</label>
 
                         </div>
                         <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid" required v-model="formData.roleId">
+                            <select class="form-select" id="floatingSelectGrid8" required v-model="formData.roleId">
                                 <option disabled selected>Selecciona el cargo del Usuario</option>
                                 <option v-for="role in roles" :key="role.id" :value="role.id" class="text-capitalize">{{
-                                    role.description }}</option>
+                                                                    role.description }}</option>
 
                             </select>
-                            <label for="floatingSelectGrid">Rol</label>
+                            <label for="floatingSelectGrid8">Rol</label>
                         </div>
 
                         <div class="form-floating my-2">
-                            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com"
+                            <input type="email" class="form-control" id="floatingInputGrid9" placeholder="name@example.com"
                                 v-model="formData.email" required>
-                            <label for="floatingInputGrid">Correo Electr&oacute;nico</label>
+                            <label for="floatingInputGrid9">Correo Electr&oacute;nico</label>
                         </div>
                     </div>
                     <div class="modal-footer">

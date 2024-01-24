@@ -16,7 +16,7 @@ onMounted(() => {
 })
 
 const refrescar = async () => {
-    await axios.get('http://localhost:8000/beneficiarys', {
+    await axios.get('https://sapvv-back.onrender.com/beneficiarys', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
         headers: {
@@ -32,7 +32,7 @@ const refrescar = async () => {
             console.log('Error en refrescar', error)
         })
 
-    await axios.get('http://localhost:8000/holders', {
+    await axios.get('https://sapvv-back.onrender.com/holders', {
 
         //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
 
@@ -54,7 +54,7 @@ const refrescar = async () => {
 
 const getBeneficiary = async (id) => {
 
-    await axios.get('http://localhost:8000/beneficiarys/' + id, {
+    await axios.get('https://sapvv-back.onrender.com/beneficiarys/' + id, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -69,7 +69,7 @@ const getBeneficiary = async (id) => {
 
 const createBeneficiary = async () => {
     console.log(formData.value);
-    await axios.post('http://localhost:8000/beneficiarys', formData.value)
+    await axios.post('https://sapvv-back.onrender.com/beneficiarys', formData.value)
         .then(() => {
             alert('Beneficiario Creado')
             let botonCerrarModal = document.getElementById('cerrarBotonCrear')
@@ -84,7 +84,7 @@ const createBeneficiary = async () => {
 
 const editBeneficiary = async (id) => {
 
-    await axios.put(`http://localhost:8000/beneficiarys/${id}`, formData.value)
+    await axios.put(`https://sapvv-back.onrender.com/beneficiarys/${id}`, formData.value)
         .then(() => {
             alert('Beneficiario Actualizado')
             let botonCerrarModal = document.getElementById('cerrarBotonActualizar')
@@ -99,7 +99,7 @@ const editBeneficiary = async (id) => {
 
 const deleteBeneficiary = async (id) => {
     await getBeneficiary(id)
-    await axios.delete('http://localhost:8000/beneficiarys/' + id)
+    await axios.delete('https://sapvv-back.onrender.com/beneficiarys/' + id)
         .then(() => {
             alert('Beneficiario Eliminado')
             let botonCerrarModal = document.getElementById('cerrarBotonEliminar')

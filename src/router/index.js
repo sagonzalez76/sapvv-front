@@ -33,6 +33,9 @@ import Evidencias from "../components/dashboard/Acciones/EvidenciasComponent.vue
 import Centros from "../components/dashboard/CentrosFormacionComponent.vue"
 import Emprendedores from "../components/dashboard/EmprendedoresComponent.vue"
 import ActividadesEconomicas from "../components/dashboard/ActividadesEconomicasComponent.vue"
+import Bienvenida from "../components/dashboard/BienvenidaComponent.vue"
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -47,7 +50,7 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
-      meta: { requiresAuth: true, roles: ['student', 'director', 'juridico', 'enlace', 'dinamizador'] },
+      meta: { requiresAuth: true, roles: ['administrador', 'juridico', 'dinamizador', 'enlace', 'director'] },
       children: [
         {
           path: '/dashboard/usuarios',component: Usuarios
@@ -84,6 +87,10 @@ const router = createRouter({
         { path: '/dashboard/compromisos', component: Compromisos },
 
         { path: '/dashboard/concertaciones', component: Concertaciones },
+
+
+        { path: '/dashboard/welcome', component: Bienvenida },
+
 
       ],
     },

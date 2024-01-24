@@ -3,7 +3,6 @@ import { useAuthStore } from '../../stores/auth.js';
 
 const auth = useAuthStore()
 const role = useAuthStore().tokenRole
-
 const onLogout = () => {
   auth.logout()
 };
@@ -16,161 +15,190 @@ const cerrarSidebar = () => {
 
 }
 
-const rutasSeguridad = [{
-  id: 1,
-  nombre: 'Usuarios',
-  ruta: '/dashboard/usuarios',
-  xlink: '#people'
-}, {
-  id: 2,
-  nombre: 'Roles',
-  ruta: '/dashboard/roles',
-  xlink: '#people'
-}
 
-
-]
+const rutasSeguridad = [
+  {
+    id: 1,
+    nombre: 'Usuarios',
+    ruta: '/dashboard/usuarios',
+    xlink: '#people',
+    role: ['administrador', 'director']
+  },
+  {
+    id: 2,
+    nombre: 'Roles',
+    ruta: '/dashboard/roles',
+    xlink: '#people',
+    role: ['administrador', 'director']
+  }
+];
 
 const rutasAtencion = [
   {
     id: 3,
     nombre: 'Departamentos',
     ruta: '/dashboard/departamentos',
-    xlink: '#departamentos'
+    xlink: '#departamentos',
+    role: ['administrador', 'director']
   },
   {
     id: 4,
     nombre: 'Municipios',
     ruta: '/dashboard/municipios',
-    xlink: '#municipios'
+    xlink: '#municipios',
+    role: ['administrador', 'director']
   },
   {
     id: 5,
     nombre: 'Tipos Comunidades',
     ruta: '/dashboard/tipo_comunidades',
-    xlink: '#tipocomunidad'
+    xlink: '#tipocomunidad',
+    role: ['enlace', 'administrador', 'director']
   },
   {
     id: 6,
     nombre: 'Comunidades',
     ruta: '/dashboard/comunidades',
-    xlink: '#tipocomunidad'
+    xlink: '#tipocomunidad',
+    role: ['enlace', "juridico", 'administrador', 'director']
   },
   {
     id: 7,
     nombre: 'Representantes',
     ruta: '/dashboard/representantes',
-    xlink: '#representante'
+    xlink: '#representante',
+    role: ['enlace', 'administrador', 'director']
   },
   {
     id: 8,
     nombre: 'Titulares',
     ruta: '/dashboard/titulares',
-    xlink: '#tipocomunidad'
+    xlink: '#tipocomunidad',
+    role: ['juridico', 'administrador', 'director']
   },
   {
     id: 9,
-    nombre: 'Emprendedores',
-    ruta: '/dashboard/emprendedores',
-    xlink: '#tipocomunidad'
+    nombre: 'Beneficiarios',
+    ruta: '/dashboard/beneficiarios',
+    xlink: '#tipocomunidad',
+    role: ['juridico', 'administrador', 'director']
   },
   {
     id: 10,
-    nombre: 'Beneficiarios',
-    ruta: '/dashboard/beneficiarios',
-    xlink: '#tipocomunidad'
+    nombre: 'Emprendedores',
+    ruta: '/dashboard/emprendedores',
+    xlink: '#tipocomunidad',
+    role: ['dinamizador', 'administrador', 'director']
   },
   {
     id: 11,
     nombre: 'Emisores',
     ruta: '/dashboard/emisores',
-    xlink: '#representante'
+    xlink: '#representante',
+    role: ['administrador', 'director']
   },
   {
     id: 12,
     nombre: 'Origenes',
     ruta: '/dashboard/origenes',
-    xlink: '#calendario'
+    xlink: '#calendario',
+    role: ['administrador', 'director']
   },
   {
     id: 13,
     nombre: 'Compromisos',
     ruta: '/dashboard/compromisos',
-    xlink: '#puzzle'
+    xlink: '#puzzle',
+    role: ['enlace', 'juridico', 'administrador', 'director']
   },
   {
     id: 14,
     nombre: 'Acciones',
     ruta: '/dashboard/acciones',
-    xlink: '#acciones'
+    xlink: '#acciones',
+    role: ['enlace', 'juridico', 'administrador', 'director']
   },
   {
     id: 15,
     nombre: 'Programas',
     ruta: '/dashboard/programas',
-    xlink: '#programa'
+    xlink: '#programa',
+    role: ['administrador', 'director']
   },
   {
     id: 16,
     nombre: 'Dependencias',
     ruta: '/dashboard/dependencias',
-    xlink: '#dependencia'
+    xlink: '#dependencia',
+    role: ['administrador', 'director']
   },
   {
     id: 17,
     nombre: 'Tipos Acciones',
     ruta: '/dashboard/tipo_acciones',
-    xlink: '#tipocomunidad'
+    xlink: '#tipocomunidad',
+    role: ['administrador', 'director']
   },
   {
     id: 18,
     nombre: 'Medidas',
     ruta: '/dashboard/medidas',
-    xlink: '#accion'
+    xlink: '#accion',
+    role: ['enlace', 'juridico', 'administrador', 'director']
   },
   {
     id: 19,
     nombre: 'Concertaciones',
     ruta: '/dashboard/concertaciones',
-    xlink: '#concertaciones'
+    xlink: '#concertaciones',
+    role: ['enlace', 'juridico', 'administrador', 'director']
   },
   {
     id: 20,
     nombre: 'Regionales',
     ruta: '/dashboard/regionales',
-    xlink: '#regional'
+    xlink: '#regional',
+    role: ['administrador', 'director']
   },
   {
     id: 21,
     nombre: 'Centros',
     ruta: '/dashboard/centros',
-    xlink: '#school'
+    xlink: '#school',
+    role: ['administrador', 'director']
   },
   {
     id: 22,
     nombre: 'Actividades Economicas',
     ruta: '/dashboard/actividades_economicas',
-    xlink: '#bank'
+    xlink: '#bank',
+    role: ['dinamizador', 'administrador', 'director']
   },
   {
     id: 23,
     nombre: 'Fuentes de Financiacion',
     ruta: '/dashboard/fuentes_financiacion',
-    xlink: '#finance'
+    xlink: '#finance',
+    role: ['dinamizador', 'administrador', 'director']
   },
   {
     id: 24,
     nombre: 'Unidades Productivas',
     ruta: '/dashboard/unidades_productivas',
-    xlink: '#empresa'
+    xlink: '#empresa',
+    role: ['dinamizador', 'administrador', 'director']
   },
   {
     id: 25,
     nombre: 'Planes de Negocio',
     ruta: '/dashboard/planes_negocio',
-    xlink: '#plan'
+    xlink: '#plan',
+    role: ['dinamizador', 'administrador', 'director']
   }
 ];
+
+
+
 </script>
 
 <template>
@@ -184,7 +212,7 @@ const rutasAtencion = [
       </div>
       <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
 
-        <ul v-if="role == 'juridico'" class="nav flex-column mb-2">
+        <ul v-if="rutasSeguridad[0].role.includes(role)" class="nav flex-column mb-2">
           <h6
             class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-0 mb-1 text-body-secondary text-uppercase">
             <span>SEGURIDAD</span>
@@ -194,17 +222,19 @@ const rutasAtencion = [
               </svg>
             </a>
           </h6>
-          <li class="nav-item" v-for="ruta in rutasSeguridad" :key=ruta.id>
-            <router-link :to="ruta.ruta" class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
-              @click="cerrarSidebar()">
-              <svg class="bi">
-                <use :xlink:href="ruta.xlink" />
-              </svg>
-              {{ ruta.nombre }}
-            </router-link>
+          <li class="nav-item" v-for="ruta in rutasSeguridad" :key="ruta.id">
+            <template v-if="ruta.role.includes(role)">
+
+              <router-link :to="ruta.ruta" class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                @click="cerrarSidebar()">
+                <svg class="bi">
+                  <use :xlink:href="ruta.xlink" />
+                </svg>
+                {{ ruta.nombre }}
+              </router-link>
+            </template>
           </li>
         </ul>
-
 
 
         <ul class="nav flex-column">
@@ -219,13 +249,16 @@ const rutasAtencion = [
           </h6>
 
           <li class="nav-item" v-for="ruta in rutasAtencion" :key=ruta.id>
-            <router-link :to="ruta.ruta" type="button" @click="cerrarSidebar()"
-              class="nav-link d-flex align-items-center gap-2 active" aria-current="page">
-              <svg class="bi">
-                <use :xlink:href="ruta.xlink" />
-              </svg>
-              {{ ruta.nombre }}
-            </router-link>
+             <template v-if="ruta.role.includes(role)">
+
+                <router-link :to="ruta.ruta" class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                  @click="cerrarSidebar()">
+                  <svg class="bi">
+                    <use :xlink:href="ruta.xlink" />
+                  </svg>
+                  {{ ruta.nombre }}
+                </router-link>
+              </template>
           </li>
         </ul>
 

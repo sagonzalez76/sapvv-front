@@ -27,7 +27,7 @@ const onSubmit = () => {
   <div data-bs-spy="scroll" data-bs-root-margin="0px 0px -40%" data-bs-target="#navbar-sapvv" data-bs-smooth-scroll="true"
     tabindex="0" class="papa">
 
-    <div class="container col-xl-10 col-xxl-8 px-4 py-5 min-vh-100 center-vertically" id="hero">
+    <div class="container col-xl-10 col-xxl-8 px-4 py-4 min-vh-100  center-vertically" id="hero">
       <div class="row align-items-center g-lg-5 py-5">
         <div class="col-lg-7 text-center text-lg-start">
           <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3 text ">Sistema de Atencion a Poblacion
@@ -85,7 +85,7 @@ const onSubmit = () => {
     <hr>
 
 
-    <div class="container col-xl-10 col-xxl-8 px-4 py-5 min-vh-100 center-vertically" id="hero2">
+    <div class="container col-xl-10 col-xxl-8 px-4 py-4 min-vh-100  center-vertically" id="hero2">
 
       <div class="row align-items-center g-lg-5 py-5">
 
@@ -109,7 +109,7 @@ const onSubmit = () => {
 
     <hr>
 
-    <div class="container col-xl-10 col-xxl-8 px-4 py-5 min-vh-100 center-vertically" id="hero3">
+    <div class="container col-xl-10 col-xxl-8 px-4 py-4 min-vh-100  center-vertically" id="hero3">
       <div class="row align-items-center g-lg-5 py-5 ">
         <div class="col-md-10 mx-0 col-lg-5">
           <img src="/imagen2.png" alt="" width="100%" id="imagen2">
@@ -130,7 +130,7 @@ const onSubmit = () => {
 
     <hr>
 
-    <div class="container col-xl-10 col-xxl-8 px-4 py-5 min-vh-100 center-vertically" id="hero4">
+    <div class="container col-xl-10 col-xxl-8 px-4 py-4 min-vh-100  center-vertically" id="hero4">
       <div class="row align-items-center g-lg-5 py-5">
         <div class="col-lg-7 text-center text-lg-start">
           <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3 text-">Contacto</h1>
@@ -196,12 +196,8 @@ img {
   }
 }
 
-form{
-    background-color: rgba(4, 131, 0, 0.09);
+form {
+  background-color: rgba(4, 131, 0, 0.09);
 
 }
-
-
-
-
 </style>
