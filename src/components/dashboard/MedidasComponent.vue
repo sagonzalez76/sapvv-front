@@ -9,6 +9,8 @@ const role = useAuthStore().tokenRole
 const measures = ref({})
 const comunitys = ref({})
 const commitments = ref({})
+const programs = ref({})
+
 
 const formData = ref({})
 
@@ -41,6 +43,28 @@ const refrescar = async () => {
         .catch((error) => {
             console.log(error)
         })
+
+
+
+    await axios.get('https://sapvv-back.onrender.com/programs', {
+
+        //ENCABEZADO DE LA PETICION, ENVIO DE TOKEN PARA AUTH DE SERVICIOS
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+    })
+        .then((response) => {
+            programs.value = response.data
+            // console.log(measures.value);
+            console.log(response.data);
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+
+
+
+
 
 
 
@@ -168,7 +192,7 @@ const deleteMeasure = async (id) => {
                     <th scope="col" class="col-auto">Anio</th>
                     <th scope="col" class="col-auto">Comunidades Asociadas a la Medida</th>
                     <th scope="col" class="col-auto">Origen de la Medida</th>
-
+                    <th scope="col" class="col-auto">Programas</th>
 
                     <th scope="col" class="col-2">Acciones</th>
                 </tr>
@@ -184,9 +208,12 @@ const deleteMeasure = async (id) => {
                     <td>{{ measure.state }}</td>
                     <td>{{ measure.year }}</td>
                     <td class=""> <span v-for="comunity in measure.comunitys" :key="comunity.id"> {{
-                                                comunity.name }}<br><br> </span>
+                        comunity.name }}<br><br> </span>
                     </td>
                     <td>{{ measure.commitment.name }}</td>
+                    <td class=""> <span v-for="program in measure.programs" :key="program.id"> {{
+                        program.name }}<br><br> </span>
+                    </td>
 
 
 
@@ -263,13 +290,24 @@ const deleteMeasure = async (id) => {
 
                         <div class="form-floating my-2">
                             <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.commitmentId"
-                                multiple required>
+                                required>
                                 <option disabled selected>Selecciona un Compromiso</option>
                                 <option v-for="commitment in commitments" :key="commitment.id" :value="commitment.id"
                                     class="text-capitalize">{{ commitment.name }}</option>
 
                             </select>
                             <label for="floatingSelectGrid">Compromiso</label>
+                        </div>
+
+                        <div class="form-floating my-2">
+                            <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.programIds"
+                                multiple required>
+                                <option disabled selected>Selecciona uno o varias Programas</option>
+                                <option v-for="program in programs" :key="program.id" :value="program.id"
+                                    class="text-capitalize">{{ program.name }}</option>
+
+                            </select>
+                            <label for="floatingSelectGrid">Programas</label>
                         </div>
 
 
@@ -335,8 +373,8 @@ const deleteMeasure = async (id) => {
                         </div>
 
                         <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid" v-model="formData.comunityIds" multiple
-                                required>
+                            <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.comunityIds"
+                                multiple required>
                                 <option disabled selected>Selecciona una o mas Comunidades</option>
                                 <option v-for="comunity in comunitys" :key="comunity.id" :value="comunity.id"
                                     class="text-capitalize">{{ comunity.name }}</option>
@@ -345,7 +383,7 @@ const deleteMeasure = async (id) => {
                             <label for="floatingSelectGrid">Comunidad, Titular o Emprendedor</label>
                         </div>
                         <div class="form-floating my-2">
-                            <select class="form-select" id="floatingSelectGrid" v-model="formData.commitmentId" multiple
+                            <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.commitmentId"
                                 required>
                                 <option disabled selected>Selecciona un Compromiso</option>
                                 <option v-for="commitment in commitments" :key="commitment.id" :value="commitment.id"
@@ -353,6 +391,17 @@ const deleteMeasure = async (id) => {
 
                             </select>
                             <label for="floatingSelectGrid">Compromiso</label>
+                        </div>
+
+                        <div class="form-floating my-2">
+                            <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.programIds"
+                                multiple required>
+                                <option disabled selected>Selecciona uno o varias Programas</option>
+                                <option v-for="program in programs" :key="program.id" :value="program.id"
+                                    class="text-capitalize">{{ program.name }}</option>
+
+                            </select>
+                            <label for="floatingSelectGrid">Programas</label>
                         </div>
 
                     </div>

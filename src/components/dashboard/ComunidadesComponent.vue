@@ -179,7 +179,7 @@ const deleteComunity = async (id) => {
                     <!-- <td>{{ comunity.typeComunityId }}</td> -->
 
                     <td> <span v-for="municipality in comunity.municipalitys" :key="municipality.id">{{ municipality.name
-                                                }}<br> </span></td>
+                    }}<br> </span></td>
                     <td>{{ comunity.name }}</td>
 
                     <td>

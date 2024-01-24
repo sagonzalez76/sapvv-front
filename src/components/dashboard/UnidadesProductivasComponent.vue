@@ -540,7 +540,7 @@ const deleteEnterprise = async (id) => {
                             <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.userId" required>
                                 <option disabled selected>Selecciona un Dinamizador</option>
                                 <option v-for="user in users" :key="user.id" :value="user.id" class="text-capitalize">{{
-                                                                    user.name }} {{ user.lastname }}</option>
+                                    user.name }} {{ user.lastname }}</option>
 
                             </select>
                             <label for="floatingSelectGrid">Asocia la Unidad Productiva a un Dinamizador
@@ -759,7 +759,7 @@ const deleteEnterprise = async (id) => {
                                     <option disabled selected>Selecciona un Dinamizador</option>
                                     <option v-for="activity in activitys" :key="activity.id" :value="activity.id"
                                         class="text-capitalize">{{
-                                                                                activity.name }}</option>
+                                            activity.name }}</option>
 
                                 </select>
                                 <label for="floatingSelectGrid">Asocia la Unidad Productiva a una Actividad Economica
@@ -773,7 +773,7 @@ const deleteEnterprise = async (id) => {
                                     required>
                                     <option disabled selected>Selecciona un Dinamizador</option>
                                     <option v-for="user in users" :key="user.id" :value="user.id" class="text-capitalize">{{
-                                                                            user.name }} {{ user.lastname }}</option>
+                                        user.name }} {{ user.lastname }}</option>
 
                                 </select>
                                 <label for="floatingSelectGrid">Asocia la Unidad Productiva a un Dinamizador

@@ -12,6 +12,8 @@ import Dependencias from '../components/dashboard/DependenciasComponent.vue'
 
 import Emisores from '../components/dashboard/EmisoresComponent.vue'
 import Municipios from '../components/dashboard/MunicipiosComponent.vue'
+import Fichas from '../components/dashboard/FichasComponent.vue'
+
 import Regionales from '../components/dashboard/RegionalesComponent.vue'
 
 import Origenes from '../components/dashboard/OrigenesComponent.vue'
@@ -64,6 +66,8 @@ const router = createRouter({
         { path: '/dashboard/emisores', component: Emisores },
         { path: '/dashboard/departamentos', component: Departamentos },
         { path: '/dashboard/dependencias', component: Dependencias },
+
+        { path: '/dashboard/fichas', component: Fichas },
 
         { path: '/dashboard/municipios', component: Municipios },
         { path: '/dashboard/regionales', component: Regionales },

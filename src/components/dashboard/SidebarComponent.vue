@@ -118,6 +118,13 @@ const rutasAtencion = [
     xlink: '#acciones',
     role: ['enlace', 'juridico', 'administrador', 'director']
   },
+   {
+    id: 14,
+    nombre: 'Fichas',
+    ruta: '/dashboard/fichas',
+    xlink: '#acciones',
+    role: ['enlace', 'juridico', 'administrador', 'director']
+  },
   {
     id: 15,
     nombre: 'Programas',
@@ -261,6 +268,8 @@ const rutasAtencion = [
               </template>
           </li>
         </ul>
+
+        
 
         <hr class="my-3">
 

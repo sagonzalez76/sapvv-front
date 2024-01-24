@@ -229,7 +229,7 @@ const deleteUser = async (id) => {
                             <select class="form-select" id="floatingSelectGrid5" required v-model="formData.roleId">
                                 <option disabled selected>Selecciona el cargo del Usuario</option>
                                 <option v-for="role in roles" :key="role.id" :value="role.id" class="text-capitalize">{{
-                                                                    role.description }}</option>
+                                    role.description }}</option>
 
                             </select>
                             <label for="floatingSelectGrid5">Rol</label>
@@ -274,7 +274,7 @@ const deleteUser = async (id) => {
                             <select class="form-select" id="floatingSelectGrid8" required v-model="formData.roleId">
                                 <option disabled selected>Selecciona el cargo del Usuario</option>
                                 <option v-for="role in roles" :key="role.id" :value="role.id" class="text-capitalize">{{
-                                                                    role.description }}</option>
+                                    role.description }}</option>
 
                             </select>
                             <label for="floatingSelectGrid8">Rol</label>

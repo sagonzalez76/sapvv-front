@@ -516,7 +516,7 @@ const deleteEnterprise = async (id) => {
                             <select class="form-select h-auto" id="floatingSelectGrid" v-model="formData.userId" required>
                                 <option disabled selected>Selecciona un Dinamizador</option>
                                 <option v-for="user in users" :key="user.id" :value="user.id" class="text-capitalize">{{
-                                                                    user.name }} {{ user.lastname }}</option>
+                                    user.name }} {{ user.lastname }}</option>
 
                             </select>
                             <label for="floatingSelectGrid">Asocia el Plan de Negocio a un Dinamizador
@@ -701,7 +701,7 @@ const deleteEnterprise = async (id) => {
                                     required>
                                     <option disabled selected>Selecciona un Dinamizador</option>
                                     <option v-for="user in users" :key="user.id" :value="user.id" class="text-capitalize">{{
-                                                                            user.name }} {{ user.lastname }}</option>
+                                        user.name }} {{ user.lastname }}</option>
 
                                 </select>
                                 <label for="floatingSelectGrid">Asocia el Plan de Negocio a un Dinamizador

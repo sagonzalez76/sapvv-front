@@ -246,7 +246,7 @@ const verArchivo = async (url) => {
                                                 @click="descargarArchivo(image.url)">Descargar</button>
                                         </div>
                                         <small class="text-body-secondary">{{ calcularTiempoTranscurrido(image.createdAt)
-                                                                                    }}</small>
+                                        }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -276,7 +276,7 @@ const verArchivo = async (url) => {
                                                 @click="descargarArchivo(audio.url)">Descargar</button>
                                         </div>
                                         <small class="text-body-secondary">{{ calcularTiempoTranscurrido(audio.createdAt)
-                                                                                    }}</small>
+                                        }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -306,7 +306,7 @@ const verArchivo = async (url) => {
                                                 @click="descargarArchivo(video.url)">Descargar</button>
                                         </div>
                                         <small class="text-body-secondary">{{ calcularTiempoTranscurrido(video.createdAt)
-                                                                                    }}</small>
+                                        }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -346,7 +346,7 @@ const verArchivo = async (url) => {
                                                 @click="descargarArchivo(documento.url)">Descargar</button>
                                         </div>
                                         <small class="text-body-secondary">{{
-                                                                                    calcularTiempoTranscurrido(documento.createdAt) }}</small>
+                                            calcularTiempoTranscurrido(documento.createdAt) }}</small>
                                     </div>
                                 </div>
                             </div>
